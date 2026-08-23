@@ -1,11 +1,3 @@
-# =============================================================
-# Robot run program
-# Hub: LEGO SPIKE Prime
-# Firmware: Pybricks
-#
-# Note: the "#!/usr/bin/env pybricks-micropython" line is only
-# needed for EV3. It does nothing on a PrimeHub, so it is removed.
-# =============================================================
 
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
@@ -59,14 +51,6 @@ drive_base = DriveBase(
 
 # Use the gyro so the robot holds a straight line and turns accurately.
 drive_base.use_gyro(True)
-
-# Optional. Setting fixed speeds makes runs more repeatable from match to match.
-# drive_base.settings(
-#     straight_speed=200,
-#     straight_acceleration=400,
-#     turn_rate=100,
-#     turn_acceleration=300,
-# )
 
 
 # -------------------------------------------------------------
@@ -134,25 +118,13 @@ def return_to_start():
     drive_base.straight(-drive_base.distance())
 
 
-# -------------------------------------------------------------
-# 4. The run
-# -------------------------------------------------------------
-
 # Reset first, before the robot moves at all.
 reset_everything()
 
 # Drive forward 400 mm. The gyro keeps the line straight.
-drive_base.straight(400)
+drive_base.straight(300)
 
 # Drive backward 100 mm. A negative value means reverse.
-drive_base.straight(-100)
 
-# If you want the robot to come all the way back to base instead,
-# replace the line above with this:
-# return_to_start()
-
-# straight() already stops and holds at the end, so this line is optional.
-# stop() lets the motors coast, which makes the robot easy to lift out
-# but also easy to knock out of place.
-# Use brake() instead if you want it to stay planted.
+drive_base.straight(-200)
 drive_base.stop()
