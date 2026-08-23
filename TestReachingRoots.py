@@ -12,7 +12,7 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Attachment motors setup
 # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
-attachment_right = Motor(Port.C, gears=[[20,12],[12,36],[12,20]])
+attachment_right = Motor(Port.C)
 attachment_left = Motor(Port.B)
 
 # DriveBase setup
@@ -23,32 +23,21 @@ drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, a
 drive_base.use_gyro(True)
 
 left_motor.reset_angle(0)
-hub.imu.reset_heading(0)
+right_motor.reset_angle(0)
 
+hub.imu.reset_heading(0)
 
 drive_base.reset()
 
 # --- Right Attachment Motor Actions (Port B) ---
 
 # 1. Lift Port C arm 170 degrees at speed 75
-attachment_right.run_angle(speed=150, rotation_angle=100)
+attachment_right.run_angle(speed=125, rotation_angle=170)
 
-# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
-drive_base.settings(straight_speed=200)
-drive_base.straight(-30)
 
-# Lower arm Port C arm 20 degrees at speed 75
-attachment_right.run_angle(speed=250, rotation_angle=-100)
-
-# 3. Drive forward 30 mm in a straight line using gyro stabilization
-drive_base.straight(30)
-
-# Lift Port C arm 20 degrees at speed 75
-attachment_right.run_angle(speed=550, rotation_angle=200)
 
 # straight() already stops and holds at the end, so this line is optional.
 # stop() lets the motors coast, which makes the robot easy to lift out
 # but also easy to knock out of place.
 # Use brake() instead if you want it to stay planted.
-
 drive_base.stop()
