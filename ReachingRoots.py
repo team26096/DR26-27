@@ -12,8 +12,10 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Attachment motors setup
 # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
-attachment_right = Motor(Port.C, gears=[[20,12],[12,36],[12,20]])
-attachment_left = Motor(Port.B)
+attachment_right = Motor(Port.B, gears=[[20,12],[12,36],[12,20]])
+attachment_left = Motor(Port.C, gears=[[20,12],[12,36],[12,20]])
+
+
 
 # DriveBase setup
 WHEEL_DIAMETER = 56
@@ -25,25 +27,42 @@ drive_base.use_gyro(True)
 left_motor.reset_angle(0)
 hub.imu.reset_heading(0)
 
-
 drive_base.reset()
 
 # --- Right Attachment Motor Actions (Port B) ---
 
-# 1. Lift Port C arm 170 degrees at speed 75
-attachment_right.run_angle(speed=150, rotation_angle=100)
+# 3. Drive forward 670 mm in a straight line using gyro stabilization
+drive_base.straight(670, wait=False)
+
+
+
+# 1. Lower Port  arm 80 degrees at speed 200
+#attachment_right.run_angle(speed=200, rotation_angle=-80)
 
 # Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
 drive_base.settings(straight_speed=200)
 drive_base.straight(-30)
 
-# Lower arm Port C arm 20 degrees at speed 75
-attachment_right.run_angle(speed=250, rotation_angle=-100)
+# Lower arm Port B arm 20 degrees at speed 75
+#attachment_right.run_angle(speed=250, rotation_angle=-85)
 
-# 3. Drive forward 30 mm in a straight line using gyro stabilization
-drive_base.straight(30)
+# 3. Drive forward 50 mm in a straight line using gyro stabilization
+drive_base.straight(50)
 
-# Lift Port C arm 20 degrees at speed 75
+# Lift Port B arm 20 degrees at speed 75
+#attachment_right.run_angle(speed=550, rotation_angle=200)
+
+# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
+drive_base.settings(straight_speed=200)
+drive_base.straight(-30)
+
+# Lower arm Port B arm 20 degrees at speed 75
+#attachment_right.run_angle(speed=250, rotation_angle=-200)
+
+# # 3. Drive forward 50 mm in a straight line using gyro stabilization
+drive_base.straight(50)
+
+# # Lift Port B arm 20 degrees at speed 75
 attachment_right.run_angle(speed=550, rotation_angle=200)
 
 # straight() already stops and holds at the end, so this line is optional.
