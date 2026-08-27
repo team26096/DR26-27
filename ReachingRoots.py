@@ -16,9 +16,8 @@ attachment_right = Motor(Port.B, gears=[[12,20],[12,12]])
 attachment_left = Motor(Port.C, gears=[[12,20],[12,12]])
 
 
-
 # DriveBase setup
-WHEEL_DIAMETER = 56
+WHEEL_DIAMETER = 62.4
 AXLE_TRACK = 164
 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
@@ -71,11 +70,16 @@ drive_base.reset()
 # Use brake() instead if you want it to stay planted.
 
 # Lift Port B arm 20 degrees at speed 75
-attachment_right.run_angle(speed=650, rotation_angle=-110)
+#attachment_right.run_angle(speed=650, rotation_angle=-110)
 
 # Lower arm Port  arm 20 degrees at speed 75
-attachment_right.run_angle(speed=650, rotation_angle=-30)
+
+drive_base.straight(845)
+#attachment_left.run_angle(speed=650, rotation_angle=-5)
 
 
+drive_base.turn(15)
+attachment_left.run_angle(speed=650, rotation_angle=-120)
+attachment_left.run_angle(speed=650, rotation_angle=120)
 
 drive_base.stop()
