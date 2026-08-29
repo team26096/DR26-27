@@ -3,6 +3,7 @@ from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 
+
 # Initialize the hub
 hub = PrimeHub()
 
@@ -28,64 +29,29 @@ hub.imu.reset_heading(0)
 
 drive_base.reset()
 
-# --- Right Attachment Motor Actions (Port C) ---
 
-# 3. Drive forward 670 mm in a straight line using gyro stabilization
-# drive_base.straight(670, wait=True)
-
-
-
-# 1. Lower Port  arm 80 degrees at speed 200
-# attachment_right.run_angle(speed=200, rotation_angle=45)
-
-# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
-# drive_base.settings(straight_speed=200)
-
-# Lower arm Port B arm 20 degrees at speed 75
-# attachment_right.run_angle(speed=250, rotation_angle=-45)
-# drive_base.straight(-40)
-#drive_base.straight(40)
-# 3. Drive forward 50 mm in a straight line using gyro stabilization
-# drive_base.straight(50)
-
-# Lift Port B arm 20 degrees at speed 75
-#attachment_right.run_angle(speed=550, rotation_angle=200)
-
-# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
-# drive_base.settings(straight_speed=200)
-# drive_base.straight(-30)
-
-# Lower arm Port B arm 20 degrees at speed 75
-#attachment_right.run_angle(speed=250, rotation_angle=-200)
-
-# # 3. Drive forward 50 mm in a straight line using gyro stabilization
-# drive_base.straight(50)
-
-# # Lift Port B arm 20 degrees at speed 75
-# attachment_right.run_angle(speed=550, rotation_angle=200)
-
-# straight() already stops and holds at the end, so this line is optional.
-# stop() lets the motors coast, which makes the robot easy to lift out
-# but also easy to knock out of place.
-# Use brake() instead if you want it to stay planted.
-
-# Lift Port B arm 20 degrees at speed 75
-#attachment_right.run_angle(speed=650, rotation_angle=-110)
-
-# Lower arm Port  arm 20 degrees at speed 75
-
-attachment_left.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-attachment_left.reset_angle(0)
-attachment_left.run_angle(speed=650, rotation_angle=295)
-drive_base.straight(-10)
+#attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
+#attachment_right.reset_angle(0)
+attachment_right.run_angle(speed=650, rotation_angle=210)
+#drive_base.straight(-10)
 drive_base.reset()
-
-drive_base.straight(850)
-#attachment_left.run_angle(speed=650, rotation_angle=-5)
-
-
+drive_base.straight(865)
 drive_base.turn(15)
-attachment_left.run_angle(speed=650, rotation_angle=-120)
-attachment_left.run_angle(speed=650, rotation_angle=120)
+attachment_right.run_angle(speed=650, rotation_angle=-120)
+attachment_right.run_angle(speed=650, rotation_angle=120)
+
+# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
+drive_base.settings(straight_speed=200)
+drive_base.straight(-30)
+
+drive_base.turn(-42)
+
+# drive_base.turn(-22)
+attachment_right.run_angle(speed=650, rotation_angle=-100)
+attachment_left.run_angle(speed=650, rotation_angle=100)
+
+drive_base.straight(50)
+
+attachment_left.run_angle(speed=650, rotation_angle=-90)
 
 drive_base.stop()
