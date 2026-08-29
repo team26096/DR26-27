@@ -1,6 +1,6 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
-from pybricks.parameters import Port, Direction
+from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 
 # Initialize the hub
@@ -12,8 +12,8 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Attachment motors setup
 # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
-attachment_right = Motor(Port.B, gears=[[12,20],[12,12]])
-attachment_left = Motor(Port.C, gears=[[12,20],[12,12]])
+attachment_right = Motor(Port.C, gears=[[12,20],[12,12]])
+attachment_left = Motor(Port.B, gears=[[12,20],[12,12]])
 
 
 # DriveBase setup
@@ -74,7 +74,13 @@ drive_base.reset()
 
 # Lower arm Port  arm 20 degrees at speed 75
 
-drive_base.straight(845)
+attachment_left.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
+attachment_left.reset_angle(0)
+attachment_left.run_angle(speed=650, rotation_angle=295)
+drive_base.straight(-10)
+drive_base.reset()
+
+drive_base.straight(850)
 #attachment_left.run_angle(speed=650, rotation_angle=-5)
 
 
