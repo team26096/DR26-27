@@ -10,7 +10,7 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Gear list reads from the motor outward and works out to 3 to 1.
 attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
-attachment_left = Motor(Port.B, gears=[[12, 20], [12, 12]])
+attachment_left = Motor(Port.B, gears=[[12, 20], [1, 24]])
 
 # Millimeters.
 WHEEL_DIAMETER = 62.4
@@ -31,9 +31,6 @@ drive_base.settings(straight_speed=300, straight_acceleration=600,
 # Clear the run time left on the display by the previous run.
 hub.display.off()
 
-# Drive the arms to their hard stops. duty_limit keeps the gears from stripping.
-attachment_left.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
 
 # Takes up slack in the gears.
 drive_base.straight(-10)
@@ -55,6 +52,7 @@ run_timer = StopWatch()
 
 # ---------- RUN ----------
 
+attachment_left.run_angle(speed=650, rotation_angle=-90)
 
 drive_base.stop()
 

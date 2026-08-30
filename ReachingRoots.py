@@ -2,6 +2,7 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
+from pybricks.tools import wait, StopWatch
 
 
 # Initialize the hub
@@ -32,10 +33,31 @@ drive_base.reset()
 
 #attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
 #attachment_right.reset_angle(0)
-attachment_right.run_angle(speed=650, rotation_angle=210)
-#drive_base.straight(-10)
+
+left_motor.reset_angle(0)
+right_motor.reset_angle(0)
+attachment_left.reset_angle(0)
+attachment_right.reset_angle(0)
+hub.imu.reset_heading(0)
 drive_base.reset()
-drive_base.straight(865)
+
+# TIMER START. A StopWatch counts from the moment it is created.
+run_timer = StopWatch() 
+
+print("Before the angle change")
+print("left:", attachment_left.angle(), "right:", attachment_right.angle())
+print("state:", drive_base.state())
+
+attachment_right.run_angle(speed=650, rotation_angle=225)
+
+
+print("After the angle change")
+print("left:", attachment_left.angle(), "right:", attachment_right.angle())
+print("state:", drive_base.state())
+
+drive_base.straight(-10)
+drive_base.reset(0)
+drive_base.straight(875)
 drive_base.turn(15)
 attachment_right.run_angle(speed=650, rotation_angle=-120)
 attachment_right.run_angle(speed=650, rotation_angle=120)
@@ -55,3 +77,15 @@ drive_base.straight(50)
 attachment_left.run_angle(speed=650, rotation_angle=-90)
 
 drive_base.stop()
+
+# ---------- RESULT ----------
+
+# TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+run_timer.pause()
+
+# time() returns milliseconds, so divide by 1000 to get seconds.
+elapsed = round(run_timer.time() / 1000, 1)
+print("Total run time:", elapsed, "seconds")
+
+# Scrolls about one second per character. Delete if it gets in the way.
+hub.display.text(str(elapsed))

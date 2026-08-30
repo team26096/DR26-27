@@ -31,9 +31,6 @@ drive_base.settings(straight_speed=300, straight_acceleration=600,
 # Clear the run time left on the display by the previous run.
 hub.display.off()
 
-# Drive the arms to their hard stops. duty_limit keeps the gears from stripping.
-attachment_left.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
 
 # Takes up slack in the gears.
 drive_base.straight(-10)
@@ -54,7 +51,21 @@ run_timer = StopWatch()
 
 
 # ---------- RUN ----------
+drive_base.reset(0)
 
+#attachment_right.run_angle(speed=650,  rotation_angle=230)
+attachment_left.run_angle(speed=650, rotation_angle=-16)
+drive_base.straight(820)
+drive_base.arc(15,95)
+# drive_base.straight(3)
+attachment_left.run_angle(speed=650, rotation_angle=-120)
+attachment_left.run_angle(speed=650, rotation_angle=120)
+
+
+#Run 2
+
+drive_base.arc(15,-130)
+drive_base.straight(-20)
 
 drive_base.stop()
 
