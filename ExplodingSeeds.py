@@ -20,7 +20,7 @@ attachment_left = Motor(Port.B, gears=[[12,20],[12,12]])
 
 
 # DriveBase setup
-WHEEL_DIAMETER = 56
+WHEEL_DIAMETER = 62.4
 AXLE_TRACK = 164
 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
@@ -33,11 +33,31 @@ drive_base.reset()
 
 # --- Right Attachment Motor Actions (Port C) ---
 
-# 1. Lower Port  arm 80 degrees at speed 200
-attachment_right.run_angle(speed=250, rotation_angle=-150)
+drive_base.settings(straight_speed=300)
+drive_base.straight(220)
 
-wait(1000)
+drive_base.turn(53)
 
-# Go backwards (slower) to align with back walls - 80cm (-80mm)
 drive_base.settings(straight_speed=200)
+drive_base.straight(245)
+
+attachment_right.run_angle(speed=200, rotation_angle=40)
+
+drive_base.straight(-24)
+
+drive_base.settings(straight_speed=100)
+
+attachment_right.run_angle(speed=50, rotation_angle=10)
+drive_base.straight(-24)
+# drive_base.straight(-10)
+# attachment_right.run_angle(speed=50, rotation_angle=10)
+# drive_base.straight(-10)
+# attachment_right.run_angle(speed=50, rotation_angle=35)
+
 drive_base.straight(-60)
+
+drive_base.straight(-360)
+
+
+# wait(1000)
+
