@@ -45,7 +45,9 @@ right_attach = Motor(
 
 print("Attachment motor max:", left_attach.control.limits())
 
-# drivebase.settings(100,100,125,500)
+drivebase.settings(500,800,125,500)
+drivebase.straight(-5)
+
 # Drive - drivebase.straight()
 # Turn - drivebase.turn()
 # Attachment - left_attach.run_angle(speed=360, rotation_angle=55, then=Stop.HOLD, wait=True)
@@ -60,25 +62,39 @@ left_attach.run_until_stalled(
     duty_limit=30
 )
 
-# # Make this stalled position the new zero
-# left_attach.reset_angle(0)
-# print(left_attach.angle())
-# left_attach.run_angle(speed=200, rotation_angle=130, then=Stop.HOLD, wait=False)
-# drivebase.straight(750)
-# left_attach.run_angle(speed=400, rotation_angle=-90, then=Stop.HOLD, wait=True)
-# print(left_attach.angle())
+# Make this stalled position the new zero
+left_attach.reset_angle(0)
+print(left_attach.angle())
+left_attach.run_angle(speed=300, rotation_angle=130, then=Stop.HOLD, wait=True)
+drivebase.straight(750)
+# drivebase.straight(100)
+left_attach.run_angle(speed=400, rotation_angle=-90, then=Stop.HOLD, wait=True)
+print(left_attach.angle())
 
-# # #Forest Elder
-# drivebase.turn(90)
-# left_attach.run_angle(speed=200, rotation_angle=120, then=Stop.HOLD, wait=True)
-# print(left_attach.angle())
-# drivebase.straight(80)
-# left_attach.run_angle(speed=200, rotation_angle=-45, then=Stop.HOLD, wait=True)
-
-# elapsed_seconds = timer.time() / 1000
-# print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
+# #Forest Elder
+drivebase.turn(90)
+left_attach.run_angle(speed=200, rotation_angle=120, then=Stop.HOLD, wait=True)
+print(left_attach.angle())
+drivebase.straight(80)
+left_attach.run_angle(speed=200, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
 # #Go backward to knock down window to the past
+
+drivebase.arc(678, distance=-200)
+drivebase.arc(-678, distance=-200)
+drivebase.arc(150, angle=37)
+drivebase.straight(70)
+drivebase.straight(-50)
+drivebase.turn(-20)
+drivebase.straight(200)
+drivebase.turn(45)
+
+drivebase.straight(500)
+
+#drivebase.straight(-50)
+#drivebase.turn(-25)
+#drivebase.straight(-100)
+#drivebase.turn(25)
 # drivebase.straight(-300)
 
 # drivebase.turn(64)
@@ -89,4 +105,6 @@ left_attach.run_until_stalled(
 
 # drivebase.straight(-110)
 
-drivebase.turn(25)
+
+elapsed_seconds = timer.time() / 1000
+print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
