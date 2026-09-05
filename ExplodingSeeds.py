@@ -3,7 +3,9 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait
+from pybricks.tools import wait, StopWatch
+
+watch = StopWatch()
 
 # Initialize the hub
 hub = PrimeHub()
@@ -14,8 +16,8 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Attachment motors setup
 # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
-attachment_right = Motor(Port.C, gears=[[12,20],[12,12]])
-attachment_left = Motor(Port.B, gears=[[12,20],[12,12]])
+attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
+attachment_left = Motor(Port.B, gears=[[12,20],[12,20]])
 
 
 
@@ -33,31 +35,36 @@ drive_base.reset()
 
 # --- Right Attachment Motor Actions (Port C) ---
 
-drive_base.settings(straight_speed=300)
-drive_base.straight(220)
+drive_base.settings(straight_speed=600)
+drive_base.straight(200)
 
-drive_base.turn(53)
+drive_base.turn(50)
 
-drive_base.settings(straight_speed=200)
-drive_base.straight(245)
+drive_base.settings(straight_speed=400)
+drive_base.straight(330)
 
-attachment_right.run_angle(speed=200, rotation_angle=40)
+attachment_right.run_angle(speed=200, rotation_angle=20)
 
-drive_base.straight(-24)
+# drive_base.straight(-12)
 
 drive_base.settings(straight_speed=100)
 
-attachment_right.run_angle(speed=50, rotation_angle=10)
-drive_base.straight(-24)
+attachment_right.run_angle(speed=50, rotation_angle=5)
+drive_base.straight(-18)
 # drive_base.straight(-10)
-# attachment_right.run_angle(speed=50, rotation_angle=10)
-# drive_base.straight(-10)
-# attachment_right.run_angle(speed=50, rotation_angle=35)
+attachment_right.run_angle(speed=25, rotation_angle=10)
+drive_base.straight(-15)
+attachment_right.run_angle(speed=30, rotation_angle=30)
+
+drive_base.settings(straight_speed=500)
 
 drive_base.straight(-60)
 
 drive_base.straight(-360)
-
+ 
 
 # wait(1000)
+
+timestamp = watch.time()/1000
+print("Timestamp:", timestamp)
 
