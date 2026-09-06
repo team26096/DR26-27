@@ -41,7 +41,7 @@ drive_base.straight(200)
 drive_base.turn(50)
 
 drive_base.settings(straight_speed=400)
-drive_base.straight(330)
+drive_base.straight(320)
 
 attachment_right.run_angle(speed=200, rotation_angle=20)
 
@@ -52,37 +52,53 @@ drive_base.settings(straight_speed=100)
 attachment_right.run_angle(speed=50, rotation_angle=5)
 drive_base.straight(-18)
 # drive_base.straight(-10)
-attachment_right.run_angle(speed=25, rotation_angle=10)
+attachment_right.run_angle(speed=25, rotation_angle=5)
 drive_base.straight(-15)
-attachment_right.run_angle(speed=30, rotation_angle=30)
+attachment_right.run_angle(speed=10, rotation_angle=22)
 
 drive_base.settings(straight_speed=350)
 
-drive_base.straight(-180)
 
-# drive_base.straight(-60)
-
-drive_base.settings(straight_speed=500)
+drive_base.straight(-200)
 
 drive_base.turn(35)
 
-drive_base.straight(620)
+drive_base.settings(straight_speed=500)
 
-attachment_left.run_angle(speed=100, rotation_angle=35)
+# drive_base.turn(35)
 
-attachment_left.run_angle(speed=100, rotation_angle=-35)
+# drive_base.straight(190)
+
+drive_base.straight(640)
+
+# drive_base.straight(30)
+
+drive_base.turn(-45)
+
+# drive_base.turn(-40)
+
+attachment_left.run_angle(speed=50, rotation_angle=20)
+
+drive_base.turn(5)
+
+attachment_left.run_angle(speed=25, rotation_angle=-40)
+
+
+attachment_left.run_angle(speed=25, rotation_angle=10)
+
+drive_base.turn(30)
 
 drive_base.straight(120)
 
-drive_base.turn(-30)
+drive_base.turn(-15)
 
 attachment_right.run_angle(speed=100, rotation_angle=-40)
 
-drive_base.straight(110)
+drive_base.straight(135)
 
-attachment_right.run_angle(speed=100, rotation_angle=40)
+# drive_base.turn(-50)
 
-# drive_base.arc(35, angle=80)
+attachment_right.run_angle(speed=100, rotation_angle=60)
 
 # wait(1000)
 
