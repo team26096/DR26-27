@@ -17,7 +17,7 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 # Attachment motors setup
 # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
 attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
-attachment_left = Motor(Port.B, gears=[[12,20],[12,20]])
+attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
 
 
 
@@ -56,12 +56,33 @@ attachment_right.run_angle(speed=25, rotation_angle=10)
 drive_base.straight(-15)
 attachment_right.run_angle(speed=30, rotation_angle=30)
 
+drive_base.settings(straight_speed=350)
+
+drive_base.straight(-180)
+
+# drive_base.straight(-60)
+
 drive_base.settings(straight_speed=500)
 
-drive_base.straight(-60)
+drive_base.turn(35)
 
-drive_base.straight(-360)
- 
+drive_base.straight(620)
+
+attachment_left.run_angle(speed=100, rotation_angle=35)
+
+attachment_left.run_angle(speed=100, rotation_angle=-35)
+
+drive_base.straight(120)
+
+drive_base.turn(-30)
+
+attachment_right.run_angle(speed=100, rotation_angle=-40)
+
+drive_base.straight(110)
+
+attachment_right.run_angle(speed=100, rotation_angle=40)
+
+# drive_base.arc(35, angle=80)
 
 # wait(1000)
 
