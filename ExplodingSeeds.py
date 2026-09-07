@@ -1,7 +1,7 @@
 
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor
-from pybricks.parameters import Port, Direction
+from pybricks.pupdevices import ForceSensor, Motor
+from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
@@ -36,7 +36,12 @@ drive_base.reset()
 # --- Right Attachment Motor Actions (Port C) ---
 
 drive_base.settings(straight_speed=600)
-drive_base.straight(200)
+drive_base.straight(200, wait=False)
+
+attachment_left.run_until_stalled(-170, then=Stop.HOLD, duty_limit=35)
+
+# drive_base.settings(straight_speed=600)
+# drive_base.straight(200)
 
 drive_base.turn(50)
 
@@ -56,49 +61,48 @@ attachment_right.run_angle(speed=25, rotation_angle=5)
 drive_base.straight(-15)
 attachment_right.run_angle(speed=10, rotation_angle=22)
 
-drive_base.settings(straight_speed=350)
+drive_base.settings(straight_speed=100)
 
 
 drive_base.straight(-200)
 
-drive_base.turn(35)
+drive_base.turn(33)
 
 drive_base.settings(straight_speed=500)
 
-# drive_base.turn(35)
+attachment_left.run_angle(speed=200, rotation_angle=163, wait=False)
 
-# drive_base.straight(190)
-
-drive_base.straight(640)
+drive_base.straight(620)
 
 # drive_base.straight(30)
 
-drive_base.turn(-45)
+drive_base.settings(straight_speed=100)
+drive_base.turn(-17)
 
-# drive_base.turn(-40)
+attachment_left.run_angle(speed=100, rotation_angle=20)
 
-attachment_left.run_angle(speed=50, rotation_angle=20)
+attachment_left.run_angle(speed=25, rotation_angle=-45)
 
-drive_base.turn(5)
+attachment_left.run_angle(speed=100, rotation_angle=50)
 
-attachment_left.run_angle(speed=25, rotation_angle=-40)
+drive_base.settings(straight_speed=250)
 
-
-attachment_left.run_angle(speed=25, rotation_angle=10)
-
-drive_base.turn(30)
+drive_base.turn(20)
 
 drive_base.straight(120)
 
-drive_base.turn(-15)
+drive_base.turn(-30)
 
 attachment_right.run_angle(speed=100, rotation_angle=-40)
 
-drive_base.straight(135)
+drive_base.straight(130)
 
 # drive_base.turn(-50)
 
 attachment_right.run_angle(speed=100, rotation_angle=60)
+
+
+
 
 # wait(1000)
 
