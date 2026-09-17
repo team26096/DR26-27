@@ -30,7 +30,7 @@ left_attach = Motor(
     Port.B,
     gears=[
         [12, 20],
-        [12, 20],
+        [20, 20],
     ]
 )
 
@@ -69,7 +69,7 @@ left_attach.run_angle(speed=360, rotation_angle=125, then=Stop.HOLD, wait=True)
 # go straight to humungous fungs
 drivebase.straight(750)
 # flick fungus up
-left_attach.run_angle(speed=400, rotation_angle=-90, then=Stop.HOLD, wait=True)
+left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
 
 # Turn to setup for Forest Elder
@@ -95,13 +95,21 @@ left_attach.run_until_stalled(
     then=Stop.HOLD,
     duty_limit=25
 )
-drivebase.turn(-15)
+drivebase.turn(15)
+drivebase.straight(100)
+drivebase.turn(-40)
+drivebase.straight(100)
+right_attach.run_angle(speed=360, rotation_angle=100, then=Stop.HOLD, wait=True)
+right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
+drivebase.straight(-200)
+drivebase.turn(90)
+drivebase.straight(1000)
 # left_attach.run_until_stalled(
 #     -500,          # speed in deg/s; use -500 if this is the wrong direction
 #     then=Stop.HOLD,
 #     duty_limit=30
 # )
-# drivebase.turn(120)
+# drivebase.turn(-120)
 # drivebase.straight(400)
 
 # drivebase.turn(-20)
