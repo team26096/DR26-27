@@ -53,19 +53,24 @@ run_timer = StopWatch()
 # ---------- RUN ----------
 drive_base.reset(0)
 
-#attachment_right.run_angle(speed=650,  rotation_angle=230)
-attachment_left.run_angle(speed=650, rotation_angle=-16)
-drive_base.straight(820)
-drive_base.arc(15,95)
-# drive_base.straight(3)
-attachment_left.run_angle(speed=650, rotation_angle=-120)
-attachment_left.run_angle(speed=650, rotation_angle=120)
+
+zero = attachment_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=20)
+attachment_left.reset_angle(0)
+
+attachment_left.run_angle(speed=650, rotation_angle=-60)
+print("after move", attachment_left.angle())
+
+
+drive_base.straight(835)
+drive_base.arc(15,90)
+attachment_left.run_angle(speed=300, rotation_angle=-150)
+attachment_left.run_angle(speed=300, rotation_angle=150)
 
 
 #Run 2
 
-drive_base.arc(15,-130)
-drive_base.straight(-20)
+# drive_base.arc(15,-130)
+# drive_base.straight(-20)
 
 drive_base.stop()
 

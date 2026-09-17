@@ -23,18 +23,18 @@ drive_base = DriveBase(left_motor, right_motor,
 drive_base.use_gyro(True)
 
 # Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=300, straight_acceleration=600,
-                    turn_rate=200, turn_acceleration=400)
+drive_base.settings(straight_speed=200, straight_acceleration=600,
+                    turn_rate=100, turn_acceleration=300)
 
 
-# ---------- RESET ----------
+# ---------- RESET ---------- 
 
 # Clear the run time left on the display by the previous run.
 hub.display.off()
 
 
 # Takes up slack in the gears.
-drive_base.straight(-10)
+#drive_base.straight(-10)
 
 # straight() holds the wheels at the end. Release them before resetting.
 drive_base.stop()
@@ -52,16 +52,16 @@ run_timer = StopWatch()
  
 # ---------- RUN ----------
 
-#attachment_right.run_angle(speed=650, rotation_angle=100)
-#attachment_right.run_angle(speed=650, rotation_angle=-100)
+#drive_base.straight(650) 
+#drive_base.straight(-150)
+drive_base.arc(-500,distance=50)
+#drive_base.turn(-15)
+# drive_base.straight(130)
 
-#attachment_right.run_angle(speed=400, rotation_angle=1000) 
-#attachment_right.run_angle(speed=400, rotation_angle=-1000 
+# drive_base.turn(15)
 
-attachment_right.run_angle(speed=650, rotation_angle=45)
-drive_base.straight(-50)
-attachment_right.run_angle(speed=650, rotation_angle=-45)
-
+#drive_base.turn(-45)
+#drive_base.turn(45)
 drive_base.stop()
 
 
