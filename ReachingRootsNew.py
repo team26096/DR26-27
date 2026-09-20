@@ -19,12 +19,12 @@ AXLE_TRACK = 164
 drive_base = DriveBase(left_motor, right_motor,
                        wheel_diameter=WHEEL_DIAMETER,
                        axle_track=AXLE_TRACK)
+
 drive_base.use_gyro(True)
 
 # Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=300, straight_acceleration=600,
-                    turn_rate=200, turn_acceleration=400)
-
+drive_base.settings(straight_speed=400, straight_acceleration=200,
+                    turn_rate=200, turn_acceleration=200)
 
 # ---------- RESET ----------
 
@@ -33,7 +33,7 @@ hub.display.off()
 
 
 # Takes up slack in the gears.
-drive_base.straight(-10)
+drive_base.straight(-5)
 
 # straight() holds the wheels at the end. Release them before resetting.
 drive_base.stop()
@@ -51,20 +51,21 @@ run_timer = StopWatch()
 
 
 # ---------- RUN ----------
-drive_base.reset(0)
 
 
-zero = attachment_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=20)
+
+zero = attachment_left.run_until_stalled(200, then=Stop.BRAKE, duty_limit=20)
 attachment_left.reset_angle(0)
 
-attachment_left.run_angle(speed=650, rotation_angle=-60)
+attachment_left.run_angle(speed=650, rotation_angle=-75)
 print("after move", attachment_left.angle())
 
-
-drive_base.straight(835)
+drive_base.straight(830)
+print(drive_base.distance())
+distance1 = drive_base.distance()
 drive_base.arc(15,90)
-attachment_left.run_angle(speed=300, rotation_angle=-150)
-attachment_left.run_angle(speed=300, rotation_angle=150)
+attachment_left.run_angle(speed=1000, rotation_angle=-150)
+attachment_left.run_angle(speed=1000, rotation_angle=150)
 
 
 #Run 2
@@ -85,4 +86,4 @@ elapsed = round(run_timer.time() / 1000, 1)
 print("Total run time:", elapsed, "seconds")
 
 # Scrolls about one second per character. Delete if it gets in the way.
-hub.display.text(str(elapsed))
+hub.display.text(str(distance1))
