@@ -23,9 +23,11 @@ drive_base = DriveBase(left_motor, right_motor,
 drive_base.use_gyro(True)
 
 # Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=200, straight_acceleration=600,
-                    turn_rate=100, turn_acceleration=300)
+drive_base.settings(straight_speed=500, straight_acceleration=400,
+                    turn_rate=200, turn_acceleration=300)
 
+#drive_base.settings(straight_speed=300, straight_acceleration=600,
+#                   turn_rate=200, turn_acceleration=400)
 
 # ---------- RESET ---------- 
 
@@ -52,16 +54,14 @@ run_timer = StopWatch()
  
 # ---------- RUN ----------
 
-#drive_base.straight(650) 
-#drive_base.straight(-150)
-drive_base.arc(-500,distance=50)
-#drive_base.turn(-15)
-# drive_base.straight(130)
+drive_base.straight(650) 
+drive_base.arc(-300,distance=200)
+drive_base.straight(-30) 
+drive_base.turn(30)
+drive_base.straight(-40) 
+drive_base.turn(-45)
+drive_base.turn(45)
 
-# drive_base.turn(15)
-
-#drive_base.turn(-45)
-#drive_base.turn(45)
 drive_base.stop()
 
 
