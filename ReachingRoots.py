@@ -4,36 +4,41 @@ from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
-
-# Initialize the hub
 hub = PrimeHub()
-
-# Drive motors setup
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
-# Attachment motors setup
-# 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
-attachment_right = Motor(Port.C, gears=[[12,20],[12,12]])
-attachment_left = Motor(Port.B, gears=[[12,20],[12,12]])
+# Gear list reads from the motor outward and works out to 3 to 1.
+attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
+attachment_left = Motor(Port.B, gears=[[12, 20], [12, 36]])
 
-
-# DriveBase setup
+# Millimeters.
 WHEEL_DIAMETER = 62.4
 AXLE_TRACK = 164
 
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
+drive_base = DriveBase(left_motor, right_motor,
+                       wheel_diameter=WHEEL_DIAMETER,
+                       axle_track=AXLE_TRACK)
 drive_base.use_gyro(True)
 
-# left_motor.reset_angle(0)
-hub.imu.reset_heading(0)
+# Fixed speeds so every run behaves the same.
+drive_base.settings(straight_speed=300, straight_acceleration=600,
+                    turn_rate=200, turn_acceleration=400)
 
-drive_base.reset()
+
+# ---------- RESET ----------
+
+# Clear the run time left on the display by the previous run.
+hub.display.off()
 
 
-#attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-#attachment_right.reset_angle(0)
+# Takes up slack in the gears.
+drive_base.straight(-10)
 
+# straight() holds the wheels at the end. Release them before resetting.
+drive_base.stop()
+
+# Zero everything. Nothing should move the robot after this point.
 left_motor.reset_angle(0)
 right_motor.reset_angle(0)
 attachment_left.reset_angle(0)
@@ -42,41 +47,36 @@ hub.imu.reset_heading(0)
 drive_base.reset()
 
 # TIMER START. A StopWatch counts from the moment it is created.
-run_timer = StopWatch() 
-
-print("Before the angle change")
-print("left:", attachment_left.angle(), "right:", attachment_right.angle())
-print("state:", drive_base.state())
-
-attachment_right.run_angle(speed=650, rotation_angle=225)
+run_timer = StopWatch()
 
 
-print("After the angle change")
-print("left:", attachment_left.angle(), "right:", attachment_right.angle())
-print("state:", drive_base.state())
-
-drive_base.straight(-10)
+# ---------- RUN ----------
 drive_base.reset(0)
-drive_base.straight(875)
-drive_base.turn(15)
-attachment_right.run_angle(speed=650, rotation_angle=-120)
-attachment_right.run_angle(speed=650, rotation_angle=120)
 
-# Go all the way backwards (slower) to align with back walls - 3cm (-30mm)
-drive_base.settings(straight_speed=200)
-drive_base.straight(-30)
+attachment_left.run_angle(speed=650, rotation_angle=-16)
+drive_base.straight(820)
+drive_base.arc(15,95)
+attachment_left.run_angle(speed=650, rotation_angle=-70)
+# attachment_left.run_angle(speed=650, rotation_angle=120)
 
-drive_base.turn(-42)
 
-# drive_base.turn(-22)
-attachment_right.run_angle(speed=650, rotation_angle=-100)
-attachment_left.run_angle(speed=650, rotation_angle=100)
+#Run 2
+# drive_base.arc(50,180)
+# drive_base.straight(-350)
+# drive_base.arc(10,90)
 
-drive_base.straight(50)
 
-attachment_left.run_angle(speed=650, rotation_angle=-90)
+
+# # attachment_right.run_angle(speed=200,  rotation_angle=-100)
+
+# # drive_base.straight(140)
+
+# # attachment_right.run_angle(speed=200,  rotation_angle=60)
+
+# attachment_right.run_angle(speed=650, rotation_angle=-150)
 
 drive_base.stop()
+
 
 # ---------- RESULT ----------
 
