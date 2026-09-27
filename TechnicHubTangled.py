@@ -8,8 +8,7 @@ hub = TechnicHub()
 
 # Gear list reads from the motor outward.
 attachment_left = Motor(Port.B, gears=[[12, 20], [1, 24]])
-
-
+attachment_right = Motor(Port.C, gears=[[12, 20], [12, 36]])
 # ---------- RESET ----------
 
 hub.light.off()
@@ -20,7 +19,10 @@ run_timer = StopWatch()
 
 # ---------- RUN ----------
 
-attachment_left.run_angle(speed=650, rotation_angle=-90)
+attachment_right.run_angle(speed=650, rotation_angle=45)
+                           #drive_base.straight(-30)
+attachment_right.run_angle(speed=650, rotation_angle=-45)
+
 
 
 # ---------- RESULT ----------

@@ -1,15 +1,16 @@
-from pybricks.hubs import PrimeHub
+from pybricks.hubs import PrimeHub  
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
 hub = PrimeHub()
+
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Gear list reads from the motor outward and works out to 3 to 1.
-attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
+attachment_right = Motor(Port.C, gears=[[12, 20], [12, 36]])
 attachment_left = Motor(Port.B, gears=[[12, 20], [1, 24]])
 
 # Millimeters.
@@ -48,11 +49,18 @@ drive_base.reset()
 
 # TIMER START. A StopWatch counts from the moment it is created.
 run_timer = StopWatch()
-
-
+ 
 # ---------- RUN ----------
 
-attachment_left.run_angle(speed=650, rotation_angle=-90)
+#attachment_right.run_angle(speed=650, rotation_angle=100)
+#attachment_right.run_angle(speed=650, rotation_angle=-100)
+
+#attachment_right.run_angle(speed=400, rotation_angle=1000) 
+#attachment_right.run_angle(speed=400, rotation_angle=-1000 
+
+attachment_right.run_angle(speed=650, rotation_angle=45)
+drive_base.straight(-50)
+attachment_right.run_angle(speed=650, rotation_angle=-45)
 
 drive_base.stop()
 
@@ -68,3 +76,4 @@ print("Total run time:", elapsed, "seconds")
 
 # Scrolls about one second per character. Delete if it gets in the way.
 hub.display.text(str(elapsed))
+
