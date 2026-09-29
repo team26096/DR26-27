@@ -23,8 +23,8 @@ drive_base = DriveBase(left_motor, right_motor,
 drive_base.use_gyro(True)
 
 # Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=500, straight_acceleration=400,
-                    turn_rate=200, turn_acceleration=300)
+drive_base.settings(straight_speed=300, straight_acceleration=200,
+                    turn_rate=300, turn_acceleration=400)
 
 #drive_base.settings(straight_speed=300, straight_acceleration=600,
 #                   turn_rate=200, turn_acceleration=400)
@@ -54,15 +54,27 @@ run_timer = StopWatch()
  
 # ---------- RUN ----------
 
-drive_base.straight(650) 
-drive_base.arc(-300,distance=200)
-drive_base.straight(-30) 
-drive_base.turn(30)
-drive_base.straight(-40) 
-drive_base.turn(-45)
-drive_base.turn(45)
 
+
+# Stop the robot
 drive_base.stop()
+
+
+drive_base.straight(650) 
+drive_base.arc(-300,distance=180)
+drive_base.straight(-70) 
+drive_base.turn(30)
+drive_base.drive(0, -300)
+# Keep spinning for 1 seconds
+wait(1000)
+drive_base.stop()
+#Need to try retry logic
+#back to base
+
+#drive_base.settings(straight_speed=700, straight_acceleration=400,
+#                     turn_rate=300, turn_acceleration=400)
+# drive_base.straight(-655)
+
 
 
 # ---------- RESULT ----------
