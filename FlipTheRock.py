@@ -55,13 +55,12 @@ drive_base.use_gyro(True)
 # -------------------------------------------------------------
 # 3. Start of run reset
 # -------------------------------------------------------------
-drive_base.straight(-10)
+drive_base.straight(10)
 drive_base.reset()
 
 # Drive forward 400 mm. The gyro keeps the line straight.
-drive_base.straight(415)
+drive_base.straight(-415)
 
 # Drive backward 100 mm. A negative value means reverse.
-
-drive_base.straight(-375)
+drive_base.straight(375)
 drive_base.stop()
