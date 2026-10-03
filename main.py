@@ -2,130 +2,109 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, hub_menu, StopWatch
+from pybricks.tools import wait, StopWatch, hub_menu
+
+# Bring in the run files. Each one must be in the same folder as main.py.
+# When you add a new run file, remove the # in front of its import line.
+import run1_fliptherock
+import robotrun2
+import robotrun3
+import robotrun4
+import robotrun5
+import robotrun6
+import robotrun7
+import robotrun8
+
+# Menu number and the run it starts.
+# When you add a new run file, also remove the # in front of its line here.
+RUNS = {
+    "1": run1_fliptherock.run,
+    "2": robotrun2.run,
+    "3": robotrun3.run,
+    "4": robotrun4.run,
+    "5": robotrun5.run,
+    "6": robotrun6.run,
+    "7": robotrun7.run,
+    "8": robotrun8.run,
+}
 
 # ===== SETUP (happens once) =====
 
 hub = PrimeHub()
-
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
+# Gear list reads from the motor outward and works out to 3 to 1.
+attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
+attachment_left = Motor(Port.B, gears=[[12, 20], [12, 12]])
+
+# Millimeters.
+WHEEL_DIAMETER = 62.4
+AXLE_TRACK = 164
+
 drive_base = DriveBase(left_motor, right_motor,
-                       wheel_diameter=62.4, axle_track=164)
+                       wheel_diameter=WHEEL_DIAMETER,
+                       axle_track=AXLE_TRACK)
+
 drive_base.use_gyro(True)
 
-default_settings = drive_base.settings()
 
+# ===== RESET (happens before every run) =====
 
 def reset_robot():
+    # Fixed speeds so every run behaves the same.
+    # A run can still change them after this.
+    drive_base.settings(straight_speed=400, straight_acceleration=200,
+                        turn_rate=200, turn_acceleration=200)
+
+    # Takes up slack in the gears.
+    drive_base.straight(-5)
+
+    # straight() holds the wheels at the end. Release them before resetting.
     drive_base.stop()
-    drive_base.settings(*default_settings)
+
+    # Zero everything. Nothing should move the robot after this point.
+    left_motor.reset_angle(0)
+    right_motor.reset_angle(0)
+    attachment_left.reset_angle(0)
+    attachment_right.reset_angle(0)
     hub.imu.reset_heading(0)
     drive_base.reset()
 
 
-# ===== RUN 1 =====
-
-def run1():
-    reset_robot()
-    # Put run 1 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 2 =====
-
-def run2():
-    reset_robot()
-    # Put run 2 moves here
-    drive_base.straight(-100)
-    drive_base.stop()
-
-
-# ===== RUN 3 =====
-
-def run3():
-    reset_robot()
-    # Put run 3 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 4 =====
-
-def run4():
-    reset_robot()
-    # Put run 4 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 5 =====
-
-def run5():
-    reset_robot()
-    # Put run 5 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 6 =====
-
-def run6():
-    reset_robot()
-    # Put run 6 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 7 =====
-
-def run7():
-    reset_robot()
-    # Put run 7 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
-# ===== RUN 8 =====
-
-def run8():
-    reset_robot()
-    # Put run 8 moves here
-    drive_base.straight(100)
-    drive_base.stop()
-
-
 # ===== MENU =====
 # Left or right button picks a run. Center button starts it.
+# The steps below happen for every run, so the run files only hold moves.
 
 while True:
     choice = hub_menu("1", "2", "3", "4", "5", "6", "7", "8")
 
-    # Show the run number on the hub screen while the run is going.
+    # Skip numbers that do not have a run file yet.
+    if choice not in RUNS:
+        print("Run", choice, "is not added yet")
+        continue
+
+    # Hub display: show the run number while the run is going.
     hub.display.char(choice)
 
-    # Start the timer when the run starts.
+    # Console: say which run is starting.
+    print("Run", choice, "started")
+
+    reset_robot()
+
+    # TIMER START. A StopWatch counts from the moment it is created.
     run_timer = StopWatch()
 
-    if choice == "1":
-        run1()
-    elif choice == "2":
-        run2()
-    elif choice == "3":
-        run3()
-    elif choice == "4":
-        run4()
-    elif choice == "5":
-        run5()
-    elif choice == "6":
-        run6()
-    elif choice == "7":
-        run7()
-    elif choice == "8":
-        run8()
+    # ---------- RUN ----------
+    RUNS[choice](drive_base, attachment_left, attachment_right)
 
-    # time() gives milliseconds, so divide by 1000 to get seconds.
-    seconds = round(run_timer.time() / 1000, 1)
-    print("Run", choice, "took", seconds, "seconds")
+    drive_base.stop()
+
+    # ---------- RESULT ----------
+
+    # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+    run_timer.pause()
+
+    # time() returns milliseconds, so divide by 1000 to get seconds.
+    elapsed = round(run_timer.time() / 1000, 1)
+    print("Run", choice, "total run time:", elapsed, "seconds")
