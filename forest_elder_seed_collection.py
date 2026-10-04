@@ -44,7 +44,7 @@ drivebase.use_gyro(True)
 # Make straight driving faster
 drivebase.settings(
     straight_speed=500,         # mm/s
-    straight_acceleration=816  # mm/s^2
+    straight_acceleration=400  # mm/s^2
 )
 
 current_settings = drivebase.settings()
@@ -65,12 +65,11 @@ drivebase.straight(410)
 drivebase.turn(40)
 
 # 3.Drive forward 50 mm
-drivebase.straight(125)
-
-# 4. Rotate Motor C 45 degrees
+drivebase.straight(120)
+# # 4. Rotate Motor C 45 degrees2
 motor_c.run_angle(
-    speed=400,
-    rotation_angle=-48,
+    speed=200,
+    rotation_angle=-55,
     then=Stop.HOLD,
     wait=True
 )
@@ -78,7 +77,7 @@ motor_c.run_angle(
 drivebase.straight(-115)
 
 motor_c.run_angle(
-    speed=400,
+    speed=200,
     rotation_angle=30,
     then=Stop.HOLD,
     wait=True
@@ -90,7 +89,7 @@ drivebase.straight(-120)
 drivebase.turn(-12)
 
 motor_c.run_angle(
-    speed=400,
+    speed=200,
     rotation_angle=-30,
     then=Stop.HOLD,
     wait=True
@@ -118,36 +117,36 @@ drivebase.stop()
 
 # ---------- RESULT ----------
 
-# TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+# # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
 run_timer.pause()
 
-# time() returns milliseconds, so divide by 1000 to get seconds.
+# # time() returns milliseconds, so divide by 1000 to get seconds.
 elapsed = round(run_timer.time() / 1000, 1)
 print("Total run time:", elapsed, "seconds")
 
-# Scrolls about one second per character. Delete if it gets in the way.
+# # Scrolls about one second per character. Delete if it gets in the way.
 hub.display.text(str(elapsed))
 
-# # # Drive forward 55 cm
-# # drivebase.straight(500)
-# # drivebase.settings(20,100,125,500)
-# # drivebase.straight(100)
+# # # # # Drive forward 55 cm
+# # # # drivebase.straight(500)
+# # # # drivebase.settings(20,100,125,500)
+# # # # drivebase.straight(100)
 
-# # #drivebase.turn(-93)
+# # # # #drivebase.turn(-93)
 
-# # motor_c.run_angle(
-# #     speed=360,
-# #     rotation_angle=55,
-# #     then=Stop.HOLD,
-# #     wait=True
-# # )
+# # # # motor_c.run_angle(
+# # # #     speed=360,
+# # # #     rotation_angle=55,
+# # # #     then=Stop.HOLD,
+# # # #     wait=True
+# # # # )
 
-# # motor_c.run_angle(
-# #     speed=360,
-# #     rotation_angle=-75,
-# #     then=Stop.HOLD,
-# #     wait=True
-# # )
+# # # # motor_c.run_angle(
+# # # #     speed=360,
+# # # #     rotation_angle=-75,
+# # # #     then=Stop.HOLD,
+# # # #     wait=True
+# # # # )
 
-# # # Drive forward Backward10 cm
-# # # drivebase.straight(-480)
+# # # # # Drive forward Backward10 cm
+# # # # # drivebase.straight(-480)
