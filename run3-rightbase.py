@@ -23,10 +23,10 @@ print("Robot Settings:", current_settings)
 print("Robot max",drivebase.distance_control.limits())
 print("Stall tolerances",drivebase.heading_control.stall_tolerances())
 
-drivebase.settings(500,400,125,200)
+drivebase.settings(900,900,125,200)
 drivebase.straight(5) 
 drivebase.reset()
-drivebase.straight(-550)
+drivebase.straight(-540)
 drivebase.arc(210, angle=-90)
 drivebase.straight(-170)
 drivebase.turn(120)
@@ -36,12 +36,17 @@ while not drivebase.stalled():
     pass
 drivebase.stop()
 
+drivebase.arc(10, angle=75)
+
+drivebase.arc(-400, angle=-22) 
+drivebase.straight(-200)
+drivebase.turn(30)
+drivebase.straight(-400)
+
 
 
 elapsed_seconds = timer.time() / 1000
 print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
-
-
 
 #drivebase.straight(-70)
 
