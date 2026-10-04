@@ -47,35 +47,29 @@ right_motor.reset_angle(0)
 attachment_left.reset_angle(0)
 attachment_right.reset_angle(0)
 hub.imu.reset_heading(0)
-drive_base.reset()
+drive_base.reset() 
 
 # TIMER START. A StopWatch counts from the moment it is created.
 run_timer = StopWatch()
  
 # ---------- RUN ----------
 
-
-
 # Stop the robot
 drive_base.stop()
 
-
 drive_base.straight(650) 
-drive_base.arc(-300,distance=180)
-drive_base.straight(-70) 
-drive_base.turn(30)
+drive_base.arc(-300,distance=150) 
+drive_base.straight(-80) 
+#drive_base.turn(30)
 drive_base.drive(0, -300)
 # Keep spinning for 1 seconds
 wait(1000)
 drive_base.stop()
-#Need to try retry logic
-#back to base
-
-#drive_base.settings(straight_speed=700, straight_acceleration=400,
-#                     turn_rate=300, turn_acceleration=400)
-# drive_base.straight(-655)
-
-
+drive_base.arc(82, angle=30)
+drive_base.straight(20) 
+drive_base.arc(-82, angle=-30)
+drive_base.straight(-600) 
+print("Angle after turn:", round(drive_base.angle(), 1), "deg") 
 
 # ---------- RESULT ----------
 
