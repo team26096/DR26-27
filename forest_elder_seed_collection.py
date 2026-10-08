@@ -70,10 +70,10 @@ motor_left.run_angle(
 drivebase.straight(410)
 
 # 2. Rotate the entire robot 30 degrees
-drivebase.turn(40)
+drivebase.turn(37)
 
 
-drivebase.straight(117)
+drivebase.straight(112)
 
 motor_left.run_angle(
     speed=90,
@@ -92,7 +92,7 @@ motor_c.run_angle(
     wait=True
 )
 
-drivebase.straight(-115)
+drivebase.straight(-160)
 
 motor_c.run_angle(
     speed=200,
@@ -103,10 +103,10 @@ motor_c.run_angle(
 
 drivebase.straight(-120)
 drivebase.turn(-12)
-drivebase.straight(-25)
-drivebase.turn(130)
-drivebase.straight(30)
-drivebase.stop()
+# drivebase.straight(-25)
+drivebase.turn(-80)
+drivebase.straight(-350)
+# drivebase.stop()
 
 
 # ---------- RESULT ----------
