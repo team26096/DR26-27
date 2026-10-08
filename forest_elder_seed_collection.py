@@ -57,6 +57,14 @@ run_timer = StopWatch()
 
 
 motor_c.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
+motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
+motor_left.reset_angle(0)
+motor_left.run_angle(
+    speed=200,
+    rotation_angle=-45,
+    then=Stop.HOLD,
+    wait=True
+)
 
 # 1. Drive forward 50 cm = 500 mm
 drivebase.straight(410)
@@ -64,8 +72,18 @@ drivebase.straight(410)
 # 2. Rotate the entire robot 30 degrees
 drivebase.turn(40)
 
-# 3.Drive forward 50 mm
-drivebase.straight(120)
+
+drivebase.straight(117)
+
+motor_left.run_angle(
+    speed=90,
+    rotation_angle=35,
+    then=Stop.HOLD,
+    wait=True
+)
+
+
+
 # # 4. Rotate Motor C 45 degrees2
 motor_c.run_angle(
     speed=200,
@@ -83,35 +101,11 @@ motor_c.run_angle(
     wait=True
 )
 
-#drivebase.turn(-25)
-
 drivebase.straight(-120)
 drivebase.turn(-12)
-
-motor_c.run_angle(
-    speed=200,
-    rotation_angle=-30,
-    then=Stop.HOLD,
-    wait=True
-)
-motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
-motor_left.reset_angle(0)
-# 1. Drive forward 50 cm = 500 mm
-
-motor_left.run_angle(
-    speed=200,
-    rotation_angle=-45,
-    then=Stop.HOLD,
-    wait=True
-)
-drivebase.straight(235)
-motor_left.run_angle(
-    speed=90,
-    rotation_angle=35,
-    then=Stop.HOLD,
-    wait=True
-)
 drivebase.straight(-25)
+drivebase.turn(130)
+drivebase.straight(30)
 drivebase.stop()
 
 
@@ -124,29 +118,3 @@ run_timer.pause()
 elapsed = round(run_timer.time() / 1000, 1)
 print("Total run time:", elapsed, "seconds")
 
-# # Scrolls about one second per character. Delete if it gets in the way.
-hub.display.text(str(elapsed))
-
-# # # # # Drive forward 55 cm
-# # # # drivebase.straight(500)
-# # # # drivebase.settings(20,100,125,500)
-# # # # drivebase.straight(100)
-
-# # # # #drivebase.turn(-93)
-
-# # # # motor_c.run_angle(
-# # # #     speed=360,
-# # # #     rotation_angle=55,
-# # # #     then=Stop.HOLD,
-# # # #     wait=True
-# # # # )
-
-# # # # motor_c.run_angle(
-# # # #     speed=360,
-# # # #     rotation_angle=-75,
-# # # #     then=Stop.HOLD,
-# # # #     wait=True
-# # # # )
-
-# # # # # Drive forward Backward10 cm
-# # # # # drivebase.straight(-480)
