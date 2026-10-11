@@ -57,7 +57,7 @@ run_timer = StopWatch()
 # Stop the robot
 drive_base.stop()
 
-drive_base.straight(650) 
+drive_base.straight(650)
 drive_base.arc(-300,distance=150) 
 drive_base.straight(-80) 
 #drive_base.turn(30)
@@ -65,10 +65,16 @@ drive_base.drive(0, -300)
 # Keep spinning for 1 seconds
 wait(1000)
 drive_base.stop()
+
+drive_base.settings(straight_speed=500, straight_acceleration=800,
+                    turn_rate=500, turn_acceleration=800)
+
 drive_base.arc(82, angle=30)
 drive_base.straight(20) 
 drive_base.arc(-82, angle=-30)
-drive_base.straight(-600) 
+
+
+drive_base.straight(-610) 
 print("Angle after turn:", round(drive_base.angle(), 1), "deg") 
 
 # ---------- RESULT ----------
