@@ -61,28 +61,34 @@ attachment_right.run_angle(speed=50, rotation_angle=5)
 drive_base.straight(-18)
 attachment_right.run_angle(speed=25, rotation_angle=5)
 drive_base.straight(-15)
+
 attachment_right.run_angle(speed=10, rotation_angle=22)
 
-drive_base.settings(straight_speed=100)
+
+drive_base.settings(straight_speed=300)
 
 # Move backward to get clear of exploding seeds to prepare for Biocentric Architecture
 drive_base.straight(-200)
 
+
+timestamp = watch.time()/1000
+print("Timestamp After pickign up seeds: ", timestamp)
+
 # Turn to get into posistion to move forward to Biocentric Architecture
 drive_base.turn(33)
 
-drive_base.settings(straight_speed=500)
+drive_base.settings(straight_speed=300)
 
 # Move arm down to prepare for tasks in Biocentric Architecture
-attachment_left.run_angle(speed=200, rotation_angle=163, wait=False)
+attachment_left.run_angle(speed=200, rotation_angle=160, wait=False)
 
 # Move forward lots in preperation for Biocentric Architecture
-drive_base.straight(620)
+drive_base.straight(610)
 
 drive_base.settings(straight_speed=100)
 
-# Turn left slightlyto align with Biocentric Architecture
-drive_base.turn(-17)
+# Turn left slightly to align with Biocentric Architecture
+drive_base.turn(-20)
 
 # Move arm down 20 degrees to complete compost hatch in Biocentric Architecture
 attachment_left.run_angle(speed=100, rotation_angle=20)
@@ -98,20 +104,28 @@ drive_base.settings(straight_speed=250)
 # Turn right to move away from Biocentric Architecture
 drive_base.turn(20)
 
+# Move right arm down 40 degrees to align arm for seed removal from window to the past
+attachment_right.run_angle(speed=100, rotation_angle=-30, wait=False)
+
 # Move forward to start aligning with window to the past seed
-drive_base.straight(120)
+drive_base.straight(130)
 
 # Turn left to align with window to the past seed in preperation for seed removal
-drive_base.turn(-30)
-
-# Move right arm down 40 degrees to align arm for seed removal from window to the past
-attachment_right.run_angle(speed=100, rotation_angle=-40)
+drive_base.turn(-20)
 
 # Move forward so the right attachment arm is under the seed and ready for pickup
-drive_base.straight(130)
+drive_base.straight(130, wait=False)
+
+# Move arm up 60 degrees to pick up the seed from window to the past
+attachment_left.run_angle(speed=500, rotation_angle=-120)
 
 # Move arm up 60 degrees to pick up the seed from window to the past
 attachment_right.run_angle(speed=100, rotation_angle=60)
+
+drive_base.arc(50, -140)
+
+drive_base.straight(-700)
+
 
 timestamp = watch.time()/1000
 print("Timestamp:", timestamp)
