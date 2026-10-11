@@ -67,10 +67,11 @@ print(left_attach.angle())
 # Move arm down to correct angle for humongous fungus
 left_attach.run_angle(speed=360, rotation_angle=125, then=Stop.HOLD, wait=True)
 # go straight to humungous fungs
-drivebase.straight(750)
+drivebase.straight(770)
 # flick fungus up
 left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
+drivebase.straight(-20)
 
 # Turn to setup for Forest Elder
 drivebase.turn(90)
@@ -100,10 +101,10 @@ drivebase.straight(100)
 drivebase.turn(-40)
 drivebase.straight(100)
 right_attach.run_angle(speed=360, rotation_angle=100, then=Stop.HOLD, wait=True)
-right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
+# right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
 drivebase.straight(-200)
 drivebase.turn(90)
-drivebase.straight(1000)
+# drivebase.straight(1000)
 # left_attach.run_until_stalled(
 #     -500,          # speed in deg/s; use -500 if this is the wrong direction
 #     then=Stop.HOLD,
