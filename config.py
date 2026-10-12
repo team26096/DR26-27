@@ -1,0 +1,71 @@
+# SETTINGS FOR OUR SPIKE PRIME ROBOT
+# main.py reads everything from here. Change numbers here, not in main.py.
+
+from pybricks.parameters import Port, Direction
+
+
+# ===== RUNS =====
+# Each run file has one run() function with only mission moves.
+# To add or rename a run, change its import and its line in RUNS.
+
+import run1_fliptherock
+import robotrun2
+import robotrun3
+import robotrun4
+import robotrun5
+import robotrun6
+import robotrun7
+import robotrun8
+
+RUNS = {
+    "1": run1_fliptherock.run,
+    "2": robotrun2.run,
+    "3": robotrun3.run,
+    "4": robotrun4.run,
+    "5": robotrun5.run,
+    "6": robotrun6.run,
+    "7": robotrun7.run,
+    "8": robotrun8.run,
+}
+
+
+# ===== PORTS =====
+
+# Drive motors. These directions make positive numbers drive forward.
+LEFT_MOTOR_PORT = Port.A
+LEFT_MOTOR_DIRECTION = Direction.COUNTERCLOCKWISE
+RIGHT_MOTOR_PORT = Port.E
+RIGHT_MOTOR_DIRECTION = Direction.CLOCKWISE
+
+# Attachment motors. The gear list makes angles match the arm, not the motor.
+ATTACHMENT_LEFT_PORT = Port.B
+ATTACHMENT_LEFT_GEARS = [[12, 20], [12, 12]]
+ATTACHMENT_RIGHT_PORT = Port.C
+ATTACHMENT_RIGHT_GEARS = [[12, 20], [12, 12]]
+
+
+# ===== ROBOT SIZE =====
+
+WHEEL_DIAMETER = 62.4        # mm
+AXLE_TRACK = 164             # mm, between the wheel centers
+
+
+# ===== SPEEDS =====
+
+STRAIGHT_SPEED = 400         # mm per second
+STRAIGHT_ACCELERATION = 200  # mm per second, each second
+TURN_RATE = 200              # degrees per second
+TURN_ACCELERATION = 200      # degrees per second, each second
+
+
+# ===== BEFORE EACH RUN =====
+
+SETTLE_TIMEOUT_MS = 2000     # wait up to this long for the gyro to settle
+SLACK_MM = -5                # small back up before each run, takes up gear slack
+
+
+# ===== BATTERY =====
+
+BATTERY_FULL_MV = 8400       # used to estimate the battery percent
+BATTERY_EMPTY_MV = 6500
+LOW_BATTERY_PERCENT = 30     # print a warning below this
