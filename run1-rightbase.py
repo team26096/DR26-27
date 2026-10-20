@@ -63,18 +63,22 @@ left_attach.run_until_stalled(
 
 # Make this stalled position the new zero
 left_attach.reset_angle(0)
-print(left_attach.angle())
 # Move arm down to correct angle for humongous fungus
-left_attach.run_angle(speed=360, rotation_angle=125, then=Stop.HOLD, wait=True)
+left_attach.run_angle(speed=360, rotation_angle=120,then=Stop.HOLD, wait=True)
 # go straight to humungous fungs
 drivebase.straight(770)
 # flick fungus up
 left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
-drivebase.straight(-20)
 
+drivebase.straight(-20)
+drivebase.turn(45)
+drivebase.straight(60)
+right_attach.run_angle(speed=360, rotation_angle=80, then=Stop.HOLD, wait=True)
+right_attach.run_angle(speed=360, rotation_angle=-50, then=Stop.HOLD, wait=True)
+drivebase.straight(-30)
 # Turn to setup for Forest Elder
-drivebase.turn(90)
+drivebase.turn(45)
 # move arm back down for forest elder
 left_attach.run_angle(speed=200, rotation_angle=120, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
@@ -84,26 +88,26 @@ left_attach.run_angle(speed=200, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
 # Go backward to knock down window to the past
 
-drivebase.arc(678, distance=-200)
-drivebase.arc(-678, distance=-200)
-drivebase.arc(150, angle=37)
-drivebase.straight(70)
-drivebase.straight(-120)
-drivebase.turn(-55)
-drivebase.straight(200)
-left_attach.run_until_stalled(
-    -500,          # speed in deg/s; use -500 if this is the wrong direction
-    then=Stop.HOLD,
-    duty_limit=25
-)
-drivebase.turn(15)
-drivebase.straight(100)
-drivebase.turn(-40)
-drivebase.straight(100)
-right_attach.run_angle(speed=360, rotation_angle=100, then=Stop.HOLD, wait=True)
-# right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
-drivebase.straight(-200)
-drivebase.turn(90)
+# drivebase.arc(678, distance=-200)
+# drivebase.arc(-678, distance=-200)
+# drivebase.arc(150, angle=37)
+# drivebase.straight(70)
+# drivebase.straight(-120)
+# drivebase.turn(-55)
+# drivebase.straight(200)
+# left_attach.run_until_stalled(
+#     -500,          # speed in deg/s; use -500 if this is the wrong direction
+#     then=Stop.HOLD,
+#     duty_limit=25
+# )
+# drivebase.turn(15)
+# drivebase.straight(100)
+# drivebase.turn(-40)
+# drivebase.straight(100)
+# right_attach.run_angle(speed=360, rotation_angle=100, then=Stop.HOLD, wait=True)
+# # right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
+# drivebase.straight(-200)
+# drivebase.turn(90)
 # drivebase.straight(1000)
 # left_attach.run_until_stalled(
 #     -500,          # speed in deg/s; use -500 if this is the wrong direction
