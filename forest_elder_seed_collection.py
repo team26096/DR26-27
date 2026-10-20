@@ -15,11 +15,9 @@ left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
 # Attachment motor
-motor_c = Motor(
+motor_right = Motor(
     Port.C,
     gears=[
-        [20, 12],
-        [12, 36],
         [12, 20]
     ]
 )
@@ -28,7 +26,7 @@ motor_left = Motor(
     Port.B,
     gears=[
         [12, 20],
-        [12, 20]
+        [12, 36]
     ]
 )
 
@@ -50,28 +48,29 @@ drivebase.settings(
 current_settings = drivebase.settings()
 print("Robot Settings:", current_settings)
 
-
-
 # TIMER START. A StopWatch counts from the moment it is created.
 run_timer = StopWatch()
 
+# Takes up slack in the gears.
+drivebase.straight(-10)
 
-motor_c.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
-motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
+motor_right.run_until_stalled(200, then=Stop.HOLD, duty_limit=20 )
+motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=20 )
 motor_left.reset_angle(0)
 motor_left.run_angle(
     speed=200,
-    rotation_angle=-45,
+    rotation_angle=-50,
     then=Stop.HOLD,
     wait=True
 )
 
 # 1. Drive forward 50 cm = 500 mm
 drivebase.straight(410)
+drivebase.stop()
+drivebase.reset()
 
 # 2. Rotate the entire robot 30 degrees
 drivebase.turn(37)
-
 
 drivebase.straight(112)
 
@@ -82,10 +81,8 @@ motor_left.run_angle(
     wait=True
 )
 
-
-
 # # 4. Rotate Motor C 45 degrees2
-motor_c.run_angle(
+motor_right.run_angle(
     speed=200,
     rotation_angle=-55,
     then=Stop.HOLD,
@@ -94,7 +91,7 @@ motor_c.run_angle(
 
 drivebase.straight(-160)
 
-motor_c.run_angle(
+motor_right.run_angle(
     speed=200,
     rotation_angle=30,
     then=Stop.HOLD,
@@ -108,7 +105,6 @@ drivebase.turn(-80)
 drivebase.straight(-350)
 # drivebase.stop()
 
-
 # ---------- RESULT ----------
 
 # # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
@@ -117,4 +113,3 @@ run_timer.pause()
 # # time() returns milliseconds, so divide by 1000 to get seconds.
 elapsed = round(run_timer.time() / 1000, 1)
 print("Total run time:", elapsed, "seconds")
-
