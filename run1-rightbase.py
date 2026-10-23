@@ -70,21 +70,30 @@ drivebase.straight(770)
 # flick fungus up
 left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
-
+# go back from humungus fungus
 drivebase.straight(-20)
-drivebase.turn(45)
-drivebase.straight(60)
+#turn to keystone speices
+drivebase.turn(90)
+drivebase.straight(90)
+# align with keystone species
+drivebase.turn(-45)
+drivebase.straight(90)
+drivebase.turn(-15)
+# drop keystone speices
 right_attach.run_angle(speed=360, rotation_angle=80, then=Stop.HOLD, wait=True)
-right_attach.run_angle(speed=360, rotation_angle=-50, then=Stop.HOLD, wait=True)
-drivebase.straight(-30)
-# Turn to setup for Forest Elder
-drivebase.turn(45)
+right_attach.run_angle(speed=360, rotation_angle=-30, then=Stop.HOLD, wait=True)
+drivebase.turn(15)
+# go back from keystone speices
+drivebase.straight(-135)
 # move arm back down for forest elder
 left_attach.run_angle(speed=200, rotation_angle=120, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
+# Turn to setup for Forest Elder
+drivebase.turn(45)
 # move front and then flick support for forest elder up
-drivebase.straight(100)
-left_attach.run_angle(speed=200, rotation_angle=-45, then=Stop.HOLD, wait=True)
+drivebase.turn(-15)
+drivebase.straight(50)
+left_attach.run_angle(speed=400, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
 # Go backward to knock down window to the past
 
