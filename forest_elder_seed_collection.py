@@ -10,6 +10,9 @@ import sys
 
 hub = PrimeHub()
 
+voltage = hub.battery.voltage()
+print("Battery Voltage:", voltage, "mV")
+
 # Drive motors
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
@@ -34,7 +37,7 @@ drivebase = DriveBase(
     left_motor,
     right_motor,
     wheel_diameter=62.4,
-    axle_track=164
+    axle_track=160
 )
 
 drivebase.use_gyro(True)
@@ -54,16 +57,15 @@ run_timer = StopWatch()
 # Takes up slack in the gears.
 drivebase.straight(-10)
 
-motor_right.run_until_stalled(200, then=Stop.HOLD, duty_limit=20 )
-motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=20 )
-motor_left.reset_angle(0)
-motor_left.run_angle(
-    speed=200,
-    rotation_angle=-50,
-    then=Stop.HOLD,
-    wait=True
-)
-
+motor_right.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
+# motor_left.run_until_stalled(200, then=Stop.HOLD, duty_limit=25 )
+# motor_left.reset_angle(0)
+#  motor_left.run_angle(
+#     speed=200,
+#     rotation_angle=-50,
+#     then=Stop.HOLD,
+#     wait=True
+# )
 # 1. Drive forward 50 cm = 500 mm
 drivebase.straight(410)
 drivebase.stop()
@@ -84,7 +86,7 @@ motor_left.run_angle(
 # # 4. Rotate Motor C 45 degrees2
 motor_right.run_angle(
     speed=200,
-    rotation_angle=-55,
+    rotation_angle=-50,
     then=Stop.HOLD,
     wait=True
 )
