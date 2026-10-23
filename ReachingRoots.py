@@ -61,19 +61,19 @@ attachment_left.run_angle(speed=650, rotation_angle=-70)
 
 
 #Run 2
-# drive_base.arc(50,180)
-# drive_base.straight(-350)
-# drive_base.arc(10,90)
+drive_base.arc(50,180)
+drive_base.straight(-350)
+drive_base.arc(10,90)
 
 
 
-# # attachment_right.run_angle(speed=200,  rotation_angle=-100)
+attachment_right.run_angle(speed=200,  rotation_angle=-100)
 
-# # drive_base.straight(140)
+drive_base.straight(140)
 
-# # attachment_right.run_angle(speed=200,  rotation_angle=60)
+attachment_right.run_angle(speed=200,  rotation_angle=60)
 
-# attachment_right.run_angle(speed=650, rotation_angle=-150)
+attachment_right.run_angle(speed=650, rotation_angle=-150)
 
 drive_base.stop()
 

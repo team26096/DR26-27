@@ -3,7 +3,8 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait
+from pybricks.tools import wait, StopWatch
+
 
 
 # -------------------------------------------------------------
@@ -52,9 +53,13 @@ drive_base = DriveBase(
 # Use the gyro so the robot holds a straight line and turns accurately.
 drive_base.use_gyro(True)
 
+run_timer = StopWatch()
+
 # -------------------------------------------------------------
 # 3. Start of run reset
 # -------------------------------------------------------------
+
+
 drive_base.straight(10)
 drive_base.reset()
 
@@ -64,3 +69,15 @@ drive_base.straight(-415)
 # Drive backward 100 mm. A negative value means reverse.
 drive_base.straight(375)
 drive_base.stop()
+
+# ---------- RESULT ----------
+
+# TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+run_timer.pause()
+
+# time() returns milliseconds, so divide by 1000 to get seconds.
+elapsed = round(run_timer.time() / 1000, 1)
+print("Total run time:", elapsed, "seconds")
+
+#Scrolls about one second per character. Delete if it gets in the way.
+hub.display.text(str(elapsed))
