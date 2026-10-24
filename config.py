@@ -13,13 +13,7 @@ import ReaserchPlatform
     
 RUNS = {
     "1": run1_fliptherock.run,
-    "2": ReaserchPlatform.run,
-    "3": robotrun3.run,
-    "4": robotrun4.run,
-    "5": robotrun5.run,
-    "6": robotrun6.run,
-    "7": robotrun7.run,
-    "8": robotrun8.run,
+    "2": ReaserchPlatform.run
 }
 
 
