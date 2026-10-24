@@ -18,7 +18,7 @@ drivebase = DriveBase(
     left_drive,
     right_drive,
     wheel_diameter=62.4,
-    axle_track=164
+    axle_track=151 #164
 )
 drivebase.use_gyro(True)
 current_settings = drivebase.settings()
@@ -44,7 +44,7 @@ right_attach = Motor(
 
 print("Attachment motor max:", left_attach.control.limits())
 
-drivebase.settings(500,800,125,500)
+drivebase.settings(500,(800,400),125,500)
 drivebase.straight(-5)
 
 # Drive - drivebase.straight()
@@ -71,81 +71,26 @@ drivebase.straight(770)
 left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
 # go back from humungus fungus
-drivebase.straight(-20)
+drivebase.straight(-40)
 #turn to keystone speices
-drivebase.turn(90)
-drivebase.straight(90)
-# align with keystone species
-drivebase.turn(-45)
-drivebase.straight(90)
-drivebase.turn(-15)
+drivebase.turn(50)
+drivebase.straight(160)
 # drop keystone speices
 right_attach.run_angle(speed=360, rotation_angle=80, then=Stop.HOLD, wait=True)
-right_attach.run_angle(speed=360, rotation_angle=-30, then=Stop.HOLD, wait=True)
-drivebase.turn(15)
+right_attach.run_angle(speed=360, rotation_angle=-30, then=Stop.HOLD, wait=False)
 # go back from keystone speices
-drivebase.straight(-135)
+drivebase.straight(-120)
+# Turn to setup for Forest Elder
+drivebase.turn(40)
 # move arm back down for forest elder
 left_attach.run_angle(speed=200, rotation_angle=120, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
-# Turn to setup for Forest Elder
-drivebase.turn(45)
 # move front and then flick support for forest elder up
-drivebase.turn(-15)
-drivebase.straight(50)
+drivebase.straight(90)
 left_attach.run_angle(speed=400, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
-# Go backward to knock down window to the past
-
-# drivebase.arc(678, distance=-200)
-# drivebase.arc(-678, distance=-200)
-# drivebase.arc(150, angle=37)
-# drivebase.straight(70)
-# drivebase.straight(-120)
-# drivebase.turn(-55)
-# drivebase.straight(200)
-# left_attach.run_until_stalled(
-#     -500,          # speed in deg/s; use -500 if this is the wrong direction
-#     then=Stop.HOLD,
-#     duty_limit=25
-# )
-# drivebase.turn(15)
-# drivebase.straight(100)
-# drivebase.turn(-40)
-# drivebase.straight(100)
-# right_attach.run_angle(speed=360, rotation_angle=100, then=Stop.HOLD, wait=True)
-# # right_attach.run_angle(speed=360, rotation_angle=-100, then=Stop.HOLD, wait=True)
-# drivebase.straight(-200)
-# drivebase.turn(90)
-# drivebase.straight(1000)
-# left_attach.run_until_stalled(
-#     -500,          # speed in deg/s; use -500 if this is the wrong direction
-#     then=Stop.HOLD,
-#     duty_limit=30
-# )
-# drivebase.turn(-120)
-# drivebase.straight(400)
-
-# drivebase.turn(-20)
-# drivebase.straight(200)
-# drivebase.turn(45)
-
-# drivebase.straight(500)
-
-#drivebase.straight(-50)
-#drivebase.turn(-25)
-#drivebase.straight(-100)
-#drivebase.turn(25)
-# drivebase.straight(-300)
-
-# drivebase.turn(64)
-
-# drivebase.straight(210)
-
-# drivebase.turn(-25)
-
-# drivebase.straight(-110)
-
+drivebase.arc(75.5, angle=-90)
+drivebase.straight(-650)
 
 elapsed_seconds = timer.time() / 1000
 print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
