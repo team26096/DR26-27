@@ -9,17 +9,11 @@ from pybricks.parameters import Port, Direction
 # To add or rename a run, change its import and its line in RUNS.
 
 import run1_fliptherock
-import robotrun2
-import robotrun3
-import robotrun4
-import robotrun5
-import robotrun6
-import robotrun7
-import robotrun8
-
+import ReaserchPlatform
+    
 RUNS = {
     "1": run1_fliptherock.run,
-    "2": robotrun2.run,
+    "2": ReaserchPlatform.run,
     "3": robotrun3.run,
     "4": robotrun4.run,
     "5": robotrun5.run,
