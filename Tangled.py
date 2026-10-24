@@ -15,7 +15,7 @@ drive_base = DriveBase(
     left_motor,
     right_motor,
     wheel_diameter=56,
-    axle_track=164,
+    axle_track=151,
 )
 drive_base.use_gyro(True)
 

@@ -9,8 +9,8 @@ from pybricks.robotics import DriveBase
 # Each wheel measures 62.4 millimeters across its center.
 WHEEL_DIAMETER_MM = 62.4
 
-# The centers of the left and right wheels are 164 millimeters apart.
-AXLE_TRACK_MM = 164
+# The centers of the left and right wheels are 151 millimeters apart.
+AXLE_TRACK_MM = 151
 
 # The robot normally drives straight at 300 millimeters per second.
 STRAIGHT_SPEED_MM_PER_SECOND = 300

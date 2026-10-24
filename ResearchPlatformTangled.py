@@ -15,7 +15,7 @@ attachment_left = Motor(Port.B, gears=[[12, 20], [1, 24]])
 
 # Millimeters.
 WHEEL_DIAMETER = 62.4
-AXLE_TRACK = 164
+AXLE_TRACK = 151
 
 drive_base = DriveBase(left_motor, right_motor,
                        wheel_diameter=WHEEL_DIAMETER,

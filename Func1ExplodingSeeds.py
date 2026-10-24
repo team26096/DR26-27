@@ -21,7 +21,7 @@ attachment_left = Motor(Port.B, gears=[[12,20],[12,12]])
 
 # DriveBase setup
 WHEEL_DIAMETER = 62.4
-AXLE_TRACK = 164
+AXLE_TRACK = 151
 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
 drive_base.use_gyro(True)

@@ -19,7 +19,7 @@ drivebase = DriveBase(
     left_drive,
     right_drive,
     wheel_diameter=62.4,
-    axle_track=164
+    axle_track=151
 )
 drivebase.use_gyro(True)
 current_settings = drivebase.settings()

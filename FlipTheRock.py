@@ -40,8 +40,8 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 WHEEL_DIAMETER = 56
 
 # Axle track in mm. This is the distance between the centers of the two wheels.
-# If turns overshoot, reduce this value. If turns undershoot, increase it.
-AXLE_TRACK = 164
+# The gyro measures turns, so this number does not change how far the robot turns.
+AXLE_TRACK = 151
 
 drive_base = DriveBase(
     left_motor,
