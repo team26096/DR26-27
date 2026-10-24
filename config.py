@@ -47,7 +47,7 @@ ATTACHMENT_RIGHT_GEARS = [[12, 20], [12, 12]]
 # ===== ROBOT SIZE =====
 
 WHEEL_DIAMETER = 62.4        # mm
-AXLE_TRACK = 164             # mm, between the wheel centers
+AXLE_TRACK = 151            # mm, between the wheel centers
 
 
 # ===== SPEEDS =====
