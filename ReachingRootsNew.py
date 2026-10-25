@@ -23,7 +23,7 @@ drive_base = DriveBase(left_motor, right_motor,
 drive_base.use_gyro(True)
 
 # Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=400, straight_acceleration=200,
+drive_base.settings(straight_speed=400, straight_acceleration=(800,200),
                     turn_rate=200, turn_acceleration=200)
 
 # ---------- RESET ----------

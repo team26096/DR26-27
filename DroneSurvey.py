@@ -74,7 +74,7 @@ drive_base.straight(20)
 drive_base.arc(-82, angle=-30)
 
 
-drive_base.straight(-610) 
+drive_base.straight(-620) 
 print("Angle after turn:", round(drive_base.angle(), 1), "deg") 
 
 # ---------- RESULT ----------

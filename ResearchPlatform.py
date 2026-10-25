@@ -26,7 +26,7 @@ AXLE_TRACK = 151
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
 drive_base.use_gyro(True)
 
-drive_base.settings(straight_speed=600, straight_acceleration=200,
+drive_base.settings(straight_speed=500, straight_acceleration=(800,400),
                     turn_rate=200, turn_acceleration=200)
 
 # left_motor.reset_angle(0)
