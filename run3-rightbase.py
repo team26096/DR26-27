@@ -1,8 +1,10 @@
+# alignment - right base - left most black bold line - fully visible
+
 from pybricks.hubs import PrimeHub 
 from pybricks.pupdevices import Motor 
-from pybricks.parameters import Port, Direction 
+from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase 
-from pybricks.tools import StopWatch
+from pybricks.tools import StopWatch, wait
 
 timer = StopWatch()
 hub = PrimeHub() 
@@ -23,61 +25,23 @@ print("Robot Settings:", current_settings)
 print("Robot max",drivebase.distance_control.limits())
 print("Stall tolerances",drivebase.heading_control.stall_tolerances())
 
-drivebase.settings(900,900,125,200)
+drivebase.settings(500,(800,800),125,500)
 drivebase.straight(5) 
 drivebase.reset()
-drivebase.straight(-540)
-drivebase.arc(210, angle=-90)
+drivebase.straight(-510, then=Stop.NONE)
+drivebase.arc(210, angle=-90, then=Stop.NONE)
 drivebase.straight(-170)
-drivebase.turn(120)
+drivebase.turn(130)
 
-drivebase.drive(-30,0)
-while not drivebase.stalled():
-    pass
+drivebase.drive(-50,0)
+wait(2500)
+#while not drivebase.stalled():
+#    pass
 drivebase.stop()
 
-drivebase.arc(10, angle=75)
-
-drivebase.arc(-400, angle=-22) 
-drivebase.straight(-200)
-drivebase.turn(30)
-drivebase.straight(-400)
-
-
+drivebase.arc(10, angle=80)
+drivebase.arc(-400, distance=-200, then=Stop.NONE)
+drivebase.straight(-500)
 
 elapsed_seconds = timer.time() / 1000
 print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
-
-#drivebase.straight(-70)
-
-
-# print("Distance 1:", drivebase.distance())
-# drivebase.turn(-62.5)
-# print("Angle 1:", drivebase.angle())
-# drivebase.straight(-230) 
-# print("Distance 2:", drivebase.distance())
-# Slow down the turn
-# drivebase.settings(turn_rate=40)
-
-# See current settings
-
-# Make stall detection less sensitive
-# drivebase.heading_control.stall_tolerances(
-#     speed=5,      # must get slower than 5 deg/s
-#     time=1000     # for 1000 ms before calling it stalled
-# )
-
-# this is an attempt to turn till the motor stalls insted of turning a fixed angle
-# it does not work consistently
-# drivebase.drive(0, 30)
-
-# while not drivebase.stalled():
-#     pass
-
-# drivebase.stop()
-
-# # drivebase.turn(90)
-# print("Angle 2:", drivebase.angle())
-#drivebase.turn(-30)
-# drivebase.straight(100)
-
