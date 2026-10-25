@@ -9,11 +9,11 @@ from pybricks.parameters import Port, Direction
 # To add or rename a run, change its import and its line in RUNS.
 
 import run1_fliptherock
-import ReaserchPlatform
-    
+import run1_researchplatform
+
 RUNS = {
     "1": run1_fliptherock.run,
-    "2": ReaserchPlatform.run
+    "2": run1_researchplatform.run,
 }
 
 
