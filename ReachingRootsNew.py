@@ -33,7 +33,7 @@ hub.display.off()
 
 
 # Takes up slack in the gears.
-drive_base.straight(-5)
+drive_base.straight(-10)
 
 # straight() holds the wheels at the end. Release them before resetting.
 drive_base.stop()
@@ -60,12 +60,37 @@ attachment_left.reset_angle(0)
 attachment_left.run_angle(speed=650, rotation_angle=-75)
 print("after move", attachment_left.angle())
 
-drive_base.straight(830)
+drive_base.straight(820)
 print(drive_base.distance())
 distance1 = drive_base.distance()
 drive_base.arc(15,90)
 attachment_left.run_angle(speed=1000, rotation_angle=-150)
-attachment_left.run_angle(speed=1000, rotation_angle=150)
+# attachment_left.run_angle(speed=1000, rotation_angle=150)
+
+drive_base.straight(20)
+
+drive_base.arc(-76, angle=-45)
+
+drive_base.straight(-30)
+
+attachment_right.run_angle(speed=300, rotation_angle=-70)
+
+drive_base.straight(100,then=Stop.NONE)
+
+drive_base.turn(60, then=Stop.NONE)
+
+drive_base.settings(straight_speed=600, straight_acceleration=800,
+                    turn_rate=200, turn_acceleration=200)
+
+drive_base.straight(800)
+
+
+
+
+
+
+
+
 
 
 #Run 2
