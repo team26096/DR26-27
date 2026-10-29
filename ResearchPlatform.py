@@ -32,13 +32,39 @@ drive_base.settings(straight_speed=500, straight_acceleration=(800,400),
 # left_motor.reset_angle(0)
 hub.imu.reset_heading(0)
 
+
+
+# Takes up slack in the gears.
+drive_base.straight(-10)
+
 drive_base.reset()
 drive_base.straight(570)
 drive_base.arc(10,90)
 drive_base.straight(190) 
 drive_base.arc(-82, angle=90)
 drive_base.straight(150)   
-attachment_right.run_angle(speed=600, rotation_angle=45, then=Stop.HOLD)
-drive_base.straight(-150) 
-attachment_right.run_angle(speed=600, rotation_angle=-45, then=Stop.HOLD)
-drive_base.stop()
+attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
+drive_base.straight(-140) 
+attachment_right.run_angle(speed=600, rotation_angle=-60, then=Stop.HOLD)
+
+attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
+drive_base.arc(82, angle=-90)
+
+drive_base.straight(-170, wait=False)
+timer = StopWatch()
+while not drive_base.done():
+    if timer.time() > 1500:
+        drive_base.stop()
+        break
+    wait(10)
+ 
+drive_base.straight(150, then=Stop.NONE) 
+drive_base.arc(-450,distance=750) 
+drive_base.stop()   
+
+# TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+watch.pause()
+
+# time() returns milliseconds, so divide by 1000 to get seconds.
+elapsed = round(watch.time() / 1000, 1)
+print("Total run time:", elapsed, "seconds")
