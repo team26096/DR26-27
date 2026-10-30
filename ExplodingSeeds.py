@@ -97,7 +97,7 @@ attachment_left.run_angle(speed=100, rotation_angle=20)
 attachment_left.run_angle(speed=25, rotation_angle=-45)
 
 # Again move arm down to safely and make sure compost hatch is complete
-attachment_left.run_angle(speed=100, rotation_angle=50)
+attachment_left.run_angle(speed=100, rotation_angle=45)
 
 drive_base.settings(straight_speed=250)
 
@@ -114,7 +114,7 @@ drive_base.straight(130)
 drive_base.turn(-20)
 
 # Move forward so the right attachment arm is under the seed and ready for pickup
-drive_base.straight(130, wait=False)
+drive_base.straight(120, wait=False)
 
 # Move arm up 60 degrees to pick up the seed from window to the past
 attachment_left.run_angle(speed=500, rotation_angle=-120)
@@ -122,9 +122,11 @@ attachment_left.run_angle(speed=500, rotation_angle=-120)
 # Move arm up 60 degrees to pick up the seed from window to the past
 attachment_right.run_angle(speed=100, rotation_angle=60)
 
-drive_base.arc(50, -140)
+drive_base.arc(50, -130)
 
-drive_base.straight(-700)
+drive_base.settings(straight_speed=500)
+
+drive_base.straight(-650)
 
 
 timestamp = watch.time()/1000
