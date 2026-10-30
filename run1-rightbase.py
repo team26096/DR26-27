@@ -20,8 +20,16 @@ drivebase = DriveBase(
     wheel_diameter=62.4,
     axle_track=151 #164
 )
+
+
+while not hub.imu.ready():
+    wait(100)
+
+hub.imu.reset_heading(0)
 drivebase.use_gyro(True)
 current_settings = drivebase.settings()
+drivebase.reset()
+
 print("Robot Settings:", current_settings)
 print("Robot max",drivebase.distance_control.limits())
 
@@ -43,6 +51,7 @@ right_attach = Motor(
 )
 
 print("Attachment motor max:", left_attach.control.limits())
+
 
 drivebase.settings(500,(800,400),125,500)
 drivebase.straight(-5)
@@ -67,6 +76,10 @@ left_attach.reset_angle(0)
 left_attach.run_angle(speed=360, rotation_angle=120,then=Stop.HOLD, wait=True)
 # go straight to humungous fungs
 drivebase.straight(770)
+print("Distance:",drivebase.distance())
+print("Heading (deg):", hub.imu.heading())
+print("Battery (mV):", hub.battery.voltage())
+
 # flick fungus up
 left_attach.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=True)
 print(left_attach.angle())
