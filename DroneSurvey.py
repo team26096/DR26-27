@@ -69,13 +69,10 @@ drive_base.stop()
 drive_base.settings(straight_speed=500, straight_acceleration=800,
                     turn_rate=500, turn_acceleration=800)
 
-drive_base.arc(82, angle=30)
-drive_base.straight(20) 
-drive_base.arc(-82, angle=-30)
-
-
-drive_base.straight(-620) 
+drive_base.arc(-76, angle=drive_base.angle())
+drive_base.straight(-670) 
 print("Angle after turn:", round(drive_base.angle(), 1), "deg") 
+
 
 # ---------- RESULT ----------
 
