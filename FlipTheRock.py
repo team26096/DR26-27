@@ -37,7 +37,7 @@ right_motor = Motor(Port.E, Direction.CLOCKWISE)
 # 56 mm is the small SPIKE Prime wheel. 62.4 mm is the large one.
 # If the robot drives too far, increase this value slightly.
 # If it drives too short, decrease it slightly.
-WHEEL_DIAMETER = 56
+WHEEL_DIAMETER = 62.4
 
 # Axle track in mm. This is the distance between the centers of the two wheels.
 # The gyro measures turns, so this number does not change how far the robot turns.
@@ -60,14 +60,14 @@ run_timer = StopWatch()
 # -------------------------------------------------------------
 
 
-drive_base.straight(10)
+drive_base.straight(-10)
 drive_base.reset()
 
 # Drive forward 400 mm. The gyro keeps the line straight.
-drive_base.straight(-415)
+drive_base.straight(430)
 
 # Drive backward 100 mm. A negative value means reverse.
-drive_base.straight(375)
+drive_base.straight(-375)
 drive_base.stop()
 
 # ---------- RESULT ----------
