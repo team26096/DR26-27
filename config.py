@@ -10,10 +10,20 @@ from pybricks.parameters import Port, Direction
 
 import run1_fliptherock
 import run1_researchplatform
+import run1_rightbase
+import run3_rightbase
+import run_forest_elder_seed_collection
+import run_explodingseeds
+import run_researchplatform
 
 RUNS = {
     "1": run1_fliptherock.run,
     "2": run1_researchplatform.run,
+    "3": run1_rightbase.run,
+    "4": run3_rightbase.run,
+    "5": run_forest_elder_seed_collection.run,
+    "6": run_explodingseeds.run,
+    "7": run_researchplatform.run,
 }
 
 

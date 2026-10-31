@@ -28,16 +28,21 @@ drive_base = DriveBase(left_motor, right_motor,
                        axle_track=config.AXLE_TRACK)
 drive_base.use_gyro(True)
 
+# Pybricks' own values for this robot, saved before anything changes them.
+default_settings = drive_base.settings()
+default_heading_pid = drive_base.heading_control.pid()
+
 
 # ===== HELPERS =====
 
 def reset_robot():
     """Get the robot ready before every run."""
-    # Starting speeds, in case the last run changed them.
+    # Starting speeds and PID, in case the last run changed them.
     drive_base.settings(straight_speed=config.STRAIGHT_SPEED,
                         straight_acceleration=config.STRAIGHT_ACCELERATION,
                         turn_rate=config.TURN_RATE,
                         turn_acceleration=config.TURN_ACCELERATION)
+    drive_base.heading_control.pid(*default_heading_pid)
 
     # Wait for the robot to sit still, so the gyro settles.
     settle_timer = StopWatch()
@@ -88,6 +93,8 @@ class DistanceTracker:
 
     def __init__(self, drive_base):
         self.drive_base = drive_base
+        self.heading_control = drive_base.heading_control
+        self.distance_control = drive_base.distance_control
         self.total_mm = 0
         self.last_mm = 0
 
@@ -122,12 +129,25 @@ class DistanceTracker:
         self.add_distance()
         self.drive_base.stop()
 
+    def brake(self):
+        self.add_distance()
+        self.drive_base.brake()
+
+    def reset(self, *args, **kwargs):
+        self.add_distance()
+        self.drive_base.reset(*args, **kwargs)
+        # reset() changes distance(), so count from the new value.
+        self.last_mm = self.drive_base.distance()
+
     # These do not move the robot, so they just pass through.
     def settings(self, *args, **kwargs):
         return self.drive_base.settings(*args, **kwargs)
 
     def distance(self):
         return self.drive_base.distance()
+
+    def angle(self):
+        return self.drive_base.angle()
 
 
 tracker = DistanceTracker(drive_base)
