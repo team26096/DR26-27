@@ -1,74 +1,42 @@
 
-
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor
+from pybricks.pupdevices import ForceSensor, Motor
 from pybricks.parameters import Port, Direction, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
+watch = StopWatch()
+
+# Initialize the hub
 hub = PrimeHub()
+
+# Drive motors setup
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.E, Direction.CLOCKWISE)
 
-# Gear list reads from the motor outward and works out to 3 to 1.
-attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
-attachment_left = Motor(Port.B, gears=[[12, 20], [12, 12]])
+# Attachment motors setup
+# 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
+attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
+attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
 
-# Millimeters.
+# DriveBase setup
 WHEEL_DIAMETER = 62.4
 AXLE_TRACK = 151
 
-drive_base = DriveBase(left_motor, right_motor,
-                       wheel_diameter=WHEEL_DIAMETER,
-                       axle_track=AXLE_TRACK)
+drive_base = DriveBase(left_motor, right_motor, wheel_diameter=WHEEL_DIAMETER, axle_track=AXLE_TRACK)
 drive_base.use_gyro(True)
 
-# Fixed speeds so every run behaves the same.
-drive_base.settings(straight_speed=300, straight_acceleration=600,
-                    turn_rate=200, turn_acceleration=400)
+drive_base.settings(straight_speed=500, straight_acceleration=(800,400),
+                    turn_rate=200, turn_acceleration=200)
 
-
-# ---------- RESET ----------
-
-# Clear the run time left on the display by the previous run.
-hub.display.off()
-
-# Drive the arms to their hard stops. duty_limit keeps the gears from stripping.
-attachment_left.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-attachment_right.run_until_stalled(-200, then=Stop.HOLD, duty_limit=30)
-
-# Takes up slack in the gears.
-drive_base.straight(-10)
-
-# straight() holds the wheels at the end. Release them before resetting.
-drive_base.stop()
-
-# Zero everything. Nothing should move the robot after this point.
-left_motor.reset_angle(0)
-right_motor.reset_angle(0)
-attachment_left.reset_angle(0)
-attachment_right.reset_angle(0)
+# left_motor.reset_angle(0)
 hub.imu.reset_heading(0)
-drive_base.reset()
-
-# TIMER START. A StopWatch counts from the moment it is created.
-run_timer = StopWatch()
-
-
-# ---------- RUN ----------
-
-
-drive_base.stop()
-
-
-# ---------- RESULT ----------
+drive_base.straight(150, then=Stop.NONE) 
+drive_base.arc(-450,distance=750) 
 
 # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
-run_timer.pause()
+watch.pause()
 
 # time() returns milliseconds, so divide by 1000 to get seconds.
-elapsed = round(run_timer.time() / 1000, 1)
+elapsed = round(watch.time() / 1000, 1)
 print("Total run time:", elapsed, "seconds")
-
-# Scrolls about one second per character. Delete if it gets in the way.
-hub.display.text(str(elapsed))
