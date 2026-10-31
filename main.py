@@ -46,6 +46,12 @@ while True:
     run_ms = run_timer.time()
     end_percent, end_voltage = battery_level()
 
+    # The menu opens on the run after this one. After the last run, back to the first.
+    next_index = (run_numbers.index(choice) + 1) % len(run_numbers)
+
+    # Show it now. With a computer connected, the printing below can take a moment.
+    hub.display.char(run_numbers[next_index])
+
     # This run's results. Net distance is how far it ended from the start.
     print("========== RUN", choice, "RESULTS ==========")
     show("Total run time", sec(run_ms))
@@ -59,6 +65,3 @@ while True:
     show("Battery drop", str(start_voltage - end_voltage) + " mV")
     print("========================================")
     check_battery(end_percent)
-
-    # The menu opens on the run after this one. After the last run, back to the first.
-    next_index = (run_numbers.index(choice) + 1) % len(run_numbers)

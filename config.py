@@ -9,7 +9,6 @@ from pybricks.parameters import Port, Direction
 # To add or rename a run, change its import and its line in RUNS.
 
 import run1_fliptherock
-import run1_researchplatform
 import run1_rightbase
 import run3_rightbase
 import run_forest_elder_seed_collection
@@ -18,7 +17,6 @@ import run_researchplatform
 
 RUNS = {
     "1": run1_fliptherock.run,
-    "2": run1_researchplatform.run,
     "3": run_explodingseeds.run,
     "4": run1_rightbase.run,
     "5": run3_rightbase.run,
@@ -59,9 +57,11 @@ TURN_ACCELERATION = 200      # degrees per second, each second
 # ===== BEFORE EACH RUN =====
 
 # The gyro only says "still" after a full second with no bumps, and pressing the
-# center button can bump the hub. So after a bump, this is the whole wait.
-SETTLE_TIMEOUT_MS = 300      # wait up to this long for the gyro to settle
+# center button can bump the hub. A short wait can't finish, so it is off. Only
+# raise this if runs start crooked.
+SETTLE_TIMEOUT_MS = 0        # wait up to this long for the gyro to settle
 SLACK_MM = -5                # small back up before each run, takes up gear slack
+SLACK_ACCELERATION = 1000    # mm per second, each second, for that back up only
 
 
 # ===== BATTERY =====

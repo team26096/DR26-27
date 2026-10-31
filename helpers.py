@@ -50,8 +50,11 @@ def reset_robot():
         wait(10)
 
     # Take up gear slack, then zero the arms, heading, and distance.
+    # Only this small move is quicker. The run gets the normal acceleration back.
+    drive_base.settings(straight_acceleration=config.SLACK_ACCELERATION)
     drive_base.straight(config.SLACK_MM)
     drive_base.stop()
+    drive_base.settings(straight_acceleration=config.STRAIGHT_ACCELERATION)
     attachment_left.reset_angle(0)
     attachment_right.reset_angle(0)
     hub.imu.reset_heading(0)
