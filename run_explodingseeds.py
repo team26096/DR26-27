@@ -18,10 +18,6 @@ def run(drive_base, attachment_left, attachment_right):
                         turn_rate=default_settings[2],
                         turn_acceleration=default_settings[3])
 
-    # main.py backs up 5 mm before every run. Go forward 5 mm so this run starts
-    # from the same spot as ExplodingSeeds.py.
-    drive_base.straight(5)
-
     # config.py uses different gears for both arms than ExplodingSeeds.py did, so
     # the arm numbers here turn the motors the same amount as the ones there.
     # Left arm: speeds and angles are 3 times bigger.

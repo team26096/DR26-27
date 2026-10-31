@@ -14,9 +14,8 @@ def run(drive_base, attachment_left, attachment_right):
                         turn_acceleration=default_settings[3])
     print("Robot Settings:", drive_base.settings())
 
-    # Takes up slack in the gears. main.py already backed up 5 mm, so this is
-    # the other 5 mm of the 10 mm in forest_elder_seed_collection.py.
-    drive_base.straight(-5)
+    # Takes up slack in the gears.
+    drive_base.straight(-10)
 
     attachment_right.run_until_stalled(200, then=Stop.HOLD, duty_limit=25)
 

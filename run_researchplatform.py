@@ -5,17 +5,11 @@ from pybricks.tools import StopWatch, wait
 def run(drive_base, attachment_left, attachment_right):
     # Research Platform. Same moves as ResearchPlatform.py.
 
-    # Loaded here, not at the top, because helpers.py needs config.py to finish first.
-    # main.py passes in the distance tracker, which has no done(), so the timed
-    # back up below asks the real drive base instead.
-    from helpers import drive_base as real_drive_base
-
     drive_base.settings(straight_speed=500, straight_acceleration=(800, 400),
                         turn_rate=200, turn_acceleration=200)
 
-    # Takes up slack in the gears. main.py already backed up 5 mm, so this is
-    # the other 5 mm of the 10 mm in ResearchPlatform.py.
-    drive_base.straight(-5)
+    # Takes up slack in the gears.
+    drive_base.straight(-10)
 
     drive_base.reset()
     drive_base.straight(570)
@@ -36,7 +30,7 @@ def run(drive_base, attachment_left, attachment_right):
     # Back up for at most 1.5 seconds, in case something stops the robot.
     drive_base.straight(-170, wait=False)
     timer = StopWatch()
-    while not real_drive_base.done():
+    while not drive_base.done():
         if timer.time() > 1500:
             drive_base.stop()
             break

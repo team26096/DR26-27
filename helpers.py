@@ -49,12 +49,7 @@ def reset_robot():
     while not hub.imu.stationary() and settle_timer.time() < config.SETTLE_TIMEOUT_MS:
         wait(10)
 
-    # Take up gear slack, then zero the arms, heading, and distance.
-    # Only this small move is quicker. The run gets the normal acceleration back.
-    drive_base.settings(straight_acceleration=config.SLACK_ACCELERATION)
-    drive_base.straight(config.SLACK_MM)
-    drive_base.stop()
-    drive_base.settings(straight_acceleration=config.STRAIGHT_ACCELERATION)
+    # Zero the arms, heading, and distance.
     attachment_left.reset_angle(0)
     attachment_right.reset_angle(0)
     hub.imu.reset_heading(0)
@@ -79,78 +74,5 @@ def show(label, value):
     print("  " + label + ":" + " " * (18 - len(label)) + value)
 
 
-def cm(mm):
-    return "{:.1f} cm".format(mm / 10)
-
-
 def sec(ms):
     return "{:.1f} s".format(ms / 1000)
-
-
-class DistanceTracker:
-    """Adds up the total distance of a run, out and back moves included.
-
-    drive_base.distance() only shows how far the robot ended up from the
-    start. Run files use this exactly like the normal drive base.
-    """
-
-    def __init__(self, drive_base):
-        self.drive_base = drive_base
-        self.heading_control = drive_base.heading_control
-        self.distance_control = drive_base.distance_control
-        self.total_mm = 0
-        self.last_mm = 0
-
-    def start(self):
-        self.total_mm = 0
-        self.last_mm = self.drive_base.distance()
-
-    def add_distance(self):
-        # Add the distance since the last move. abs() counts backward moves too.
-        now = self.drive_base.distance()
-        self.total_mm += abs(now - self.last_mm)
-        self.last_mm = now
-
-    # Each move first adds up the move before it, then passes the command on.
-    def straight(self, *args, **kwargs):
-        self.add_distance()
-        return self.drive_base.straight(*args, **kwargs)
-
-    def turn(self, *args, **kwargs):
-        self.add_distance()
-        return self.drive_base.turn(*args, **kwargs)
-
-    def arc(self, *args, **kwargs):
-        self.add_distance()
-        return self.drive_base.arc(*args, **kwargs)
-
-    def drive(self, *args, **kwargs):
-        self.add_distance()
-        return self.drive_base.drive(*args, **kwargs)
-
-    def stop(self):
-        self.add_distance()
-        self.drive_base.stop()
-
-    def brake(self):
-        self.add_distance()
-        self.drive_base.brake()
-
-    def reset(self, *args, **kwargs):
-        self.add_distance()
-        self.drive_base.reset(*args, **kwargs)
-        # reset() changes distance(), so count from the new value.
-        self.last_mm = self.drive_base.distance()
-
-    # These do not move the robot, so they just pass through.
-    def settings(self, *args, **kwargs):
-        return self.drive_base.settings(*args, **kwargs)
-
-    def distance(self):
-        return self.drive_base.distance()
-
-    def angle(self):
-        return self.drive_base.angle()
-
-
-tracker = DistanceTracker(drive_base)

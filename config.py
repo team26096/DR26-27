@@ -8,20 +8,26 @@ from pybricks.parameters import Port, Direction
 # Each run file has one run() function with only mission moves.
 # To add or rename a run, change its import and its line in RUNS.
 
-import run1_fliptherock
+import run_fliptherock
+import run_reachingroots
+import run_dronesurvey
 import run1_rightbase
 import run3_rightbase
 import run_forest_elder_seed_collection
 import run_explodingseeds
 import run_researchplatform
+import run_placeholder
 
 RUNS = {
-    "1": run1_fliptherock.run,
-    "3": run_explodingseeds.run,
-    "4": run1_rightbase.run,
-    "5": run3_rightbase.run,
-    "6": run_forest_elder_seed_collection.run,
-    "7": run_researchplatform.run,
+    "1": run_fliptherock.run,
+    "2": run_reachingroots.run,
+    "3": run_dronesurvey.run,
+    "4": run_explodingseeds.run,
+    "5": run1_rightbase.run,
+    "6": run3_rightbase.run,
+    "7": run_forest_elder_seed_collection.run,
+    "8": run_researchplatform.run,
+    "9": run_placeholder.run,
 }
 
 
@@ -60,8 +66,6 @@ TURN_ACCELERATION = 200      # degrees per second, each second
 # center button can bump the hub. A short wait can't finish, so it is off. Only
 # raise this if runs start crooked.
 SETTLE_TIMEOUT_MS = 0        # wait up to this long for the gyro to settle
-SLACK_MM = -5                # small back up before each run, takes up gear slack
-SLACK_ACCELERATION = 1000    # mm per second, each second, for that back up only
 
 
 # ===== BATTERY =====

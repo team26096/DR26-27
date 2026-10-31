@@ -23,10 +23,6 @@ def run(drive_base, attachment_left, attachment_right):
     print("Turn max", drive_base.heading_control.limits())
     print("Stall tolerances", drive_base.heading_control.stall_tolerances())
 
-    # main.py backs up 5 mm before every run, which is away from the wall here.
-    # Go forward 5 mm so squaring starts from the same spot as run3-rightbase.py.
-    drive_base.straight(5)
-
     # Square forward against the wall before resetting distance and heading.
     # Run each wheel independently so heading control does not fight the wall.
     drive_base.stop()
