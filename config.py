@@ -19,10 +19,10 @@ import run_researchplatform
 RUNS = {
     "1": run1_fliptherock.run,
     "2": run1_researchplatform.run,
-    "3": run1_rightbase.run,
-    "4": run3_rightbase.run,
-    "5": run_forest_elder_seed_collection.run,
-    "6": run_explodingseeds.run,
+    "3": run_explodingseeds.run,
+    "4": run1_rightbase.run,
+    "5": run3_rightbase.run,
+    "6": run_forest_elder_seed_collection.run,
     "7": run_researchplatform.run,
 }
 
