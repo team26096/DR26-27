@@ -58,7 +58,9 @@ TURN_ACCELERATION = 200      # degrees per second, each second
 
 # ===== BEFORE EACH RUN =====
 
-SETTLE_TIMEOUT_MS = 2000     # wait up to this long for the gyro to settle
+# The gyro only says "still" after a full second with no bumps, and pressing the
+# center button can bump the hub. So after a bump, this is the whole wait.
+SETTLE_TIMEOUT_MS = 300      # wait up to this long for the gyro to settle
 SLACK_MM = -5                # small back up before each run, takes up gear slack
 
 
