@@ -1,33 +1,44 @@
-from pybricks.parameters import Stop
-from pybricks.tools import StopWatch, wait
+from pybricks.parameters import Port, Stop
+from pybricks.pupdevices import Motor
+from pybricks.tools import wait, StopWatch
 
 
 def run(drive_base, attachment_left, attachment_right):
-    # Research Platform. Same moves as ResearchPlatform.py.
+    # Research Platform. Same code as ResearchPlatform.py.
 
-    drive_base.settings(straight_speed=500, straight_acceleration=(800, 400),
+    # Loaded here, not at the top, because helpers.py needs config.py to finish first.
+    import config
+    from helpers import hub
+
+    watch = StopWatch()
+
+    # Attachment motors setup
+    # 1:1 bevel gear ratio means 1 degree of motor rotation = 1 degree of arm movement
+    attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
+    attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
+
+    drive_base.settings(straight_speed=500, straight_acceleration=(800,400),
                         turn_rate=200, turn_acceleration=200)
+
+    # left_motor.reset_angle(0)
+    hub.imu.reset_heading(0)
 
     # Takes up slack in the gears.
     drive_base.straight(-10)
 
     drive_base.reset()
     drive_base.straight(570)
-    drive_base.arc(10, 90)
+    drive_base.arc(10,90)
     drive_base.straight(190)
     drive_base.arc(-82, angle=90)
     drive_base.straight(150)
-
-    # config.py uses different gears for this arm than ResearchPlatform.py did,
-    # so 100 and 1000 here turn the motor the same amount as 60 and 600 did there.
-    attachment_right.run_angle(speed=1000, rotation_angle=100, then=Stop.HOLD)
+    attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
     drive_base.straight(-140)
-    attachment_right.run_angle(speed=1000, rotation_angle=-100, then=Stop.HOLD)
+    attachment_right.run_angle(speed=600, rotation_angle=-60, then=Stop.HOLD)
 
-    attachment_right.run_angle(speed=1000, rotation_angle=100, then=Stop.HOLD)
+    attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
     drive_base.arc(82, angle=-90)
 
-    # Back up for at most 1.5 seconds, in case something stops the robot.
     drive_base.straight(-170, wait=False)
     timer = StopWatch()
     while not drive_base.done():
@@ -37,4 +48,17 @@ def run(drive_base, attachment_left, attachment_right):
         wait(10)
 
     drive_base.straight(150, then=Stop.NONE)
-    drive_base.arc(-450, distance=750)
+    drive_base.arc(-450,distance=750)
+    drive_base.stop()
+
+    # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+    watch.pause()
+
+    # time() returns milliseconds, so divide by 1000 to get seconds.
+    elapsed = round(watch.time() / 1000, 1)
+    print("Total run time:", elapsed, "seconds")
+
+    # Put back the gears from config.py. The arms in main.py use the same motors,
+    # so without this every run after this one would get the gears from above.
+    Motor(config.ATTACHMENT_LEFT_PORT, gears=config.ATTACHMENT_LEFT_GEARS)
+    Motor(config.ATTACHMENT_RIGHT_PORT, gears=config.ATTACHMENT_RIGHT_GEARS)
