@@ -63,3 +63,10 @@ def run(drivebase, attachment_left, attachment_right):
 
     elapsed_seconds = timer.time() / 1000
     print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
+
+
+# Only happens when this file is uploaded by itself. The menu in main.py skips
+# this and calls run() instead.
+if __name__ == "__main__":
+    from helpers import run_alone
+    run_alone(run)

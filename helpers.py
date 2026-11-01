@@ -56,6 +56,19 @@ def reset_robot():
     drive_base.reset()
 
 
+def run_alone(run):
+    """Start one run with no menu, the same way main.py starts it."""
+    reset_robot()
+
+    # Same as main.py. PixieBricks keeps its original hub PID defaults.
+    if hub.system.info()["name"].lower() == "mickeybricks":
+        heading_pid = drive_base.heading_control.pid()
+        drive_base.heading_control.pid(23000, *heading_pid[1:])
+
+    run(drive_base, attachment_left, attachment_right)
+    drive_base.stop()
+
+
 def battery_level():
     """Return the estimated battery percent and the voltage in mV."""
     voltage = hub.battery.voltage()

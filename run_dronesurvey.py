@@ -24,3 +24,10 @@ def run(drive_base, attachment_left, attachment_right):
     drive_base.arc(-76, angle=drive_base.angle())
     drive_base.straight(-670)
     print("Angle after turn:", round(drive_base.angle(), 1), "deg")
+
+
+# Only happens when this file is uploaded by itself. The menu in main.py skips
+# this and calls run() instead.
+if __name__ == "__main__":
+    from helpers import run_alone
+    run_alone(run)

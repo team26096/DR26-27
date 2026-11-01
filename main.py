@@ -41,6 +41,13 @@ while True:
     print("Run", choice, "started")
 
     reset_robot()
+
+    # PixieBricks keeps its original hub PID defaults; only MickeyBricks is tuned.
+    # This goes after reset_robot(), which puts the default PID back before every run.
+    if hub.system.info()["name"].lower() == "mickeybricks":
+        heading_pid = drive_base.heading_control.pid()
+        drive_base.heading_control.pid(23000, *heading_pid[1:])
+
     start_percent, start_voltage = battery_level()
 
     # The timer for all runs starts with the first run.
