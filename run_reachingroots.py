@@ -43,3 +43,10 @@ def run(drive_base, attachment_left, attachment_right):
     drive_base.straight(800)
 
     drive_base.stop()
+
+
+# Only happens when this file is uploaded by itself. The menu in main.py skips
+# this and calls run() instead.
+if __name__ == "__main__":
+    from helpers import run_alone
+    run_alone(run)

@@ -112,3 +112,10 @@ def run(drivebase, attachment_left, attachment_right):
     # so without this every run after this one would get the gears from above.
     Motor(config.ATTACHMENT_LEFT_PORT, gears=config.ATTACHMENT_LEFT_GEARS)
     Motor(config.ATTACHMENT_RIGHT_PORT, gears=config.ATTACHMENT_RIGHT_GEARS)
+
+
+# Only happens when this file is uploaded by itself. The menu in main.py skips
+# this and calls run() instead.
+if __name__ == "__main__":
+    from helpers import run_alone
+    run_alone(run)
