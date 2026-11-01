@@ -16,7 +16,7 @@ import run3_rightbase
 import run_forest_elder_seed_collection
 import run_explodingseeds
 import run_researchplatform
-import run_placeholder
+import run_seedsofrenewal
 
 RUNS = {
     "1": run_fliptherock.run,
@@ -27,7 +27,7 @@ RUNS = {
     "6": run3_rightbase.run,
     "7": run_forest_elder_seed_collection.run,
     "8": run_researchplatform.run,
-    "9": run_placeholder.run,
+    "9": run_seedsofrenewal.run,
 }
 
 
