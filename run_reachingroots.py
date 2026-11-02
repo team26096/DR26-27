@@ -8,39 +8,75 @@ def run(drive_base, attachment_left, attachment_right):
                         turn_rate=200, turn_acceleration=200)
 
     # Takes up slack in the gears.
-    drive_base.straight(-10)
+    # drive_base.straight(-10)
 
     # straight() holds the wheels at the end. Release them before resetting.
     drive_base.stop()
     drive_base.reset()
 
-    attachment_left.run_until_stalled(200, then=Stop.BRAKE, duty_limit=20)
-    attachment_left.reset_angle(0)
+    # attachment_left.run_until_stalled(200, then=Stop.BRAKE, duty_limit=20)
+    # attachment_left.reset_angle(0)
+    # attachment_left.run_angle(speed=650, rotation_angle=-75)
+    # print("after move", attachment_left.angle())
 
-    attachment_left.run_angle(speed=650, rotation_angle=-75)
-    print("after move", attachment_left.angle())
+    # drive_base.straight(830)
+    # print(drive_base.distance())
+    # drive_base.arc(15, 90)
+    # attachment_left.run_angle(speed=1000, rotation_angle=-150)
+    attachment_right.run_until_stalled(-45, then=Stop.BRAKE, duty_limit=30)
 
-    drive_base.straight(820)
-    print(drive_base.distance())
-    drive_base.arc(15, 90)
-    attachment_left.run_angle(speed=1000, rotation_angle=-150)
+    drive_base.turn(60)
+    drive_base.straight(60)
+   
+    attachment_right.run_angle(
+        speed=90,
+        rotation_angle=90,
+        then=Stop.HOLD,
+        wait=True
+    )
+    drive_base.straight(-40)
 
-    drive_base.straight(20)
+    attachment_right.run_angle(
+        speed=90,
+        rotation_angle=-30,
+        then=Stop.HOLD,
+        wait=True
+    )
 
-    drive_base.arc(-76, angle=-45)
-
-    drive_base.straight(-30)
-
-    attachment_right.run_angle(speed=300, rotation_angle=-70)
-
-    drive_base.straight(100, then=Stop.NONE)
-
-    drive_base.turn(60, then=Stop.NONE)
-
+    drive_base.turn(30, then=Stop.NONE)
+    
     drive_base.settings(straight_speed=600, straight_acceleration=800,
-                        turn_rate=200, turn_acceleration=200)
+                             turn_rate=200, turn_acceleration=200)
+    
+    #drive_base.straight(820)
 
-    drive_base.straight(800)
+    # drive_base.arc(-76, angle=-45)
+
+    # drive_base.straight(-30)
+
+    # attachment_right.run_angle(speed=300, rotation_angle=-70)
+
+    # drive_base.straight(100, then=Stop.NONE)
+
+    # drive_base.turn(60, then=Stop.NONE)
+
+    # drive_base.settings(straight_speed=600, straight_acceleration=800,
+    #                     turn_rate=200, turn_acceleration=200)
+
+    # drive_base.straight(800)
+
+    print("Straight PID:", drive_base.distance_control.pid())
+    print("Turn PID:", drive_base.heading_control.pid())
+    straight_pid = drive_base.distance_control.pid()
+    heading_pid = drive_base.heading_control.pid()
+
+    print("Straight Kp:", straight_pid[0])
+    print("Straight Ki:", straight_pid[1])
+    print("Straight Kd:", straight_pid[2])
+
+    print("Heading Kp:", heading_pid[0])
+    print("Heading Ki:", heading_pid[1])
+    print("Heading Kd:", heading_pid[2])
 
     drive_base.stop()
 
