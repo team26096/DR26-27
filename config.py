@@ -20,13 +20,13 @@ import run_seedsofrenewal
 
 RUNS = {
     "1": run_fliptherock.run,
-    "2": run_reachingroots.run,
-    "3": run_dronesurvey.run,
-    "4": run_explodingseeds.run,
-    "5": run1_rightbase.run,
-    "6": run3_rightbase.run,
-    "7": run_forest_elder_seed_collection.run,
-    "8": run_researchplatform.run,
+    "2": run_dronesurvey.run,
+    "3": run_reachingroots.run,
+    "4": run_researchplatform.run,
+    "5": run_explodingseeds.run,
+    "6": run1_rightbase.run,
+    "7": run3_rightbase.run,
+    "8": run_forest_elder_seed_collection.run,
     "9": run_seedsofrenewal.run,
 }
 
