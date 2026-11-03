@@ -1,5 +1,5 @@
 # HELPERS FOR OUR SPIKE PRIME ROBOT
-# Sets up the hub and motors, and holds the helper code main.py uses.
+# Sets up the hub and drive motors, and holds the helper code main.py uses.
 # You should not need to change this file. Settings are in config.py.
 
 from pybricks.hubs import PrimeHub
@@ -17,10 +17,6 @@ hub = PrimeHub()
 # Drive motors.
 left_motor = Motor(config.LEFT_MOTOR_PORT, config.LEFT_MOTOR_DIRECTION)
 right_motor = Motor(config.RIGHT_MOTOR_PORT, config.RIGHT_MOTOR_DIRECTION)
-
-# Attachment motors.
-attachment_left = Motor(config.ATTACHMENT_LEFT_PORT, gears=config.ATTACHMENT_LEFT_GEARS)
-attachment_right = Motor(config.ATTACHMENT_RIGHT_PORT, gears=config.ATTACHMENT_RIGHT_GEARS)
 
 # The drive base moves both wheels together. The gyro keeps it straight.
 drive_base = DriveBase(left_motor, right_motor,
@@ -49,9 +45,7 @@ def reset_robot():
     while not hub.imu.stationary() and settle_timer.time() < config.SETTLE_TIMEOUT_MS:
         wait(10)
 
-    # Zero the arms, heading, and distance.
-    attachment_left.reset_angle(0)
-    attachment_right.reset_angle(0)
+    # Zero the heading and distance. Each run sets up its own attachments.
     hub.imu.reset_heading(0)
     drive_base.reset()
 
@@ -65,8 +59,10 @@ def run_alone(run):
         heading_pid = drive_base.heading_control.pid()
         drive_base.heading_control.pid(23000, *heading_pid[1:])
 
-    run(drive_base, attachment_left, attachment_right)
-    drive_base.stop()
+    try:
+        run(drive_base)
+    finally:
+        drive_base.stop()
 
 
 def battery_level():

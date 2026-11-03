@@ -7,7 +7,7 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, wait
 
 
-def run(drivebase, attachment_left, attachment_right):
+def run(drivebase):
     timer = StopWatch()
 
     # Loaded here, not at the top, because helpers.py needs config.py to finish first.

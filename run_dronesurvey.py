@@ -1,7 +1,7 @@
 from pybricks.tools import wait
 
 
-def run(drive_base, attachment_left, attachment_right):
+def run(drive_base):
     # Drone Survey. No attachments. Same moves as DroneSurvey.py.
 
     drive_base.settings(straight_speed=300, straight_acceleration=200,

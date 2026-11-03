@@ -1,4 +1,4 @@
-def run(drive_base, attachment_left, attachment_right):
+def run(drive_base):
     # Flip the Rock. No attachments. Same moves as FlipTheRock.py.
 
     # Loaded here, not at the top, because helpers.py needs config.py to finish first.

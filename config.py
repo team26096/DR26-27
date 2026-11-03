@@ -39,11 +39,7 @@ LEFT_MOTOR_DIRECTION = Direction.COUNTERCLOCKWISE
 RIGHT_MOTOR_PORT = Port.E
 RIGHT_MOTOR_DIRECTION = Direction.CLOCKWISE
 
-# Attachment motors. The gear list makes angles match the arm, not the motor.
-ATTACHMENT_LEFT_PORT = Port.B
-ATTACHMENT_LEFT_GEARS = [[12, 20], [12, 12]]
-ATTACHMENT_RIGHT_PORT = Port.C
-ATTACHMENT_RIGHT_GEARS = [[12, 20], [12, 12]]
+# Attachment ports and gears are set in each run file.
 
 
 # ===== ROBOT SIZE =====

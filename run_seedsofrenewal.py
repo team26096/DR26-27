@@ -3,55 +3,58 @@ from pybricks.pupdevices import Motor
 from pybricks.tools import StopWatch
 
 
-def run(drivebase, attachment_left, attachment_right):
-    # Seeds of Renewal. Same code as seedsofrenewal.py.
+def run(drivebase):
+    motor_right = None
+    try:
+        # Seeds of Renewal. Same code as seedsofrenewal.py.
 
-    # Loaded here, not at the top, because helpers.py needs config.py to finish first.
-    import config
-    from helpers import hub
+        # Loaded here, not at the top, because helpers.py needs config.py to finish first.
+        from helpers import hub
 
-    voltage = hub.battery.voltage()
-    print("Battery Voltage:", voltage, "mV")
+        voltage = hub.battery.voltage()
+        print("Battery Voltage:", voltage, "mV")
 
-    # Attachment motor
-    motor_right = Motor(
-        Port.C,
-        gears=[
-            [12, 36]
-        ]
-    )
+        # Attachment motor
+        motor_right = Motor(
+            Port.C,
+            gears=[
+                [12, 36]
+            ]
+        )
 
-    # seedsofrenewal.py used axle_track=160 and config.py has 151. That only
-    # changes turns, and this run has none.
+        # seedsofrenewal.py used axle_track=160 and config.py has 151. That only
+        # changes turns, and this run has none.
 
-    # Make straight driving faster
-    drivebase.settings(
-        straight_speed=500,         # mm/s
-        straight_acceleration=400  # mm/s^2
-    )
+        # Make straight driving faster
+        drivebase.settings(
+            straight_speed=500,         # mm/s
+            straight_acceleration=400  # mm/s^2
+        )
 
-    current_settings = drivebase.settings()
-    print("Robot Settings:", current_settings)
+        current_settings = drivebase.settings()
+        print("Robot Settings:", current_settings)
 
-    # TIMER START. A StopWatch counts from the moment it is created.
-    run_timer = StopWatch()
-    drivebase.straight(330)
-    motor_right.run_angle(
-        speed=90,
-        rotation_angle=90,
-        then=Stop.HOLD,
-        wait=True
-    )
-    # # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
-    run_timer.pause()
+        # TIMER START. A StopWatch counts from the moment it is created.
+        run_timer = StopWatch()
+        drivebase.straight(330)
+        motor_right.run_angle(
+            speed=90,
+            rotation_angle=90,
+            then=Stop.HOLD,
+            wait=True
+        )
+        # # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
+        run_timer.pause()
 
-    # # time() returns milliseconds, so divide by 1000 to get seconds.
-    elapsed = round(run_timer.time() / 1000, 1)
-    print("Total run time:", elapsed, "seconds")
+        # # time() returns milliseconds, so divide by 1000 to get seconds.
+        elapsed = round(run_timer.time() / 1000, 1)
+        print("Total run time:", elapsed, "seconds")
 
-    # Put back the gears from config.py. The arms in main.py use the same motors,
-    # so without this every run after this one would get the gears from above.
-    Motor(config.ATTACHMENT_RIGHT_PORT, gears=config.ATTACHMENT_RIGHT_GEARS)
+        # Save the final angles before releasing the attachment ports.
+        return (None, motor_right.angle())
+    finally:
+        if motor_right is not None:
+            motor_right.close()
 
 
 # Only happens when this file is uploaded by itself. The menu in main.py skips

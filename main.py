@@ -9,7 +9,7 @@ from pybricks.tools import StopWatch, hub_menu
 from pybricks import version
 
 import config
-from helpers import (hub, drive_base, attachment_left, attachment_right,
+from helpers import (hub, drive_base,
                      reset_robot, battery_level, check_battery, show, sec)
 
 # ===== STARTUP INFO =====
@@ -56,8 +56,10 @@ while True:
 
     # Do the run. The timer starts at 0.
     run_timer = StopWatch()
-    config.RUNS[choice](drive_base, attachment_left, attachment_right)
-    drive_base.stop()
+    try:
+        arm_angles = config.RUNS[choice](drive_base)
+    finally:
+        drive_base.stop()
     run_ms = run_timer.time()
     all_runs_ms = all_runs_timer.time()
     end_percent, end_voltage = battery_level()
@@ -76,8 +78,10 @@ while True:
     print("========== RUN", choice, "RESULTS ==========")
     show("Total run time", sec(run_ms))
     show("End heading", "{:.1f} deg".format(hub.imu.heading()))
-    show("Left arm", "{:.0f} deg".format(attachment_left.angle()))
-    show("Right arm", "{:.0f} deg".format(attachment_right.angle()))
+    if arm_angles is not None:
+        for label, angle in zip(("Left arm", "Right arm"), arm_angles):
+            if angle is not None:
+                show(label, "{:.0f} deg".format(angle))
     show("Battery at start", str(start_percent) + " % (" + str(start_voltage) + " mV)")
     show("Battery at end", str(end_percent) + " % (" + str(end_voltage) + " mV)")
     show("Battery drop", str(start_voltage - end_voltage) + " mV")
