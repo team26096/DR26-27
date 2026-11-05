@@ -6,10 +6,10 @@ def run(drive_base):
 
     # FlipTheRock.py never set any speeds, so it used Pybricks' own speeds and not
     # the ones in config.py.
-    drive_base.settings(straight_speed=default_settings[0],
-                        straight_acceleration=default_settings[1],
-                        turn_rate=default_settings[2],
-                        turn_acceleration=default_settings[3])
+    drive_base.settings(straight_speed=300,
+                        straight_acceleration=400,
+                        turn_rate=200,
+                        turn_acceleration=200)
 
 
     drive_base.straight(-10)
@@ -19,10 +19,12 @@ def run(drive_base):
     drive_base.straight(430)
 
     # Negative drives backward, back toward base.
-    drive_base.straight(-375)
+    drive_base.straight(-250)
     drive_base.stop()
 
-
+  
+    #drive_base.arc(82, angle=90)
+    drive_base.turn(90)
 # Only happens when this file is uploaded by itself. The menu in main.py skips
 # this and calls run() instead.
 if __name__ == "__main__":
