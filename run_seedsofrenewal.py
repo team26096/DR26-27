@@ -28,7 +28,7 @@ def run(drivebase):
         # Make straight driving faster
         drivebase.settings(
             straight_speed=500,         # mm/s
-            straight_acceleration=400  # mm/s^2
+            straight_acceleration=800  # mm/s^2
         )
 
         current_settings = drivebase.settings()
@@ -36,7 +36,7 @@ def run(drivebase):
 
         # TIMER START. A StopWatch counts from the moment it is created.
         run_timer = StopWatch()
-        drivebase.straight(330)
+        drivebase.straight(270)
         motor_right.run_angle(
             speed=90,
             rotation_angle=90,
