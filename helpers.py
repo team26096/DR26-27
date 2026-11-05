@@ -54,8 +54,11 @@ def run_alone(run):
     """Start one run with no menu, the same way main.py starts it."""
     reset_robot()
 
-    # Same as main.py. PixieBricks keeps its original hub PID defaults.
+    # Same as main.py. Each robot gets its own heading PID.
     if hub.system.info()["name"].lower() == "mickeybricks":
+        heading_pid = drive_base.heading_control.pid()
+        drive_base.heading_control.pid(23000, *heading_pid[1:])
+    elif hub.system.info()["name"].lower() == "pixiebricks":
         heading_pid = drive_base.heading_control.pid()
         drive_base.heading_control.pid(23000, *heading_pid[1:])
 

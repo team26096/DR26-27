@@ -42,9 +42,13 @@ while True:
 
     reset_robot()
 
-    # PixieBricks keeps its original hub PID defaults; only MickeyBricks is tuned.
+    # Each robot gets its own heading PID. Change one robot's number without
+    # touching the other's.
     # This goes after reset_robot(), which puts the default PID back before every run.
     if hub.system.info()["name"].lower() == "mickeybricks":
+        heading_pid = drive_base.heading_control.pid()
+        drive_base.heading_control.pid(23000, *heading_pid[1:])
+    elif hub.system.info()["name"].lower() == "pixiebricks":
         heading_pid = drive_base.heading_control.pid()
         drive_base.heading_control.pid(23000, *heading_pid[1:])
 
