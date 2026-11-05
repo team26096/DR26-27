@@ -1,3 +1,6 @@
+from pybricks.tools import wait, StopWatch
+
+
 def run(drive_base):
     # Flip the Rock. No attachments. Same moves as FlipTheRock.py.
 
@@ -16,10 +19,19 @@ def run(drive_base):
     drive_base.reset()
 
     # The robot starts facing the rock, so positive drives toward it.
-    drive_base.straight(430)
+    # If the rock blocks the wheels before 430 mm, straight() would wait forever.
+    # So start the move without waiting, and stop pushing if the wheels stall
+    # or 3 seconds pass.
+    drive_base.straight(430, wait=False)
+    push_timer = StopWatch()
+    while not drive_base.done():
+        if drive_base.stalled() or push_timer.time() > 3000:
+            break
+        wait(10)
+    drive_base.stop()
 
     # Negative drives backward, back toward base.
-    drive_base.straight(-250)
+    drive_base.straight(-250, speed=500)
     drive_base.stop()
 
   

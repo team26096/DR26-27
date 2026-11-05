@@ -28,10 +28,17 @@ check_battery(percent)
 run_numbers = sorted(config.RUNS)
 next_index = 0
 
-# Every run so far, in the order they ran.
-run_times = []
-total_ms = 0
-all_runs_timer = StopWatch()
+# Every run so far, in the order they ran, as
+# (run before it, run, transition time before it, run time).
+# The first run has no run or transition before it.
+history = []
+total_run_ms = 0
+total_transition_ms = 0
+
+# One clock for all runs. It starts with the first run. Run times and transition
+# times both come from it, so they always add up to the total time.
+match_timer = StopWatch()
+last_end_ms = 0
 
 while True:
     # hub_menu always opens on the first item, so put the next run first.
@@ -54,23 +61,34 @@ while True:
 
     start_percent, start_voltage = battery_level()
 
-    # The timer for all runs starts with the first run.
-    if not run_times:
-        all_runs_timer.reset()
+    # The clock starts with the first run.
+    if not history:
+        match_timer.reset()
+    start_ms = match_timer.time()
 
-    # Do the run. The timer starts at 0.
-    run_timer = StopWatch()
+    # Transition: from the moment the last run stopped until this run starts.
+    # It covers moving the robot, the menu, and the setup above.
+    if history:
+        previous = history[-1][1]
+        transition_ms = start_ms - last_end_ms
+    else:
+        previous = None
+        transition_ms = None
+
+    # Do the run.
     try:
         arm_angles = config.RUNS[choice](drive_base)
     finally:
         drive_base.stop()
-    run_ms = run_timer.time()
-    all_runs_ms = all_runs_timer.time()
+    last_end_ms = match_timer.time()
+    run_ms = last_end_ms - start_ms
     end_percent, end_voltage = battery_level()
 
     # A repeated run counts again, because it really took that time.
-    run_times.append((choice, run_ms))
-    total_ms += run_ms
+    history.append((previous, choice, transition_ms, run_ms))
+    total_run_ms += run_ms
+    if transition_ms is not None:
+        total_transition_ms += transition_ms
 
     # The menu opens on the run after this one. After the last run, back to the first.
     next_index = (run_numbers.index(choice) + 1) % len(run_numbers)
@@ -80,7 +98,9 @@ while True:
 
     # This run's results.
     print("========== RUN", choice, "RESULTS ==========")
-    show("Total run time", sec(run_ms))
+    if transition_ms is not None:
+        show("Transition " + previous + " -> " + choice, sec(transition_ms))
+    show("Run time", sec(run_ms))
     show("End heading", "{:.1f} deg".format(hub.imu.heading()))
     if arm_angles is not None:
         for label, angle in zip(("Left arm", "Right arm"), arm_angles):
@@ -91,11 +111,15 @@ while True:
     show("Battery drop", str(start_voltage - end_voltage) + " mV")
     print("========================================")
 
-    # After the last run, this has the final totals.
+    # Every run and transition in order. After the last run, this has the final totals.
     print("========== ALL RUNS SO FAR ==========")
-    for number, ms in run_times:
+    for before, number, transition, ms in history:
+        if before is not None:
+            show("Transition " + before + " -> " + number, sec(transition))
         show("Run " + number, sec(ms))
-    show("Time running", sec(total_ms))
-    show("With time between", sec(all_runs_ms))
+    print("  ----------------------------------")
+    show("Total run time", sec(total_run_ms))
+    show("Total transition", sec(total_transition_ms))
+    show("Total time", sec(last_end_ms))
     print("========================================")
     check_battery(end_percent)
