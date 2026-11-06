@@ -31,7 +31,9 @@ def run(drive_base):
     drive_base.stop()
 
     # Negative drives backward, back toward base.
-    drive_base.straight(-250, speed=500)
+    # straight() has no speed setting, so change the speed first.
+    drive_base.settings(straight_speed=500)
+    drive_base.straight(-250)
     drive_base.stop()
 
   
