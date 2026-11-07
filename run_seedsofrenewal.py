@@ -15,10 +15,10 @@ def run(drivebase):
         print("Battery Voltage:", voltage, "mV")
 
         # Attachment motor
-        motor_right = Motor(
-            Port.C,
+        motor_left = Motor(
+            Port.B,
             gears=[
-                [12, 36]
+                [12, 20],[1, 12]
             ]
         )
 
@@ -28,7 +28,7 @@ def run(drivebase):
         # Make straight driving faster
         drivebase.settings(
             straight_speed=500,         # mm/s
-            straight_acceleration=400  # mm/s^2
+            straight_acceleration=(800,400)  # mm/s^2
         )
 
         current_settings = drivebase.settings()
@@ -36,10 +36,10 @@ def run(drivebase):
 
         # TIMER START. A StopWatch counts from the moment it is created.
         run_timer = StopWatch()
-        drivebase.straight(330)
-        motor_right.run_angle(
+        drivebase.straight(240)
+        motor_left.run_angle(
             speed=90,
-            rotation_angle=90,
+            rotation_angle=-20,
             then=Stop.HOLD,
             wait=True
         )
@@ -51,7 +51,7 @@ def run(drivebase):
         print("Total run time:", elapsed, "seconds")
 
         # Save the final angles before releasing the attachment ports.
-        return (None, motor_right.angle())
+        return (None, motor_left.angle())
     finally:
         if motor_right is not None:
             motor_right.close()
