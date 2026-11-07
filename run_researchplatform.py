@@ -18,7 +18,7 @@ def run(drive_base):
         attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
         attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
 
-        drive_base.settings(straight_speed=500, straight_acceleration=(800,400),
+        drive_base.settings(straight_speed=300, straight_acceleration=(400),
                             turn_rate=200, turn_acceleration=200)
 
         # left_motor.reset_angle(0)
@@ -62,6 +62,9 @@ def run(drive_base):
                 break
             wait(10)
 
+        drive_base.settings(straight_speed=500, straight_acceleration=(800),
+                            turn_rate=200, turn_acceleration=200)
+    
         drive_base.straight(150, then=Stop.NONE)
         drive_base.arc(-450,distance=750)
         drive_base.stop()
