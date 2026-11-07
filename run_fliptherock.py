@@ -20,6 +20,10 @@ def run(drive_base):
     # So we stop when the move is done, the wheels stall, or 2.5 seconds pass.
     # A full push takes about 2.2 seconds at these speeds. If you slow the robot
     # down, raise the 2500 below, or the robot will stop before it reaches the rock.
+    # CHANGE (Nov 5): was drive_base.straight(430) on its own. That got stuck
+    # forever when the rock blocked the robot. The time limit was 3 seconds.
+    # CHANGE (Nov 7): time limit lowered from 3 to 2.5 seconds, so the run ends
+    # sooner when the robot is blocked.
     from pybricks.tools import wait, StopWatch
     drive_base.straight(430, wait=False)
     push_timer = StopWatch()
@@ -31,6 +35,11 @@ def run(drive_base):
 
     # Negative drives backward, back toward base.
     # straight() has no speed setting, so change the speed first.
+    # CHANGE (Nov 5): return speed raised from 300 to 500 mm/s, to get back to
+    # base faster.
+    # CHANGE (Nov 6): distance changed from -250 to -325, so the robot goes fully
+    # back into base. That number was picked when the return was still 300 mm/s,
+    # so check that the robot still ends inside base at 500 mm/s.
     drive_base.settings(straight_speed=500)
     drive_base.straight(-325)
     drive_base.stop()

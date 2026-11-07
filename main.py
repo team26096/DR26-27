@@ -28,6 +28,12 @@ check_battery(percent)
 run_numbers = sorted(config.RUNS)
 next_index = 0
 
+# CHANGE (Nov 5): the results now also show transition times. A transition is
+# the time between one run ending and the next run starting. Before, this file
+# kept a list of run times and used a second timer for the total. Now one clock
+# measures everything, so the run times plus the transition times always add up
+# to the total time.
+
 # Every run so far, in the order they ran, as
 # (run before it, run, transition time before it, run time).
 # The first run has no run or transition before it.
@@ -97,6 +103,8 @@ while True:
     hub.display.char(run_numbers[next_index])
 
     # This run's results.
+    # CHANGE (Nov 5): added the transition line. The line that used to say
+    # "Total run time" is now called "Run time".
     print("========== RUN", choice, "RESULTS ==========")
     if transition_ms is not None:
         show("Transition " + previous + " -> " + choice, sec(transition_ms))
@@ -112,6 +120,9 @@ while True:
     print("========================================")
 
     # Every run and transition in order. After the last run, this has the final totals.
+    # CHANGE (Nov 5): transitions are now listed between the runs. "Time running"
+    # is now called "Total run time", "With time between" is now "Total time",
+    # and "Total transition" is new.
     print("========== ALL RUNS SO FAR ==========")
     for before, number, transition, ms in history:
         if before is not None:

@@ -29,6 +29,9 @@ def run(drive_base):
 
         drive_base.reset()
         drive_base.straight(570)
+        # CHANGE (Nov 5): new step. The right attachment turns 120 degrees here,
+        # after driving out and before the arc. Before this, the first right
+        # attachment move was the 60 degree one after straight(150) below.
         attachment_right.run_angle(speed=600, rotation_angle=-120, then=Stop.HOLD)
         drive_base.arc(10,90)
         drive_base.straight(190)
@@ -41,6 +44,14 @@ def run(drive_base):
         attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
         drive_base.arc(82, angle=-90)
 
+        # Back up 200 mm, but stop after 1 second even if it has not finished.
+        # CHANGE (Nov 5): was straight(-170) with a 1.5 second limit. Now -200
+        # with a 1 second limit, and it prints TIMED OUT when the limit is hit.
+        # Note: at these speeds the full 200 mm takes about 1.2 seconds, so the
+        # 1 second limit usually stops it first, at about 190 mm. That means
+        # TIMED OUT prints even when nothing went wrong. The old 170 mm took
+        # about 1.1 seconds and finished before its 1.5 second limit.
+        # start is saved but not used anywhere yet.
         start = drive_base.distance()
         drive_base.straight(-200, wait=False)
         timer = StopWatch()

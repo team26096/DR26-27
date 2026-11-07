@@ -46,6 +46,7 @@ def run(drivebase):
         print("Heading PID:", drivebase.heading_control.pid())
         print("Drive limits:", drivebase.distance_control.limits())
         print("Left attachment limits:", left_attach.control.limits())
+        # CHANGE (Nov 5): also print the right attachment limits, not just the left.
         print("Right attachment limits:", right_attach.control.limits())
 
         # Square backward against the wall for 250 ms, matching Run3's squaring duration.
@@ -104,6 +105,12 @@ def run(drivebase):
         drivebase.straight(60)
         left_attach.run_angle(speed=-400, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
+        # CHANGE (Nov 5): new way back to base.
+        # Before: arc(75.5, angle=-90), then drive backward 650 mm (straight(-650)).
+        # Now: back up 80 mm, arc the other way (angle=90), then drive forward
+        # 650 mm. then=Stop.NONE lets the robot roll straight into the next move
+        # without stopping after the arc. The left arm also moves 30 degrees while
+        # the robot drives back, because wait=False lets both happen at once.
         drivebase.straight(-80)
         drivebase.arc(75.5, angle=90, then=Stop.NONE)
         # Fast return to base.

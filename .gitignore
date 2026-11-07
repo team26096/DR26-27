@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
+# CHANGE (Nov 5): new files in tools/ are not added to git. tools/ holds test
+# scripts that run on a computer, not on the hub. Files already in git, like
+# tools/test_attachment_lifecycle.py, stay in git.
 tools/
