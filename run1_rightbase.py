@@ -46,6 +46,7 @@ def run(drivebase):
         print("Heading PID:", drivebase.heading_control.pid())
         print("Drive limits:", drivebase.distance_control.limits())
         print("Left attachment limits:", left_attach.control.limits())
+        print("Right attachment limits:", right_attach.control.limits())
 
         # Square backward against the wall for 250 ms, matching Run3's squaring duration.
         # Run each wheel independently so heading control does not fight the wall.
@@ -103,10 +104,12 @@ def run(drivebase):
         drivebase.straight(60)
         left_attach.run_angle(speed=-400, rotation_angle=-45, then=Stop.HOLD, wait=True)
 
-        drivebase.arc(75.5, angle=-90)
+        drivebase.straight(-80)
+        drivebase.arc(75.5, angle=90, then=Stop.NONE)
         # Fast return to base.
         drivebase.settings(500, (800, 400), 125, 500)
-        drivebase.straight(-650)
+        left_attach.run_angle(speed=-400, rotation_angle=-30, then=Stop.HOLD, wait=False)
+        drivebase.straight(650)
 
         elapsed_seconds = timer.time() / 1000
         print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))

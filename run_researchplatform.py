@@ -29,6 +29,7 @@ def run(drive_base):
 
         drive_base.reset()
         drive_base.straight(570)
+        attachment_right.run_angle(speed=600, rotation_angle=-120, then=Stop.HOLD)
         drive_base.arc(10,90)
         drive_base.straight(190)
         drive_base.arc(-82, angle=90)
@@ -40,11 +41,13 @@ def run(drive_base):
         attachment_right.run_angle(speed=600, rotation_angle=60, then=Stop.HOLD)
         drive_base.arc(82, angle=-90)
 
-        drive_base.straight(-170, wait=False)
+        start = drive_base.distance()
+        drive_base.straight(-200, wait=False)
         timer = StopWatch()
         while not drive_base.done():
-            if timer.time() > 1500:
+            if timer.time() > 1000:
                 drive_base.stop()
+                print("TIMED OUT")
                 break
             wait(10)
 

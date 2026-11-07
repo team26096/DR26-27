@@ -13,7 +13,7 @@ def run(drive_base):
     drive_base.drive(0, -300)
 
     # Keep spinning for 1 second.
-    wait(1000)
+    wait(300)
     drive_base.stop()
 
     drive_base.settings(straight_speed=500, straight_acceleration=800,
@@ -21,7 +21,9 @@ def run(drive_base):
 
     drive_base.arc(76, angle=30)
     drive_base.straight(20)
-    drive_base.arc(-76, angle=drive_base.angle())
+    angle = drive_base.angle()
+    print("Angle before arc:", round(angle, 1), "deg")
+    drive_base.arc(-76, angle=angle)
     drive_base.straight(-670)
     print("Angle after turn:", round(drive_base.angle(), 1), "deg")
 
