@@ -24,7 +24,7 @@ def run(drive_base):
         drive_base.stop()
         drive_base.reset()
 
-        attachment_left.run_until_stalled(200, then=Stop.BRAKE, duty_limit=20)
+        #attachment_left.run_until_stalled(200, then=Stop.BRAKE, duty_limit=20)
         attachment_left.reset_angle(0)
         attachment_left.run_angle(speed=650, rotation_angle=-75)
         print("after move", attachment_left.angle())
