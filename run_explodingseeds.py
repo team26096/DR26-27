@@ -17,14 +17,18 @@ def run(drive_base):
 
         # ExplodingSeeds.py only set the straight speed, so everything else used
         # Pybricks' own speeds and not the ones in config.py.
-        drive_base.settings(straight_speed=600,
-                            straight_acceleration=default_settings[1],
+        drive_base.settings(straight_speed=300,
+                            straight_acceleration=400,
                             turn_rate=default_settings[2],
                             turn_acceleration=default_settings[3])
 
         # Attachment gears from ExplodingSeeds.py, for this run only.
         attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
         attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
+
+        drive_base.straight(-10)
+        drive_base.reset()
+
 
         # Drive forward from base to start aligning with Exploding Seeds.
         drive_base.straight(200, wait=False)
@@ -37,7 +41,7 @@ def run(drive_base):
 
         # Go forward to make contact with the seed.
         drive_base.settings(straight_speed=400)
-        drive_base.straight(320)
+        drive_base.straight(330)
 
         # Lift the right arm to align for seed removal.
         attachment_right.run_angle(speed=200, rotation_angle=20)
@@ -50,12 +54,12 @@ def run(drive_base):
         attachment_right.run_angle(speed=25, rotation_angle=5)
         drive_base.straight(-15)
 
-        attachment_right.run_angle(speed=10, rotation_angle=22)
+        attachment_right.run_angle(speed=10, rotation_angle=30)
 
         drive_base.settings(straight_speed=300)
 
         # Back up to get clear of Exploding Seeds.
-        drive_base.straight(-200)
+        drive_base.straight(-210)
 
         print("Timestamp after picking up seeds:", watch.time() / 1000)
 
@@ -65,13 +69,15 @@ def run(drive_base):
         drive_base.settings(straight_speed=300)
 
         # Lower the left arm while driving to Biocentric Architecture.
-        attachment_left.run_angle(speed=200, rotation_angle=160, wait=False)
-        drive_base.straight(610)
+        attachment_left.run_angle(speed=200, rotation_angle=165, wait=False)
+        drive_base.straight(620)
 
         drive_base.settings(straight_speed=100)
 
         # Turn left slightly to align with Biocentric Architecture.
-        drive_base.turn(-20)
+        # drive_base.turn(-20)
+        drive_base.turn(-15)
+        
 
         # Arm down to complete the compost hatch.
         attachment_left.run_angle(speed=100, rotation_angle=20)
@@ -80,12 +86,12 @@ def run(drive_base):
         attachment_left.run_angle(speed=25, rotation_angle=-45)
 
         # Arm down again to make sure the compost hatch is complete.
-        attachment_left.run_angle(speed=100, rotation_angle=45)
+        attachment_left.run_angle(speed=100, rotation_angle=50)
 
         drive_base.settings(straight_speed=250)
 
         # Turn right to move away from Biocentric Architecture.
-        drive_base.turn(20)
+        drive_base.turn(25)
 
         # Lower the right arm to align for the Window to the Past seed.
         attachment_right.run_angle(speed=100, rotation_angle=-30, wait=False)
@@ -94,20 +100,20 @@ def run(drive_base):
         drive_base.straight(130)
 
         # Turn left to line up with the seed.
-        drive_base.turn(-20)
+        drive_base.turn(-40)
 
         # Move forward so the right arm is under the seed, while lifting the left arm.
         drive_base.straight(120, wait=False)
-        attachment_left.run_angle(speed=500, rotation_angle=-120)
+        attachment_left.run_angle(speed=500, rotation_angle=-150)
 
         # Lift the right arm to pick up the seed.
         attachment_right.run_angle(speed=100, rotation_angle=60)
 
-        drive_base.arc(50, -130)
+        drive_base.arc(50, 70)
 
         drive_base.settings(straight_speed=500)
 
-        drive_base.straight(-650)
+        drive_base.straight(650)
 
         # Save the final angles before releasing the attachment ports.
         return (attachment_left.angle(), attachment_right.angle())
