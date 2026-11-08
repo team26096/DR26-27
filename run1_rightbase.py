@@ -36,7 +36,7 @@ def run(drivebase):
             Port.C,
             gears=[
                 [12, 20],
-                [1, 24],
+                [1, 8],
             ],
         )
 
@@ -111,12 +111,12 @@ def run(drivebase):
         # 650 mm. then=Stop.NONE lets the robot roll straight into the next move
         # without stopping after the arc. The left arm also moves 30 degrees while
         # the robot drives back, because wait=False lets both happen at once.
-        drivebase.straight(-80)
-        drivebase.arc(75.5, angle=90, then=Stop.NONE)
+        # drivebase.straight(-80)
+        drivebase.arc(75.5, angle=-90, then=Stop.NONE)
         # Fast return to base.
         drivebase.settings(500, (800, 400), 125, 500)
         left_attach.run_angle(speed=-400, rotation_angle=-30, then=Stop.HOLD, wait=False)
-        drivebase.straight(650)
+        drivebase.straight(-650)
 
         elapsed_seconds = timer.time() / 1000
         print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
