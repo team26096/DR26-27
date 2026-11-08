@@ -19,8 +19,8 @@ import run_researchplatform
 import run_seedsofrenewal
 
 RUNS = {
-    "1": run_fliptherock.run,
-    "2": run_dronesurvey.run,
+    "1": run_dronesurvey.run,
+    "2": run_fliptherock.run,
     "3": run_reachingroots.run,
     "4": run_researchplatform.run,
     "5": run_explodingseeds.run,
