@@ -27,7 +27,7 @@ def run(drive_base):
     from pybricks.tools import wait, StopWatch
     from pybricks.parameters import Port, Direction, Stop
 
-    drive_base.straight(430, wait=False)
+    drive_base.straight(470, wait=False)
     push_timer = StopWatch()
     while not drive_base.done():
         if drive_base.stalled() or push_timer.time() > 2500:
@@ -43,12 +43,12 @@ def run(drive_base):
     # back into base. That number was picked when the return was still 300 mm/s,
     # so check that the robot still ends inside base at 500 mm/s.
     drive_base.settings(straight_speed=500, straight_acceleration=800)
-    drive_base.straight(-300, then=Stop.NONE)
+    drive_base.straight(-340, then=Stop.NONE)
     #drive_base.stop()
 
   
     #drive_base.arc(82, angle=90)
-    drive_base.turn(90)
+    # drive_base.turn(90)
 # Only happens when this file is uploaded by itself. The menu in main.py skips
 # this and calls run() instead.
 if __name__ == "__main__":
