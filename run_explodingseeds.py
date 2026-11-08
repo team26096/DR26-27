@@ -88,7 +88,10 @@ def run(drive_base):
         # Arm down again to make sure the compost hatch is complete.
         attachment_left.run_angle(speed=100, rotation_angle=50)
 
-        drive_base.settings(straight_speed=250)
+        drive_base.settings(straight_speed=500)
+
+        attachment_left.run_angle(speed=100, rotation_angle=-10)
+
 
         # Turn right to move away from Biocentric Architecture.
         drive_base.turn(25)
@@ -103,13 +106,13 @@ def run(drive_base):
         drive_base.turn(-40)
 
         # Move forward so the right arm is under the seed, while lifting the left arm.
-        drive_base.straight(120, wait=False)
+        drive_base.straight(130, wait=False)
         attachment_left.run_angle(speed=500, rotation_angle=-150)
 
         # Lift the right arm to pick up the seed.
         attachment_right.run_angle(speed=100, rotation_angle=60)
 
-        drive_base.arc(50, 70)
+        drive_base.turn(70)
 
         drive_base.settings(straight_speed=500)
 
