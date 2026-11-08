@@ -31,7 +31,7 @@ def run(drive_base):
     angle = drive_base.angle()
     print("Angle before arc:", round(angle, 1), "deg")
     drive_base.arc(-76, angle=angle)
-    drive_base.straight(-670)
+    drive_base.straight(-770)
     print("Angle after turn:", round(drive_base.angle(), 1), "deg")
 
 
