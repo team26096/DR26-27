@@ -18,8 +18,13 @@ def run(drive_base):
         attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
         attachment_left = Motor(Port.B, gears=[[12,20]])
 
-        drive_base.settings(straight_speed=300, straight_acceleration=(400),
-                            turn_rate=200, turn_acceleration=200)
+        # Loaded here, not at the top, because config.py loads this file first.
+        from config import START, FINISH
+
+        # Start speeds from config.py.
+        # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=400,
+        # turn_rate=200, turn_acceleration=200.
+        drive_base.settings(**START)
 
         # left_motor.reset_angle(0)
         hub.imu.reset_heading(0)
@@ -39,6 +44,8 @@ def run(drive_base):
         drive_base.arc(-82, angle=90)
 
         #Tangled Start
+        # This speed stays here, not in config.py, because it is part of the
+        # mission, not the way out or back.
         drive_base.settings(straight_speed=500, straight_acceleration=(800),
                             turn_rate=200, turn_acceleration=200)
 
@@ -70,8 +77,10 @@ def run(drive_base):
                 break
             wait(10)
 
-        drive_base.settings(straight_speed=500, straight_acceleration=(800),
-                            turn_rate=200, turn_acceleration=200)
+        # Finish speeds from config.py.
+        # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800,
+        # turn_rate=200, turn_acceleration=200.
+        drive_base.settings(**FINISH)
     
         drive_base.straight(150, then=Stop.NONE)
         drive_base.arc(-450,distance=750)

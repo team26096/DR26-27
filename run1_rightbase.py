@@ -40,8 +40,13 @@ def run(drivebase):
             ],
         )
 
-        # Mission settings: 300 mm/s, with 400 mm/s² acceleration and deceleration.
-        drivebase.settings(300, (400, 400), 125, 500)
+        # Loaded here, not at the top, because config.py loads this file first.
+        from config import START, FINISH
+
+        # Mission settings: start speeds from config.py.
+        # CHANGE (Nov 9): was drivebase.settings(300, (400, 400), 125, 500), which
+        # is 300 mm/s, with 400 mm/s² acceleration and deceleration.
+        drivebase.settings(**START)
         print("Robot settings:", drivebase.settings())
         print("Heading PID:", drivebase.heading_control.pid())
         print("Drive limits:", drivebase.distance_control.limits())
@@ -112,9 +117,10 @@ def run(drivebase):
         # without stopping after the arc. The left arm also moves 30 degrees while
         # the robot drives back, because wait=False lets both happen at once.
         # drivebase.straight(-80)
-        drivebase.arc(75.5, angle=-90, then=Stop.NONE)
-        # Fast return to base.
-        drivebase.settings(500, (800, 400), 125, 500)
+        drivebase.arc(75.5, angle=-90) #removed stop=Stop.NONE to see if it helps with the arc
+        # Fast return to base (finish speeds from config.py).
+        # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 125, 500).
+        drivebase.settings(**FINISH)
         left_attach.run_angle(speed=-400, rotation_angle=-30, then=Stop.HOLD, wait=False)
         drivebase.straight(-650)
 

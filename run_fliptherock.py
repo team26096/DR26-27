@@ -6,10 +6,14 @@ def run(drive_base):
 
     # FlipTheRock.py never set any speeds, so it used Pybricks' own speeds and not
     # the ones in config.py.
-    drive_base.settings(straight_speed=250,
-                        straight_acceleration=200,
-                        turn_rate=200,
-                        turn_acceleration=200)
+    # Loaded here, not at the top, because config.py loads this file first.
+    from config import START, FINISH
+
+    # Start speeds from config.py.
+    # CHANGE (Nov 9): was straight_speed=250, straight_acceleration=200,
+    # turn_rate=200, turn_acceleration=200. The push below stops after 2.5
+    # seconds. If you make START slower than 250 mm/s, raise that time.
+    drive_base.settings(**START)
 
 
     drive_base.straight(-10)
@@ -42,7 +46,9 @@ def run(drive_base):
     # CHANGE (Nov 6): distance changed from -250 to -325, so the robot goes fully
     # back into base. That number was picked when the return was still 300 mm/s,
     # so check that the robot still ends inside base at 500 mm/s.
-    drive_base.settings(straight_speed=500, straight_acceleration=800)
+    # Finish speeds from config.py.
+    # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800.
+    drive_base.settings(**FINISH)
     drive_base.straight(-340, then=Stop.NONE)
     #drive_base.stop()
 

@@ -4,3 +4,7 @@ __pycache__/
 # scripts that run on a computer, not on the hub. Files already in git, like
 # tools/test_attachment_lifecycle.py, stay in git.
 tools/
+# CHANGE (Nov 9): the logs folder is never added to git with the code.
+# tools/run_logged.py uploads new log files to the logs folder on GitHub by
+# itself, without touching the code or any other files.
+logs/

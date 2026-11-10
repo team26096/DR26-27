@@ -54,6 +54,7 @@ class AttachmentLifecycleTests(unittest.TestCase):
         modules['pybricks.parameters'].Port = types.SimpleNamespace(A='A', B='B', C='C', E='E')
         modules['pybricks.parameters'].Direction = MagicMock()
         modules['pybricks.parameters'].Stop = MagicMock()
+        modules['pybricks.parameters'].Color = MagicMock()
         modules['pybricks.robotics'].DriveBase = lambda *a, **kw: self.base
         modules['pybricks.tools'].StopWatch = lambda: watch
         modules['pybricks.tools'].wait = lambda ms: None

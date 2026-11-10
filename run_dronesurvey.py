@@ -4,8 +4,13 @@ from pybricks.tools import wait
 def run(drive_base):
     # Drone Survey. No attachments. Same moves as DroneSurvey.py.
 
-    drive_base.settings(straight_speed=300, straight_acceleration=200,
-                        turn_rate=300, turn_acceleration=400)
+    # Loaded here, not at the top, because config.py loads this file first.
+    from config import START, FINISH
+
+    # Start speeds from config.py.
+    # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=200,
+    # turn_rate=300, turn_acceleration=400.
+    drive_base.settings(**START)
 
     drive_base.straight(650)
     drive_base.arc(-300, distance=150)
@@ -20,8 +25,10 @@ def run(drive_base):
     wait(300)
     drive_base.stop()
 
-    drive_base.settings(straight_speed=500, straight_acceleration=800,
-                        turn_rate=500, turn_acceleration=800)
+    # Finish speeds from config.py, for the way back to base.
+    # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800,
+    # turn_rate=500, turn_acceleration=800.
+    drive_base.settings(**FINISH)
 
     drive_base.arc(76, angle=30)
     drive_base.straight(20)

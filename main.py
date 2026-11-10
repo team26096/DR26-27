@@ -1,6 +1,7 @@
-# MAIN PROGRAM FOR OUR SPIKE PRIME ROBOT
+ # MAIN  PROGRAM FOR OUR SPIKE PRIME ROBOT
 # Left or right button picks a run. Center button starts it.
 # After a run, the menu moves on to the next run and waits for the center button.
+# After the last run in the menu, the program ends.
 # Pressing the center button during a run stops the program.
 # Settings and the list of runs are in config.py. Setup and helpers are in
 # helpers.py. This file stays the same.
@@ -9,18 +10,25 @@ from pybricks.tools import StopWatch, hub_menu
 from pybricks import version
 
 import config
-from helpers import (hub, drive_base,
-                     reset_robot, battery_level, check_battery, show, sec)
+from helpers import (hub, drive_base, reset_robot, battery_level,
+                     battery_light, check_battery, show, sec)
 
 # ===== STARTUP INFO =====
 
-percent, voltage = battery_level()
+start_percent, voltage = battery_level()
 print("========== ROBOT INFO ==========")
 show("Hub name", hub.system.name())
 show("Firmware", str(version))
-show("Battery", str(percent) + " % (" + str(voltage) + " mV)")
+show("Battery", str(start_percent) + " % (" + str(voltage) + " mV)")
+# CHANGE (Nov 9): the fastest this robot can drive and turn, to help pick the
+# START and FINISH speeds in config.py.
+show("Max speed", str(drive_base.distance_control.limits()[0]) + " mm/s")
+show("Max turn rate", str(drive_base.heading_control.limits()[0]) + " deg/s")
 print("================================")
-check_battery(percent)
+# CHANGE (Nov 9): the center button light shows the battery. Green means it is
+# above 80 %. Red means charge it, and then "Charge your robot" is printed too.
+battery_light(start_percent)
+check_battery(start_percent)
 
 # ===== MENU =====
 
@@ -35,8 +43,9 @@ next_index = 0
 # to the total time.
 
 # Every run so far, in the order they ran, as
-# (run before it, run, transition time before it, run time).
+# (run before it, run, transition time before it, run time, finished).
 # The first run has no run or transition before it.
+# CHANGE (Nov 9): "finished" is new. It is False if the run was stopped.
 history = []
 total_run_ms = 0
 total_transition_ms = 0
@@ -46,91 +55,116 @@ total_transition_ms = 0
 match_timer = StopWatch()
 last_end_ms = 0
 
-while True:
-    # hub_menu always opens on the first item, so put the next run first.
-    choice = hub_menu(*(run_numbers[next_index:] + run_numbers[:next_index]))
-    hub.display.char(choice)
+# ===== SUMMARY =====
+
+# CHANGE (Nov 9): the results of each run are not printed anymore. Only this
+# summary of all runs is printed: after the last run in the menu, and when the
+# program stops early, like when a run is stopped with the center button.
+# Before, "RUN ... RESULTS" and "ALL RUNS SO FAR" were printed after every run.
+# To also save the summary in a log file and upload it to GitHub, start the
+# program with: python tools/run_logged.py main.py
+# The upload happens when the program ends: after the last run, or when it
+# is stopped early.
+
+# How many runs the last summary had, so the same summary isn't printed twice.
+summary_runs = 0
+
+
+def print_summary(title):
+    global summary_runs
+    summary_runs = len(history)
     print()
-    print("Run", choice, "started")
-
-    reset_robot()
-
-    # Each robot gets its own heading PID. Change one robot's number without
-    # touching the other's.
-    # This goes after reset_robot(), which puts the default PID back before every run.
-    if hub.system.info()["name"].lower() == "mickeybricks":
-        heading_pid = drive_base.heading_control.pid()
-        drive_base.heading_control.pid(23000, *heading_pid[1:])
-    elif hub.system.info()["name"].lower() == "pixiebricks":
-        heading_pid = drive_base.heading_control.pid()
-        drive_base.heading_control.pid(23000, *heading_pid[1:])
-
-    start_percent, start_voltage = battery_level()
-
-    # The clock starts with the first run.
-    if not history:
-        match_timer.reset()
-    start_ms = match_timer.time()
-
-    # Transition: from the moment the last run stopped until this run starts.
-    # It covers moving the robot, the menu, and the setup above.
-    if history:
-        previous = history[-1][1]
-        transition_ms = start_ms - last_end_ms
-    else:
-        previous = None
-        transition_ms = None
-
-    # Do the run.
-    try:
-        arm_angles = config.RUNS[choice](drive_base)
-    finally:
-        drive_base.stop()
-    last_end_ms = match_timer.time()
-    run_ms = last_end_ms - start_ms
-    end_percent, end_voltage = battery_level()
-
-    # A repeated run counts again, because it really took that time.
-    history.append((previous, choice, transition_ms, run_ms))
-    total_run_ms += run_ms
-    if transition_ms is not None:
-        total_transition_ms += transition_ms
-
-    # The menu opens on the run after this one. After the last run, back to the first.
-    next_index = (run_numbers.index(choice) + 1) % len(run_numbers)
-
-    # Show it now. With a computer connected, the printing below can take a moment.
-    hub.display.char(run_numbers[next_index])
-
-    # This run's results.
-    # CHANGE (Nov 5): added the transition line. The line that used to say
-    # "Total run time" is now called "Run time".
-    print("========== RUN", choice, "RESULTS ==========")
-    if transition_ms is not None:
-        show("Transition " + previous + " -> " + choice, sec(transition_ms))
-    show("Run time", sec(run_ms))
-    show("End heading", "{:.1f} deg".format(hub.imu.heading()))
-    if arm_angles is not None:
-        for label, angle in zip(("Left arm", "Right arm"), arm_angles):
-            if angle is not None:
-                show(label, "{:.0f} deg".format(angle))
-    show("Battery at start", str(start_percent) + " % (" + str(start_voltage) + " mV)")
-    show("Battery at end", str(end_percent) + " % (" + str(end_voltage) + " mV)")
-    show("Battery drop", str(start_voltage - end_voltage) + " mV")
-    print("========================================")
-
-    # Every run and transition in order. After the last run, this has the final totals.
-    # CHANGE (Nov 5): transitions are now listed between the runs. "Time running"
-    # is now called "Total run time", "With time between" is now "Total time",
-    # and "Total transition" is new.
-    print("========== ALL RUNS SO FAR ==========")
-    for before, number, transition, ms in history:
+    print("========== " + title + " ==========")
+    for before, number, transition, ms, finished in history:
         if before is not None:
             show("Transition " + before + " -> " + number, sec(transition))
-        show("Run " + number, sec(ms))
+        if finished:
+            show("Run " + number, sec(ms))
+        else:
+            show("Run " + number + " (stopped)", sec(ms))
     print("  ----------------------------------")
     show("Total run time", sec(total_run_ms))
     show("Total transition", sec(total_transition_ms))
     show("Total time", sec(last_end_ms))
+    # Runs from the menu that have not finished even once.
+    finished_runs = [entry[1] for entry in history if entry[4]]
+    not_done = [number for number in run_numbers if number not in finished_runs]
+    if not_done:
+        show("Not done", ", ".join(not_done))
+    end_percent = battery_level()[0]
+    show("Battery", str(start_percent) + " % at start, " + str(end_percent) + " % now")
     print("========================================")
     check_battery(end_percent)
+
+
+# ===== RUNS =====
+
+try:
+    while True:
+        # hub_menu always opens on the first item, so put the next run first.
+        choice = hub_menu(*(run_numbers[next_index:] + run_numbers[:next_index]))
+        hub.display.char(choice)
+
+        reset_robot()
+
+        # Each robot gets its own heading PID. Change one robot's number without
+        # touching the other's.
+        # This goes after reset_robot(), which puts the default PID back before every run.
+        if hub.system.info()["name"].lower() == "mickeybricks":
+            heading_pid = drive_base.heading_control.pid()
+            drive_base.heading_control.pid(23000, *heading_pid[1:])
+        elif hub.system.info()["name"].lower() == "pixiebricks":
+            heading_pid = drive_base.heading_control.pid()
+            drive_base.heading_control.pid(23000, *heading_pid[1:])
+
+        # The clock starts with the first run.
+        if not history:
+            match_timer.reset()
+        start_ms = match_timer.time()
+
+        # Transition: from the moment the last run stopped until this run starts.
+        # It covers moving the robot, the menu, and the setup above.
+        if history:
+            previous = history[-1][1]
+            transition_ms = start_ms - last_end_ms
+        else:
+            previous = None
+            transition_ms = None
+
+        # Do the run. The "finally" part also happens when the run is stopped,
+        # so a stopped run still goes in the summary with its time.
+        finished = False
+        try:
+            config.RUNS[choice](drive_base)
+            finished = True
+        finally:
+            drive_base.stop()
+            last_end_ms = match_timer.time()
+            run_ms = last_end_ms - start_ms
+            # A repeated run counts again, because it really took that time.
+            history.append((previous, choice, transition_ms, run_ms, finished))
+            total_run_ms += run_ms
+            if transition_ms is not None:
+                total_transition_ms += transition_ms
+
+        # The menu opens on the run after this one.
+        next_index = (run_numbers.index(choice) + 1) % len(run_numbers)
+        hub.display.char(run_numbers[next_index])
+        battery_light(battery_level()[0])
+
+        # CHANGE (Nov 9): the program ends after the last run in the menu.
+        # Before, the menu went back to the first run and the program kept
+        # going, so tools/run_logged.py could not upload the log until someone
+        # stopped it. Now the log goes up to GitHub right after this summary.
+        # To do more runs, start the program again.
+        if choice == run_numbers[-1]:
+            print_summary("FINAL SUMMARY")
+            break
+
+except BaseException:
+    # The program is stopping: a run was stopped with the center button, the
+    # computer stopped it, or something went wrong. Show where things stand,
+    # then let the program stop like before.
+    if len(history) > summary_runs:
+        print_summary("ALL RUNS SO FAR")
+    raise

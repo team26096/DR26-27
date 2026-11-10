@@ -14,9 +14,16 @@ def run(drive_base):
         attachment_left.reset_angle(0)
         attachment_right.reset_angle(0)
 
-        drive_base.settings(straight_speed=300, straight_acceleration=(400, 200),
-                            turn_rate=200, turn_acceleration=200)
-        # Reduced speed from 400 to 300 and acceleration from 800 to 400 to reduce overshoot and improve accuracy.
+        # Loaded here, not at the top, because config.py loads this file first.
+        from config import START, FINISH
+
+        # Start speeds from config.py.
+        # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=(400, 200),
+        # turn_rate=200, turn_acceleration=200. Before that, speed was reduced from
+        # 400 to 300 and acceleration from 800 to 400 to reduce overshoot and
+        # improve accuracy. If this run overshoots again, put the old line back
+        # here instead of slowing down every run in config.py.
+        drive_base.settings(**START)
         # Takes up slack in the gears.
         drive_base.straight(-10)
 
@@ -43,8 +50,10 @@ def run(drive_base):
 
         attachment_right.run_angle(speed=300, rotation_angle=-100)
 
-        drive_base.settings(straight_speed=500, straight_acceleration=(800, 800),
-                            turn_rate=200, turn_acceleration=200)
+        # Finish speeds from config.py.
+        # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=(800, 800),
+        # turn_rate=200, turn_acceleration=200.
+        drive_base.settings(**FINISH)
 
         drive_base.arc(400, distance=1050)
 

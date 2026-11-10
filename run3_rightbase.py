@@ -18,8 +18,12 @@ def run(drivebase):
         heading_pid = drivebase.heading_control.pid()
         drivebase.heading_control.pid(23000, *heading_pid[1:])
 
-    # Mission approach settings and diagnostics.
-    drivebase.settings(300, (400, 400), 125, (500, 250))
+    # Loaded here, not at the top, because config.py loads this file first.
+    from config import START, FINISH
+
+    # Mission approach settings (start speeds from config.py) and diagnostics.
+    # CHANGE (Nov 9): was drivebase.settings(300, (400, 400), 125, (500, 250)).
+    drivebase.settings(**START)
     current_settings = drivebase.settings()
     print("Robot Settings:", current_settings)
     print("Heading PID:", drivebase.heading_control.pid())
@@ -54,12 +58,13 @@ def run(drivebase):
     drivebase.straight(30)
     drivebase.arc(-75.5, -90)
 
-    # Faster settings for the trip home.
-    drivebase.settings(500, (800, 400), 250, (700, 400))
+    # Faster settings for the trip home (finish speeds from config.py).
+    # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 250, (700, 400)).
+    drivebase.settings(**FINISH)
     # Curved return to right home.
     drivebase.straight(-300)
     drivebase.arc(-75.5, angle=drivebase.angle() - 180)
-    drivebase.straight(-350)
+    drivebase.straight(-370)
 
     elapsed_seconds = timer.time() / 1000
     print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))

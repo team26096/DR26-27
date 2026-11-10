@@ -3,6 +3,7 @@
 # You should not need to change this file. Settings are in config.py.
 
 from pybricks.hubs import PrimeHub
+from pybricks.parameters import Color
 from pybricks.pupdevices import Motor
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
@@ -34,10 +35,8 @@ default_heading_pid = drive_base.heading_control.pid()
 def reset_robot():
     """Get the robot ready before every run."""
     # Starting speeds and PID, in case the last run changed them.
-    drive_base.settings(straight_speed=config.STRAIGHT_SPEED,
-                        straight_acceleration=config.STRAIGHT_ACCELERATION,
-                        turn_rate=config.TURN_RATE,
-                        turn_acceleration=config.TURN_ACCELERATION)
+    # CHANGE (Nov 9): uses START from config.py, the same speeds the runs start with.
+    drive_base.settings(**config.START)
     drive_base.heading_control.pid(*default_heading_pid)
 
     # Wait for the robot to sit still, so the gyro settles.
@@ -76,9 +75,21 @@ def battery_level():
     return max(0, min(100, round(percent))), voltage
 
 
+# CHANGE (Nov 9): the battery now shows on the center button light, and the
+# message is "Charge your robot". Before, it only printed a warning below 30 %.
+
+def battery_light(percent):
+    """Turn the center button light green if the battery is good, red if not."""
+    if percent > config.GOOD_BATTERY_PERCENT:
+        hub.light.on(Color.GREEN)
+    else:
+        hub.light.on(Color.RED)
+
+
 def check_battery(percent):
-    if percent < config.LOW_BATTERY_PERCENT:
-        print("WARNING: battery is about", percent, "%. Charge it soon.")
+    """Print a message if the battery needs charging (the same time the light is red)."""
+    if percent <= config.GOOD_BATTERY_PERCENT:
+        print("Charge your robot")
 
 
 def show(label, value):

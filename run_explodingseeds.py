@@ -10,17 +10,17 @@ def run(drive_base):
         # Exploding Seeds, Biocentric Architecture, and Window to the Past.
         # Same moves as ExplodingSeeds.py.
 
-        # Loaded here, not at the top, because helpers.py needs config.py to finish first.
-        from helpers import default_settings
-
         watch = StopWatch()
 
-        # ExplodingSeeds.py only set the straight speed, so everything else used
-        # Pybricks' own speeds and not the ones in config.py.
-        drive_base.settings(straight_speed=300,
-                            straight_acceleration=400,
-                            turn_rate=default_settings[2],
-                            turn_acceleration=default_settings[3])
+        # Loaded here, not at the top, because config.py loads this file first.
+        from config import START, FINISH
+
+        # Start speeds from config.py. The straight speed changes further down
+        # are part of the mission, so they stay in this file.
+        # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=400, with
+        # Pybricks' own turn speeds (default_settings[2] and [3]), because
+        # ExplodingSeeds.py only set the straight speed.
+        drive_base.settings(**START)
 
         # Attachment gears from ExplodingSeeds.py, for this run only.
         attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
@@ -114,7 +114,9 @@ def run(drive_base):
 
         drive_base.turn(70)
 
-        drive_base.settings(straight_speed=500)
+        # Finish speeds from config.py, for the way back to base.
+        # CHANGE (Nov 9): was straight_speed=500.
+        drive_base.settings(**FINISH)
 
         drive_base.straight(650)
 
