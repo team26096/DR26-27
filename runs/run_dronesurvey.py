@@ -4,10 +4,10 @@ from pybricks.tools import wait
 def run(drive_base):
     # Drone Survey. No attachments. Same moves as DroneSurvey.py.
 
-    # Loaded here, not at the top, because config.py loads this file first.
-    from config import START, FINISH
+    # Loaded here, not at the top, because lib/config.py loads this file first.
+    from lib.config import START, FINISH
 
-    # Start speeds from config.py.
+    # Start speeds from lib/config.py.
     # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=200,
     # turn_rate=300, turn_acceleration=400.
     drive_base.settings(**START)
@@ -25,7 +25,7 @@ def run(drive_base):
     wait(300)
     drive_base.stop()
 
-    # Finish speeds from config.py, for the way back to base.
+    # Finish speeds from lib/config.py, for the way back to base.
     # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800,
     # turn_rate=500, turn_acceleration=800.
     drive_base.settings(**FINISH)
@@ -42,8 +42,11 @@ def run(drive_base):
     print("Angle after turn:", round(drive_base.angle(), 1), "deg")
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
+# Only happens when this file is started by itself. The menu in main.py skips
 # this and calls run() instead.
+# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
+# can't load lib/helpers.py, because the hub only gets the files it can find
+# next to the file you start. To test this run by itself, start test_run.py in
+# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    from helpers import run_alone
-    run_alone(run)
+    print("To test this run by itself, start test_run.py in the main folder.")

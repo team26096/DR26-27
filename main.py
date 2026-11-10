@@ -3,15 +3,19 @@
 # After a run, the menu moves on to the next run and waits for the center button.
 # After the last run in the menu, the program ends.
 # Pressing the center button during a run stops the program.
-# Settings and the list of runs are in config.py. Setup and helpers are in
-# helpers.py. This file stays the same.
+# Settings and the list of runs are in lib/config.py. Setup and helpers are in
+# lib/helpers.py. The runs are in the runs folder. This file stays the same.
 
 from pybricks.tools import StopWatch, hub_menu
 from pybricks import version
 
-import config
-from helpers import (hub, drive_base, reset_robot, battery_level,
-                     battery_light, check_battery, show, sec)
+# CHANGE (Nov 10): config.py and helpers.py moved to the lib folder, and the
+# run files moved to the runs folder. Before, it was "import config" and
+# "config.RUNS". See the RUNS part of lib/config.py for how to write imports
+# that work on the hub.
+from lib.config import RUNS
+from lib.helpers import (hub, drive_base, reset_robot, battery_level,
+                         battery_light, check_battery, show, sec)
 
 # ===== STARTUP INFO =====
 
@@ -21,7 +25,7 @@ show("Hub name", hub.system.name())
 show("Firmware", str(version))
 show("Battery", str(start_percent) + " % (" + str(voltage) + " mV)")
 # CHANGE (Nov 9): the fastest this robot can drive and turn, to help pick the
-# START and FINISH speeds in config.py.
+# START and FINISH speeds in lib/config.py.
 show("Max speed", str(drive_base.distance_control.limits()[0]) + " mm/s")
 show("Max turn rate", str(drive_base.heading_control.limits()[0]) + " deg/s")
 print("================================")
@@ -33,7 +37,7 @@ check_battery(start_percent)
 # ===== MENU =====
 
 # sorted() lists the run numbers in order, so the menu always matches RUNS.
-run_numbers = sorted(config.RUNS)
+run_numbers = sorted(RUNS)
 next_index = 0
 
 # CHANGE (Nov 5): the results now also show transition times. A transition is
@@ -135,7 +139,7 @@ try:
         # so a stopped run still goes in the summary with its time.
         finished = False
         try:
-            config.RUNS[choice](drive_base)
+            RUNS[choice](drive_base)
             finished = True
         finally:
             drive_base.stop()

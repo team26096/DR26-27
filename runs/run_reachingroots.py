@@ -8,21 +8,21 @@ def run(drive_base):
     try:
         # Reaching Roots. Same moves as ReachingRootsNew.py.
 
-        # Exact attachment setup previously provided by helpers.py.
+        # Exact attachment setup previously provided by lib/helpers.py.
         attachment_left = Motor(Port.B, gears=[[12, 20], [12, 12]])
         attachment_right = Motor(Port.C, gears=[[12, 20], [12, 12]])
         attachment_left.reset_angle(0)
         attachment_right.reset_angle(0)
 
-        # Loaded here, not at the top, because config.py loads this file first.
-        from config import START, FINISH
+        # Loaded here, not at the top, because lib/config.py loads this file first.
+        from lib.config import START, FINISH
 
-        # Start speeds from config.py.
+        # Start speeds from lib/config.py.
         # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=(400, 200),
         # turn_rate=200, turn_acceleration=200. Before that, speed was reduced from
         # 400 to 300 and acceleration from 800 to 400 to reduce overshoot and
         # improve accuracy. If this run overshoots again, put the old line back
-        # here instead of slowing down every run in config.py.
+        # here instead of slowing down every run in lib/config.py.
         drive_base.settings(**START)
         # Takes up slack in the gears.
         drive_base.straight(-10)
@@ -50,7 +50,7 @@ def run(drive_base):
 
         attachment_right.run_angle(speed=300, rotation_angle=-100)
 
-        # Finish speeds from config.py.
+        # Finish speeds from lib/config.py.
         # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=(800, 800),
         # turn_rate=200, turn_acceleration=200.
         drive_base.settings(**FINISH)
@@ -82,8 +82,11 @@ def run(drive_base):
             attachment_right.close()
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
+# Only happens when this file is started by itself. The menu in main.py skips
 # this and calls run() instead.
+# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
+# can't load lib/helpers.py, because the hub only gets the files it can find
+# next to the file you start. To test this run by itself, start test_run.py in
+# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    from helpers import run_alone
-    run_alone(run)
+    print("To test this run by itself, start test_run.py in the main folder.")

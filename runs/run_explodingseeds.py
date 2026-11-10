@@ -12,10 +12,10 @@ def run(drive_base):
 
         watch = StopWatch()
 
-        # Loaded here, not at the top, because config.py loads this file first.
-        from config import START, FINISH
+        # Loaded here, not at the top, because lib/config.py loads this file first.
+        from lib.config import START, FINISH
 
-        # Start speeds from config.py. The straight speed changes further down
+        # Start speeds from lib/config.py. The straight speed changes further down
         # are part of the mission, so they stay in this file.
         # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=400, with
         # Pybricks' own turn speeds (default_settings[2] and [3]), because
@@ -114,7 +114,7 @@ def run(drive_base):
 
         drive_base.turn(70)
 
-        # Finish speeds from config.py, for the way back to base.
+        # Finish speeds from lib/config.py, for the way back to base.
         # CHANGE (Nov 9): was straight_speed=500.
         drive_base.settings(**FINISH)
 
@@ -129,8 +129,11 @@ def run(drive_base):
             attachment_right.close()
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
+# Only happens when this file is started by itself. The menu in main.py skips
 # this and calls run() instead.
+# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
+# can't load lib/helpers.py, because the hub only gets the files it can find
+# next to the file you start. To test this run by itself, start test_run.py in
+# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    from helpers import run_alone
-    run_alone(run)
+    print("To test this run by itself, start test_run.py in the main folder.")

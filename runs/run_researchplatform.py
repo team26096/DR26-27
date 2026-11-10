@@ -9,8 +9,8 @@ def run(drive_base):
     try:
         # Research Platform. Same code as ResearchPlatform.py.
 
-        # Loaded here, not at the top, because helpers.py needs config.py to finish first.
-        from helpers import hub
+        # Loaded here, not at the top, because lib/helpers.py needs lib/config.py to finish first.
+        from lib.helpers import hub
 
         watch = StopWatch()
 
@@ -18,10 +18,10 @@ def run(drive_base):
         attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
         attachment_left = Motor(Port.B, gears=[[12,20]])
 
-        # Loaded here, not at the top, because config.py loads this file first.
-        from config import START, FINISH
+        # Loaded here, not at the top, because lib/config.py loads this file first.
+        from lib.config import START, FINISH
 
-        # Start speeds from config.py.
+        # Start speeds from lib/config.py.
         # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=400,
         # turn_rate=200, turn_acceleration=200.
         drive_base.settings(**START)
@@ -41,7 +41,7 @@ def run(drive_base):
         drive_base.arc(-82, angle=90)
 
         #Tangled Start
-        # This speed stays here, not in config.py, because it is part of the
+        # This speed stays here, not in lib/config.py, because it is part of the
         # mission, not the way out or back.
         drive_base.settings(straight_speed=500, straight_acceleration=(800),
                             turn_rate=200, turn_acceleration=200)
@@ -74,7 +74,7 @@ def run(drive_base):
                 break
             wait(10)
 
-        # Finish speeds from config.py.
+        # Finish speeds from lib/config.py.
         # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800,
         # turn_rate=200, turn_acceleration=200.
         drive_base.settings(**FINISH)
@@ -99,8 +99,11 @@ def run(drive_base):
             attachment_right.close()
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
+# Only happens when this file is started by itself. The menu in main.py skips
 # this and calls run() instead.
+# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
+# can't load lib/helpers.py, because the hub only gets the files it can find
+# next to the file you start. To test this run by itself, start test_run.py in
+# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    from helpers import run_alone
-    run_alone(run)
+    print("To test this run by itself, start test_run.py in the main folder.")

@@ -9,8 +9,8 @@ def run(drivebase):
     try:
         # Forest Elder seed collection. Same code as forest_elder_seed_collection.py.
 
-        # Loaded here, not at the top, because helpers.py needs config.py to finish first.
-        from helpers import default_settings, hub
+        # Loaded here, not at the top, because lib/helpers.py needs lib/config.py to finish first.
+        from lib.helpers import default_settings, hub
 
         voltage = hub.battery.voltage()
         print("Battery Voltage:", voltage, "mV")
@@ -32,7 +32,7 @@ def run(drivebase):
         )
 
         # forest_elder_seed_collection.py only set the straight speeds, so its turns
-        # used Pybricks' own speeds and not the ones in config.py.
+        # used Pybricks' own speeds and not the ones in lib/config.py.
         drivebase.settings(turn_rate=default_settings[2],
                            turn_acceleration=default_settings[3])
 
@@ -119,8 +119,11 @@ def run(drivebase):
             motor_right.close()
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
+# Only happens when this file is started by itself. The menu in main.py skips
 # this and calls run() instead.
+# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
+# can't load lib/helpers.py, because the hub only gets the files it can find
+# next to the file you start. To test this run by itself, start test_run.py in
+# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    from helpers import run_alone
-    run_alone(run)
+    print("To test this run by itself, start test_run.py in the main folder.")
