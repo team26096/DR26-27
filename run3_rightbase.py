@@ -10,18 +10,18 @@ from pybricks.tools import StopWatch, wait
 def run(drivebase):
     timer = StopWatch()
 
-    # Loaded here, not at the top, because lib/helpers.py needs lib/config.py to finish first.
-    from lib.helpers import hub, left_motor, right_motor
+    # Loaded here, not at the top, because helpers.py needs config.py to finish first.
+    from helpers import hub, left_motor, right_motor
 
     # PixieBricks keeps its original hub PID defaults; only MickeyBricks is tuned.
     if hub.system.info()["name"].lower() == "mickeybricks":
         heading_pid = drivebase.heading_control.pid()
         drivebase.heading_control.pid(23000, *heading_pid[1:])
 
-    # Loaded here, not at the top, because lib/config.py loads this file first.
-    from lib.config import START, FINISH
+    # Loaded here, not at the top, because config.py loads this file first.
+    from config import START, FINISH
 
-    # Mission approach settings (start speeds from lib/config.py) and diagnostics.
+    # Mission approach settings (start speeds from config.py) and diagnostics.
     # CHANGE (Nov 9): was drivebase.settings(300, (400, 400), 125, (500, 250)).
     drivebase.settings(**START)
     current_settings = drivebase.settings()
@@ -58,7 +58,7 @@ def run(drivebase):
     drivebase.straight(30)
     drivebase.arc(-75.5, -90)
 
-    # Faster settings for the trip home (finish speeds from lib/config.py).
+    # Faster settings for the trip home (finish speeds from config.py).
     # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 250, (700, 400)).
     drivebase.settings(**FINISH)
     # Curved return to right home.
@@ -70,11 +70,8 @@ def run(drivebase):
     print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
 
 
-# Only happens when this file is started by itself. The menu in main.py skips
+# Only happens when this file is uploaded by itself. The menu in main.py skips
 # this and calls run() instead.
-# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
-# can't load lib/helpers.py, because the hub only gets the files it can find
-# next to the file you start. To test this run by itself, start test_run.py in
-# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    print("To test this run by itself, start test_run.py in the main folder.")
+    from helpers import run_alone
+    run_alone(run)

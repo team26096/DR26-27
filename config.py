@@ -5,39 +5,29 @@ from pybricks.parameters import Port, Direction
 
 
 # ===== RUNS =====
-# Each run file in the runs folder has one run() function with only mission moves.
+# Each run file has one run() function with only mission moves.
 # To add or rename a run, change its import and its line in RUNS.
-#
-# CHANGE (Nov 10): the run files moved to the runs folder, and this file and
-# helpers.py moved to the lib folder. Before, it was "import run_dronesurvey"
-# and "run_dronesurvey.run" in RUNS.
-# Always write imports from these folders like the lines below:
-#     from runs.run_dronesurvey import run as run_dronesurvey
-#     from lib.config import START
-# The hub can't do "import runs.run_dronesurvey", "from runs import
-# run_dronesurvey", "import lib.config as config", or imports that start with
-# a dot. They work on a computer but stop the program on the hub.
 
-from runs.run_fliptherock import run as run_fliptherock
-from runs.run_reachingroots import run as run_reachingroots
-from runs.run_dronesurvey import run as run_dronesurvey
-from runs.run1_rightbase import run as run1_rightbase
-from runs.run3_rightbase import run as run3_rightbase
-from runs.run_forest_elder_seed_collection import run as run_forest_elder_seed_collection
-from runs.run_explodingseeds import run as run_explodingseeds
-from runs.run_researchplatform import run as run_researchplatform
-from runs.run_seedsofrenewal import run as run_seedsofrenewal
+import run_fliptherock
+import run_reachingroots
+import run_dronesurvey
+import run1_rightbase
+import run3_rightbase
+import run_forest_elder_seed_collection
+import run_explodingseeds
+import run_researchplatform
+import run_seedsofrenewal
 
 RUNS = {
-    "1": run_dronesurvey,
-    "2": run_fliptherock,
-    "3": run_reachingroots,
-    "4": run_researchplatform,
-    "5": run_explodingseeds,
-    "6": run3_rightbase,
-    "7": run1_rightbase,
-    "8": run_forest_elder_seed_collection,
-    "9": run_seedsofrenewal,
+    "1": run_dronesurvey.run,
+    "2": run_fliptherock.run,
+    "3": run_reachingroots.run,
+    "4": run_researchplatform.run,
+    "5": run_explodingseeds.run,
+    "6": run3_rightbase.run,
+    "7": run1_rightbase.run,
+    "8": run_forest_elder_seed_collection.run,
+    "9": run_seedsofrenewal.run,
 }
 
 # ===== PORTS =====

@@ -1,15 +1,15 @@
 def run(drive_base):
     # Flip the Rock. No attachments. Same moves as FlipTheRock.py.
 
-    # Loaded here, not at the top, because lib/helpers.py needs lib/config.py to finish first.
-    from lib.helpers import default_settings
+    # Loaded here, not at the top, because helpers.py needs config.py to finish first.
+    from helpers import default_settings
 
     # FlipTheRock.py never set any speeds, so it used Pybricks' own speeds and not
-    # the ones in lib/config.py.
-    # Loaded here, not at the top, because lib/config.py loads this file first.
-    from lib.config import START, FINISH
+    # the ones in config.py.
+    # Loaded here, not at the top, because config.py loads this file first.
+    from config import START, FINISH
 
-    # Start speeds from lib/config.py.
+    # Start speeds from config.py.
     # CHANGE (Nov 9): was straight_speed=250, straight_acceleration=200,
     # turn_rate=200, turn_acceleration=200. The push below stops after 2.5
     # seconds. If you make START slower than 250 mm/s, raise that time.
@@ -46,7 +46,7 @@ def run(drive_base):
     # CHANGE (Nov 6): distance changed from -250 to -325, so the robot goes fully
     # back into base. That number was picked when the return was still 300 mm/s,
     # so check that the robot still ends inside base at 500 mm/s.
-    # Finish speeds from lib/config.py.
+    # Finish speeds from config.py.
     # CHANGE (Nov 9): was straight_speed=500, straight_acceleration=800.
     drive_base.settings(**FINISH)
     drive_base.straight(-340, then=Stop.NONE)
@@ -55,11 +55,8 @@ def run(drive_base):
   
     #drive_base.arc(82, angle=90)
     # drive_base.turn(90)
-# Only happens when this file is started by itself. The menu in main.py skips
+# Only happens when this file is uploaded by itself. The menu in main.py skips
 # this and calls run() instead.
-# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
-# can't load lib/helpers.py, because the hub only gets the files it can find
-# next to the file you start. To test this run by itself, start test_run.py in
-# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    print("To test this run by itself, start test_run.py in the main folder.")
+    from helpers import run_alone
+    run_alone(run)

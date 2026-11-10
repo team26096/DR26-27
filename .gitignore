@@ -1,5 +1,3 @@
-# Python's cache folders and files, in every folder at any depth (lib, runs, and
-# any folder added later). Python makes them by itself, so they never go into git.
 __pycache__/
 *.pyc
 # CHANGE (Nov 5): new files in tools/ are not added to git. tools/ holds test
@@ -10,8 +8,3 @@ tools/
 # tools/run_logged.py uploads new log files to the logs folder on GitHub by
 # itself, without touching the code or any other files.
 logs/
-# CHANGE (Nov 10): __init__.py files are never added to git. The hub doesn't
-# use them, and pybricksdev 2.3.1 and newer doesn't need them. On a computer
-# with an older pybricksdev, uploading main.py fails with "Did you forget to
-# put an __init__.py file". Fix that by updating it: pip install -U pybricksdev
-__init__.py

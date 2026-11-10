@@ -1,6 +1,6 @@
 # Run 1: right base.
-# Upload without starting (set RUN = "7" in test_run.py first):
-# pybricksdev run ble .\test_run.py --no-start --name pixiebricks
+# Upload without starting:
+# pybricksdev run ble .\run1-rightbase.py --no-start --name pixiebricks
 
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor
@@ -15,8 +15,8 @@ def run(drivebase):
     try:
         timer = StopWatch()
 
-        # Loaded here, not at the top, because lib/helpers.py needs lib/config.py to finish first.
-        from lib.helpers import hub, left_motor as left_drive, right_motor as right_drive
+        # Loaded here, not at the top, because helpers.py needs config.py to finish first.
+        from helpers import hub, left_motor as left_drive, right_motor as right_drive
 
         # PixieBricks keeps its original hub PID defaults; only MickeyBricks is tuned.
         if hub.system.info()["name"].lower() == "mickeybricks":
@@ -40,10 +40,10 @@ def run(drivebase):
             ],
         )
 
-        # Loaded here, not at the top, because lib/config.py loads this file first.
-        from lib.config import START, FINISH
+        # Loaded here, not at the top, because config.py loads this file first.
+        from config import START, FINISH
 
-        # Mission settings: start speeds from lib/config.py.
+        # Mission settings: start speeds from config.py.
         # CHANGE (Nov 9): was drivebase.settings(300, (400, 400), 125, 500), which
         # is 300 mm/s, with 400 mm/s² acceleration and deceleration.
         drivebase.settings(**START)
@@ -118,7 +118,7 @@ def run(drivebase):
         # the robot drives back, because wait=False lets both happen at once.
         # drivebase.straight(-80)
         drivebase.arc(75.5, angle=-90) #removed stop=Stop.NONE to see if it helps with the arc
-        # Fast return to base (finish speeds from lib/config.py).
+        # Fast return to base (finish speeds from config.py).
         # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 125, 500).
         drivebase.settings(**FINISH)
         left_attach.run_angle(speed=-400, rotation_angle=-30, then=Stop.HOLD, wait=False)
@@ -136,11 +136,8 @@ def run(drivebase):
             right_attach.close()
 
 
-# Only happens when this file is started by itself. The menu in main.py skips
+# Only happens when this file is uploaded by itself. The menu in main.py skips
 # this and calls run() instead.
-# CHANGE (Nov 10): this file moved to the runs folder. Started from here, it
-# can't load lib/helpers.py, because the hub only gets the files it can find
-# next to the file you start. To test this run by itself, start test_run.py in
-# the main folder. Before, this part started the run with run_alone().
 if __name__ == "__main__":
-    print("To test this run by itself, start test_run.py in the main folder.")
+    from helpers import run_alone
+    run_alone(run)
