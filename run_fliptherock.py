@@ -13,8 +13,8 @@ def run(drive_base):
     # CHANGE (Nov 9): was straight_speed=250, straight_acceleration=200,
     # turn_rate=200, turn_acceleration=200. The push below stops after 2.5
     # seconds. If you make START slower than 250 mm/s, raise that time.
-    drive_base.settings(**START)
-
+    # drive_base.settings(**START)
+    drive_base.settings(straight_speed=250, straight_acceleration=200, turn_rate=200, turn_acceleration=200)
 
     drive_base.straight(-10)
     drive_base.reset()

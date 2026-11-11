@@ -69,7 +69,7 @@ def run(drive_base):
         drive_base.settings(straight_speed=300)
 
         # Lower the left arm while driving to Biocentric Architecture.
-        attachment_left.run_angle(speed=200, rotation_angle=165, wait=False)
+        attachment_left.run_angle(speed=200, rotation_angle=150, wait=False)
         drive_base.straight(620)
 
         drive_base.settings(straight_speed=100)
@@ -106,7 +106,7 @@ def run(drive_base):
         drive_base.turn(-40)
 
         # Move forward so the right arm is under the seed, while lifting the left arm.
-        drive_base.straight(130, wait=False)
+        drive_base.straight(130, wait=True)
         attachment_left.run_angle(speed=500, rotation_angle=-150)
 
         # Lift the right arm to pick up the seed.

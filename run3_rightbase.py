@@ -62,9 +62,9 @@ def run(drivebase):
     # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 250, (700, 400)).
     drivebase.settings(**FINISH)
     # Curved return to right home.
-    drivebase.straight(-300)
+    drivebase.straight(-320) # from -300 to -320
     drivebase.arc(-75.5, angle=drivebase.angle() - 180)
-    drivebase.straight(-370)
+    drivebase.straight(-380)
 
     elapsed_seconds = timer.time() / 1000
     print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))

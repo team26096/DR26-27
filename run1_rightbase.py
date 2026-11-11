@@ -122,7 +122,7 @@ def run(drivebase):
         # CHANGE (Nov 9): was drivebase.settings(500, (800, 400), 125, 500).
         drivebase.settings(**FINISH)
         left_attach.run_angle(speed=-400, rotation_angle=-30, then=Stop.HOLD, wait=False)
-        drivebase.straight(-650)
+        drivebase.straight(-660)
 
         elapsed_seconds = timer.time() / 1000
         print("Elapsed time: {:.2f} seconds".format(elapsed_seconds))
