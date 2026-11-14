@@ -3,125 +3,117 @@ from pybricks.pupdevices import Motor
 from pybricks.tools import StopWatch
 
 
+# Exploding Seeds merged run:
+# - Runs the existing Exploding Seeds mission first.
+# - Runs the tested stall and drive sequence at the end.
+#
+# This is a separate run file. It is not added to config.RUNS yet.
+
+LEFT_ATTACHMENT_GEARS = [[12, 20], [12, 36]]
+RIGHT_ATTACHMENT_GEARS = [[12, 20], [12, 20]]
+
+
 def run(drive_base):
     attachment_left = None
     attachment_right = None
-    try:
-        # Exploding Seeds, Biocentric Architecture, and Window to the Past.
-        # Same moves as ExplodingSeeds.py.
 
+    try:
         watch = StopWatch()
 
-        # Loaded here, not at the top, because config.py loads this file first.
+        # Loaded here because config.py imports this file first.
         from config import START, FINISH
 
-        # Start speeds from config.py. The straight speed changes further down
-        # are part of the mission, so they stay in this file.
-        # CHANGE (Nov 9): was straight_speed=300, straight_acceleration=400, with
-        # Pybricks' own turn speeds (default_settings[2] and [3]), because
-        # ExplodingSeeds.py only set the straight speed.
         drive_base.settings(**START)
 
-        # Attachment gears from ExplodingSeeds.py, for this run only.
-        attachment_right = Motor(Port.C, gears=[[12,20],[12,20]])
-        attachment_left = Motor(Port.B, gears=[[12,20],[12,36]])
+        attachment_right = Motor(Port.C, gears=RIGHT_ATTACHMENT_GEARS)
+        attachment_left = Motor(Port.B, gears=LEFT_ATTACHMENT_GEARS)
 
         drive_base.straight(-10)
         drive_base.reset()
 
+        # Existing Exploding Seeds mission.
 
         # Drive forward from base to start aligning with Exploding Seeds.
-        drive_base.straight(200, wait=False)
+        drive_base.straight(150)
 
         # Lift the left arm until it stalls, to set up for Biocentric Architecture.
-        attachment_left.run_until_stalled(-170, then=Stop.HOLD, duty_limit=35)
+        attachment_left.run_until_stalled(-170, then=Stop.HOLD, duty_limit=20)
+        attachment_left.reset_angle(0)
+        attachment_left.run_angle(60, 40, then=Stop.HOLD, wait=False)
 
         # Turn to keep aligning with Exploding Seeds.
-        drive_base.turn(50)
-
-        # Go forward to make contact with the seed.
-        drive_base.settings(straight_speed=400)
-        drive_base.straight(330)
+        drive_base.turn(45)
+        drive_base.straight(340)
 
         # Lift the right arm to align for seed removal.
-        attachment_right.run_angle(speed=200, rotation_angle=20)
-
+        attachment_right.run_angle(speed=200, rotation_angle=-15)
         drive_base.settings(straight_speed=100)
 
         # Lift the arm slightly and back up, twice, to get the seed out.
-        attachment_right.run_angle(speed=50, rotation_angle=5)
+        attachment_right.run_angle(speed=50, rotation_angle=-15)
         drive_base.straight(-18)
-        attachment_right.run_angle(speed=25, rotation_angle=5)
-        drive_base.straight(-15)
+        attachment_right.run_angle(speed=25, rotation_angle=-15)
+        drive_base.straight(-25)
+        attachment_right.run_angle(speed=15, rotation_angle=-15) # speed was 10
 
-        attachment_right.run_angle(speed=10, rotation_angle=30)
+        drive_base.settings(**START)
 
-        drive_base.settings(straight_speed=300)
+        # drive_base.settings(
+        #     straight_speed=350,
+        #     straight_acceleration=(600,400),
+        #     turn_rate=150,
+        #     turn_acceleration=200,
+        # )
 
-        # Back up to get clear of Exploding Seeds.
-        drive_base.straight(-210)
+        drive_base.straight(-100) # used to be -150
+        drive_base.arc(-75, -45)
+        drive_base.straight(530)
+        #drive_base.straight(130) # was 170
+        drive_base.arc(75, -27)
 
-        print("Timestamp after picking up seeds:", watch.time() / 1000)
+        # Tested sequence at the end.
+   
+        drive_base.straight(70) # was 120
 
-        # Turn to line up with Biocentric Architecture.
-        drive_base.turn(33)
-
-        drive_base.settings(straight_speed=300)
-
-        # Lower the left arm while driving to Biocentric Architecture.
-        attachment_left.run_angle(speed=200, rotation_angle=150, wait=False)
-        drive_base.straight(620)
-
-        drive_base.settings(straight_speed=100)
-
-        # Turn left slightly to align with Biocentric Architecture.
-        # drive_base.turn(-20)
-        drive_base.turn(-15)
+        #wait(5000)
+        attachment_left.run_target(30,10)
+        attachment_left.run_target(45,40)
         
+        drive_base.turn(-10)
+        drive_base.straight(50)
+        attachment_left.run_target(45,60)
+        drive_base.straight(50)
 
-        # Arm down to complete the compost hatch.
-        attachment_left.run_angle(speed=100, rotation_angle=20)
+        attachment_right.run_angle(speed=100, rotation_angle=30, wait=True) # speed was 10
+        
+        drive_base.arc(-75, -35)
 
-        # Arm up to complete the nesting canopy.
-        attachment_left.run_angle(speed=25, rotation_angle=-45)
+        # attachment_left.run_angle(speed=100, rotation_angle=-150) # speed was 10
 
-        # Arm down again to make sure the compost hatch is complete.
-        attachment_left.run_angle(speed=100, rotation_angle=50)
+        drive_base.straight(200)
 
-        drive_base.settings(straight_speed=500)
+        drive_base.arc(-75, 45)
 
-        attachment_left.run_angle(speed=100, rotation_angle=-10)
+        drive_base.straight(25)
+
+        attachment_right.run_angle(speed=100, rotation_angle=-30) # speed was 10
 
 
-        # Turn right to move away from Biocentric Architecture.
-        drive_base.turn(25)
-
-        # Lower the right arm to align for the Window to the Past seed.
-        attachment_right.run_angle(speed=100, rotation_angle=-30, wait=False)
-
-        # Move forward to start aligning with the seed.
-        drive_base.straight(130)
-
-        # Turn left to line up with the seed.
-        drive_base.turn(-40)
-
-        # Move forward so the right arm is under the seed, while lifting the left arm.
-        drive_base.straight(130, wait=True)
-        attachment_left.run_angle(speed=500, rotation_angle=-150)
-
-        # Lift the right arm to pick up the seed.
-        attachment_right.run_angle(speed=100, rotation_angle=60)
+    
+        drive_base.settings(**FINISH)
+        drive_base.straight(-50)
 
         drive_base.turn(70)
 
-        # Finish speeds from config.py, for the way back to base.
-        # CHANGE (Nov 9): was straight_speed=500.
-        drive_base.settings(**FINISH)
-
         drive_base.straight(650)
+
+
+        print("Merged Exploding Seeds run complete.")
+        print("Elapsed seconds:", watch.time() / 1000)
 
         # Save the final angles before releasing the attachment ports.
         return (attachment_left.angle(), attachment_right.angle())
+
     finally:
         if attachment_left is not None:
             attachment_left.close()
@@ -129,8 +121,7 @@ def run(drive_base):
             attachment_right.close()
 
 
-# Only happens when this file is uploaded by itself. The menu in main.py skips
-# this and calls run() instead.
 if __name__ == "__main__":
     from helpers import run_alone
+
     run_alone(run)
