@@ -21,7 +21,7 @@ def run(drive_base):
         watch = StopWatch()
 
         # Loaded here because config.py imports this file first.
-        from config import START
+        from config import START, FINISH
 
         drive_base.settings(**START)
 
@@ -46,15 +46,15 @@ def run(drive_base):
         drive_base.straight(340)
 
         # Lift the right arm to align for seed removal.
-        attachment_right.run_angle(speed=200, rotation_angle=20)
+        attachment_right.run_angle(speed=200, rotation_angle=-15)
         drive_base.settings(straight_speed=100)
 
         # Lift the arm slightly and back up, twice, to get the seed out.
-        attachment_right.run_angle(speed=50, rotation_angle=5)
+        attachment_right.run_angle(speed=50, rotation_angle=-15)
         drive_base.straight(-18)
-        attachment_right.run_angle(speed=25, rotation_angle=5)
-        drive_base.straight(-15)
-        attachment_right.run_angle(speed=20, rotation_angle=30) # speed was 10
+        attachment_right.run_angle(speed=25, rotation_angle=-15)
+        drive_base.straight(-25)
+        attachment_right.run_angle(speed=15, rotation_angle=-15) # speed was 10
 
         drive_base.settings(**START)
 
@@ -65,7 +65,7 @@ def run(drive_base):
         #     turn_acceleration=200,
         # )
 
-        drive_base.straight(-110) # used to be -150
+        drive_base.straight(-100) # used to be -150
         drive_base.arc(-75, -45)
         drive_base.straight(530)
         #drive_base.straight(130) # was 170
@@ -84,13 +84,28 @@ def run(drive_base):
         attachment_left.run_target(45,60)
         drive_base.straight(50)
 
-        attachment_right.run_angle(speed=20, rotation_angle=-30, wait=False) # speed was 10
+        attachment_right.run_angle(speed=100, rotation_angle=30, wait=True) # speed was 10
         
-        drive_base.arc(-75, -30)
-        
-        drive_base.arc(-900, angle=15)
-        #drive_base.straight(160)
-        #attachment_right.run_angle(speed=20, rotation_angle=30) # speed was 10
+        drive_base.arc(-75, -35)
+
+        # attachment_left.run_angle(speed=100, rotation_angle=-150) # speed was 10
+
+        drive_base.straight(200)
+
+        drive_base.arc(-75, 45)
+
+        drive_base.straight(25)
+
+        attachment_right.run_angle(speed=100, rotation_angle=-30) # speed was 10
+
+
+    
+        drive_base.settings(**FINISH)
+        drive_base.straight(-50)
+
+        drive_base.turn(70)
+
+        drive_base.straight(650)
 
 
         print("Merged Exploding Seeds run complete.")
