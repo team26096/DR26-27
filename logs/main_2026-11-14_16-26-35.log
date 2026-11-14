@@ -1,0 +1,79 @@
+[16:26:35] Log started 2026-11-14 16:26:35
+[16:26:35] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[16:26:35] ----------------------------------------
+[16:26:36] Searching for mickeybricks...
+[16:26:56] 100%|██████████| 13.9k/13.9k [00:07<00:00, 1.97kB/s]
+[16:26:56] ========== ROBOT INFO ==========
+[16:26:56]   Hub name:          mickeybricks
+[16:26:56]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[16:26:56]   Battery:           86 % (8126 mV)
+[16:26:56]   Max speed:         544 mm/s
+[16:26:56]   Max turn rate:     413 deg/s
+[16:26:56] ================================
+[16:29:45] Angle before arc: -20.5 deg
+[16:29:47] Angle after turn: -1.0 deg
+[16:31:52] after move -75
+[16:31:52] 830
+[16:31:52] Straight PID: (7558, 0, 1889, 4, 8)
+[16:31:52] Turn PID: (23000, 0, 1889, 3, 6)
+[16:31:52] Straight Kp: 7558
+[16:31:52] Straight Ki: 0
+[16:31:52] Straight Kd: 1889
+[16:31:52] Heading Kp: 23000
+[16:31:52] Heading Ki: 0
+[16:31:52] Heading Kd: 1889
+[16:31:52] TIMED OUT
+[16:31:52] TIMED OUT
+[16:31:52] Total run time: 14.3 seconds
+[16:31:52] Merged Exploding Seeds run complete.
+[16:31:52] Elapsed seconds: 25.429
+[16:31:52] Robot Settings: (350, 600, 250, 600)
+[16:31:52] Heading PID: (23000, 0, 1889, 3, 6)
+[16:31:52] Robot max (544, 600, 199)
+[16:31:52] Turn max (413, 600, 399)
+[16:31:52] Stall tolerances (8, 200)
+[16:31:52] Elapsed time: 12.01 seconds
+[16:31:52] Robot settings: (350, 600, 250, 600)
+[16:31:52] Heading PID: (23000, 0, 1889, 3, 6)
+[16:31:52] Drive limits: (544, 600, 199)
+[16:31:52] Left attachment limits: (600, 1200, 560)
+[16:31:52] Right attachment limits: (75, 150, 560)
+[16:31:52] Distance: 770
+[16:31:52] Heading (deg): -0.27311708
+[16:31:52] Battery (mV): 8113
+[16:31:52] Elapsed time: 15.24 seconds
+[16:31:52] Battery Voltage: 8096 mV
+[16:31:52] Robot Settings: (500, 400, 137, 620)
+[16:31:55] Total run time: 11.3 seconds
+[16:33:16] Traceback (most recent call last):
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\bleak\backends\winrt\client.py", line 1028, in handle_value_changed
+[16:33:16] Traceback (most recent call last):
+[16:33:16]   File "<frozen runpy>", line 198, in _run_module_as_main
+[16:33:16]   File "<frozen runpy>", line 88, in _run_code
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\__main__.py", line 9, in <module>
+[16:33:16]     main()
+[16:33:16]     ~~~~^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 620, in main
+[16:33:16]     asyncio.run(subparsers.choices[args.tool].tool.run(args))
+[16:33:16]     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+[16:33:16]     return runner.run(main)
+[16:33:16]            ~~~~~~~~~~^^^^^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+[16:33:16]     return self._loop.run_until_complete(task)
+[16:33:16]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+[16:33:16]     return future.result()
+[16:33:16]            ~~~~~~~~~~~~~^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 240, in run
+[16:33:16]     await hub.run(script_path, args.wait or args.stay_connected)
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 629, in run
+[16:33:16]     await self._wait_for_user_program_stop()
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 813, in _wait_for_user_program_stop
+[16:33:16]     is_running = await self.race_disconnect(user_program_running.get())
+[16:33:16]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[16:33:16]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 374, in race_disconnect
+[16:33:16]     raise HubDisconnectError("disconnected during operation")
+[16:33:16] pybricksdev.connections.pybricks.HubDisconnectError: disconnected during operation
+[16:33:16] ----------------------------------------
+[16:33:16] Log ended 2026-11-14 16:33:16 after 0:06:40 (exit code 1)
