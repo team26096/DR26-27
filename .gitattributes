@@ -1,0 +1,4 @@
+# CHANGE (Nov 13): line endings for the two files that start the run logger.
+# Windows needs CRLF in .cmd files, and a Mac can't run a script with CRLF.
+*.cmd text eol=crlf
+tools/ide/pybricksdev text eol=lf

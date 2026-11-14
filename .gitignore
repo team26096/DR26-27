@@ -1,9 +1,13 @@
 __pycache__/
 *.pyc
 # CHANGE (Nov 5): new files in tools/ are not added to git. tools/ holds test
-# scripts that run on a computer, not on the hub. Files already in git, like
-# tools/test_attachment_lifecycle.py, stay in git.
-tools/
+# scripts that run on a computer, not on the hub.
+# CHANGE (Nov 13): except the files that save a log of every run. They go into
+# git, so every computer gets them. Before, this was "tools/", which kept all
+# of tools/ off GitHub.
+tools/*
+!tools/run_logged.py
+!tools/ide/
 # CHANGE (Nov 9): the logs folder is never added to git with the code.
 # tools/run_logged.py uploads new log files to the logs folder on GitHub by
 # itself, without touching the code or any other files.

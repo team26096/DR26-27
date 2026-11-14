@@ -61,8 +61,10 @@ last_end_ms = 0
 # summary of all runs is printed: after the last run in the menu, and when the
 # program stops early, like when a run is stopped with the center button.
 # Before, "RUN ... RESULTS" and "ALL RUNS SO FAR" were printed after every run.
-# To also save the summary in a log file and upload it to GitHub, start the
-# program with: python tools/run_logged.py main.py
+# CHANGE (Nov 13): the "Run on LEGO Brick" button in VS Code also saves
+# everything this program prints in a log file in the logs folder and uploads
+# it to GitHub, on every computer. See tools/run_logged.py. Before, you had to
+# start the program with: python tools/run_logged.py main.py
 # The upload happens when the program ends: after the last run, or when it
 # is stopped early.
 

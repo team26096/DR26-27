@@ -1,0 +1,30 @@
+{
+    // CHANGE (Nov 13): VS Code settings for every computer. They come from
+    // GitHub with the code, and work when VS Code opens this folder.
+    //
+    // PATH: the "Run on LEGO Brick" button saves a log file and uploads it to
+    // GitHub. This puts tools/ide first in the PATH of VS Code's terminals, so
+    // the button's "pybricksdev run ble ..." starts tools/ide/pybricksdev.cmd
+    // (Windows) or tools/ide/pybricksdev (Mac), which starts
+    // tools/run_logged.py. Delete the PATH lines to go back to the plain button.
+    // PYTHONDONTWRITEBYTECODE: Python doesn't make __pycache__ folders.
+    //
+    // Only terminals opened after a change get these: close the "Pybricks"
+    // terminal once (trash can icon), and the button opens a new one.
+    "terminal.integrated.env.windows": {
+        "PATH": "${workspaceFolder}\\tools\\ide;${env:PATH}",
+        "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "terminal.integrated.env.osx": {
+        "PATH": "${workspaceFolder}/tools/ide:${env:PATH}",
+        "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "terminal.integrated.env.linux": {
+        "PATH": "${workspaceFolder}/tools/ide:${env:PATH}",
+        "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    // Hide any __pycache__ folders that still show up, in the Explorer and in searches.
+    "files.exclude": {
+        "**/__pycache__": true
+    }
+}
