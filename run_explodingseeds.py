@@ -56,14 +56,14 @@ def run(drive_base):
         drive_base.straight(-25)
         attachment_right.run_angle(speed=15, rotation_angle=-15) # speed was 10
 
-        drive_base.settings(**START)
+        #drive_base.settings(**START)
 
-        # drive_base.settings(
-        #     straight_speed=350,
-        #     straight_acceleration=(600,400),
-        #     turn_rate=150,
-        #     turn_acceleration=200,
-        # )
+        drive_base.settings(
+             straight_speed=350,
+             straight_acceleration=(600,400),
+             turn_rate=150,
+             turn_acceleration=200,
+         )
 
         drive_base.straight(-100) # used to be -150
         drive_base.arc(-75, -45)
