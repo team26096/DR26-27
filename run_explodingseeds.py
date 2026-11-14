@@ -42,7 +42,7 @@ def run(drive_base):
         attachment_left.run_angle(60, 40, then=Stop.HOLD, wait=False)
 
         # Turn to keep aligning with Exploding Seeds.
-        drive_base.turn(45)
+        drive-._base.turn(45)
         drive_base.straight(340)
 
         # Lift the right arm to align for seed removal.
@@ -69,7 +69,7 @@ def run(drive_base):
         drive_base.arc(-75, -45)
         drive_base.straight(530)
         #drive_base.straight(130) # was 170
-        drive_base.arc(75, -27)
+        drive_base.arc(75, -30) # changed from 27
 
         # Tested sequence at the end.
    
