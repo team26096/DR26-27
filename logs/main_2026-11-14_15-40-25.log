@@ -1,0 +1,48 @@
+[15:40:25] Log started 2026-11-14 15:40:25
+[15:40:25] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[15:40:25] ----------------------------------------
+[15:40:26] Searching for mickeybricks...
+[15:40:38] 100%|██████████| 13.8k/13.8k [00:06<00:00, 1.99kB/s]
+[15:40:38] ========== ROBOT INFO ==========
+[15:40:38]   Hub name:          mickeybricks
+[15:40:38]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[15:40:38]   Battery:           92 % (8247 mV)
+[15:40:38]   Max speed:         544 mm/s
+[15:40:38]   Max turn rate:     413 deg/s
+[15:40:38] ================================
+[15:41:22] Angle before arc: -19.9 deg
+[15:41:24] Angle after turn: -1.0 deg
+[15:41:38] after move -74
+[15:41:41] 830
+[15:41:49] Straight PID: (7558, 0, 1889, 4, 8)
+[15:41:49] Turn PID: (23000, 0, 1889, 3, 6)
+[15:41:49] Straight Kp: 7558
+[15:41:49] Straight Ki: 0
+[15:41:49] Straight Kd: 1889
+[15:41:49] Heading Kp: 23000
+[15:41:49] Heading Ki: 0
+[15:41:49] Heading Kd: 1889
+[15:42:03] TIMED OUT
+[15:42:06] TIMED OUT
+[15:42:09] Total run time: 14.5 seconds
+[15:42:39] 
+[15:42:39] ========== ALL RUNS SO FAR ==========
+[15:42:39]   Run 1:             8.1 s
+[15:42:39]   Transition 1 -> 2: 2.1 s
+[15:42:39]   Run 2:             4.0 s
+[15:42:39]   Transition 2 -> 3: 6.5 s
+[15:42:39]   Run 3:             12.7 s
+[15:42:39]   Transition 3 -> 4: 5.0 s
+[15:42:39]   Run 4:             14.5 s
+[15:42:39]   Transition 4 -> 5: 4.5 s
+[15:42:39]   Run 5 (stopped):   25.7 s
+[15:42:39]   ----------------------------------
+[15:42:39]   Total run time:    64.9 s
+[15:42:39]   Total transition:  18.1 s
+[15:42:39]   Total time:        83.0 s
+[15:42:39]   Not done:          5, 6, 7, 8, 9
+[15:42:39]   Battery:           92 % at start, 91 % now
+[15:42:39] ========================================
+[15:42:39] The program was stopped (SystemExit).
+[15:42:40] ----------------------------------------
+[15:42:40] Log ended 2026-11-14 15:42:40 after 0:02:14 (exit code 0)
