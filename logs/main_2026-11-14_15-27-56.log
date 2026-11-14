@@ -1,0 +1,59 @@
+[15:27:56] Log started 2026-11-14 15:27:56
+[15:27:56] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[15:27:56] ----------------------------------------
+[15:27:57] Searching for mickeybricks...
+[15:28:08] 100%|██████████| 13.8k/13.8k [00:05<00:00, 2.51kB/s]
+[15:28:08] ========== ROBOT INFO ==========
+[15:28:08]   Hub name:          mickeybricks
+[15:28:08]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[15:28:08]   Battery:           94 % (8279 mV)
+[15:28:08]   Max speed:         544 mm/s
+[15:28:08]   Max turn rate:     413 deg/s
+[15:28:08] ================================
+[15:28:23] Traceback (most recent call last):
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+[15:28:23]     return self._loop.run_until_complete(task)
+[15:28:23]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+[15:28:23]     return future.result()
+[15:28:23]            ~~~~~~~~~~~~~^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 240, in run
+[15:28:23]     await hub.run(script_path, args.wait or args.stay_connected)
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 629, in run
+[15:28:23]     await self._wait_for_user_program_stop()
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 813, in _wait_for_user_program_stop
+[15:28:23]     is_running = await self.race_disconnect(user_program_running.get())
+[15:28:23]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 361, in race_disconnect
+[15:28:23]     done, pending = await asyncio.wait(
+[15:28:23]                     ^^^^^^^^^^^^^^^^^^^
+[15:28:23]     ...<2 lines>...
+[15:28:23]     )
+[15:28:23]     ^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 451, in wait
+[15:28:23]     return await _wait(fs, timeout, return_when, loop)
+[15:28:23]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 537, in _wait
+[15:28:23]     await waiter
+[15:28:23] asyncio.exceptions.CancelledError
+[15:28:23] 
+[15:28:23] During handling of the above exception, another exception occurred:
+[15:28:23] 
+[15:28:23] Traceback (most recent call last):
+[15:28:23]   File "<frozen runpy>", line 198, in _run_module_as_main
+[15:28:23]   File "<frozen runpy>", line 88, in _run_code
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\__main__.py", line 9, in <module>
+[15:28:23]     main()
+[15:28:23]     ~~~~^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 620, in main
+[15:28:23]     asyncio.run(subparsers.choices[args.tool].tool.run(args))
+[15:28:23]     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+[15:28:23]     return runner.run(main)
+[15:28:23]            ~~~~~~~~~~^^^^^^
+[15:28:23]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+[15:28:23]     raise KeyboardInterrupt()
+[15:28:23] KeyboardInterrupt
+[15:28:23] Stopped with Ctrl+C
+[15:28:23] ----------------------------------------
+[15:28:23] Log ended 2026-11-14 15:28:23 after 0:00:26 (exit code 3221225786)
