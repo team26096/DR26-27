@@ -1,0 +1,30 @@
+[16:03:50] Log started 2026-11-14 16:03:50
+[16:03:50] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[16:03:50] ----------------------------------------
+[16:03:51] Searching for mickeybricks...
+[16:04:01] Traceback (most recent call last):
+[16:04:01]   File "<frozen runpy>", line 198, in _run_module_as_main
+[16:04:01]   File "<frozen runpy>", line 88, in _run_code
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\__main__.py", line 9, in <module>
+[16:04:01]     main()
+[16:04:01]     ~~~~^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 620, in main
+[16:04:01]     asyncio.run(subparsers.choices[args.tool].tool.run(args))
+[16:04:01]     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+[16:04:01]     return runner.run(main)
+[16:04:01]            ~~~~~~~~~~^^^^^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+[16:04:01]     return self._loop.run_until_complete(task)
+[16:04:01]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+[16:04:01]     return future.result()
+[16:04:01]            ~~~~~~~~~~~~~^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 194, in run
+[16:04:01]     device_or_address = await find_ble(args.name)
+[16:04:01]                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+[16:04:01]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\ble\__init__.py", line 67, in find_device
+[16:04:01]     raise asyncio.TimeoutError
+[16:04:01] TimeoutError
+[16:04:01] ----------------------------------------
+[16:04:01] Log ended 2026-11-14 16:04:01 after 0:00:10 (exit code 1)
