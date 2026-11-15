@@ -1,0 +1,77 @@
+[17:16:27] Log started 2026-11-15 17:16:27
+[17:16:27] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[17:16:27] ----------------------------------------
+[17:16:28] Searching for mickeybricks...
+[17:16:40] 100%|██████████| 14.0k/14.0k [00:07<00:00, 1.98kB/s]
+[17:16:40] ========== ROBOT INFO ==========
+[17:16:40]   Hub name:          mickeybricks
+[17:16:40]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[17:16:40]   Battery:           82 % (8057 mV)
+[17:16:40]   Max speed:         544 mm/s
+[17:16:40]   Max turn rate:     413 deg/s
+[17:16:40] ================================
+[17:16:51] Angle before arc: -20.3 deg
+[17:16:53] Angle after turn: 1.8 deg
+[17:17:10] after move -75
+[17:17:13] 831
+[17:17:22] Straight PID: (7558, 0, 1889, 4, 8)
+[17:17:22] Turn PID: (23000, 0, 1889, 3, 6)
+[17:17:22] Straight Kp: 7558
+[17:17:22] Straight Ki: 0
+[17:17:22] Straight Kd: 1889
+[17:17:22] Heading Kp: 23000
+[17:17:22] Heading Ki: 0
+[17:17:22] Heading Kd: 1889
+[17:17:43] TIMED OUT
+[17:17:46] TIMED OUT
+[17:17:49] Total run time: 14.9 seconds
+[17:18:22] Merged Exploding Seeds run complete.
+[17:18:22] Elapsed seconds: 26.13
+[17:18:28] Robot Settings: (350, 600, 250, 600)
+[17:18:28] Heading PID: (23000, 0, 1889, 3, 6)
+[17:18:28] Robot max (544, 600, 199)
+[17:18:28] Turn max (413, 600, 399)
+[17:18:28] Stall tolerances (8, 200)
+[17:18:40] Elapsed time: 12.13 seconds
+[17:18:43] Robot settings: (350, 600, 250, 600)
+[17:18:43] Heading PID: (23000, 0, 1889, 3, 6)
+[17:18:43] Drive limits: (544, 600, 199)
+[17:18:43] Left attachment limits: (600, 1200, 560)
+[17:18:43] Right attachment limits: (75, 150, 560)
+[17:18:47] Distance: 770
+[17:18:47] Heading (deg): -0.19901418
+[17:18:47] Battery (mV): 8048
+[17:18:58] Elapsed time: 14.96 seconds
+[17:19:05] Battery Voltage: 8031 mV
+[17:19:05] Robot Settings: (500, 400, 137, 620)
+[17:19:17] Total run time: 11.3 seconds
+[17:19:36] Battery Voltage: 8032 mV
+[17:19:36] Robot Settings: (500, (800, 400), 250, 600)
+[17:19:38] Total run time: 2.1 seconds
+[17:19:38] 
+[17:19:38] ========== FINAL SUMMARY ==========
+[17:19:38]   Run 1:             8.0 s
+[17:19:38]   Transition 1 -> 2: 3.1 s
+[17:19:38]   Run 2:             4.1 s
+[17:19:38]   Transition 2 -> 3: 8.3 s
+[17:19:38]   Run 3:             12.8 s
+[17:19:38]   Transition 3 -> 4: 12.5 s
+[17:19:38]   Run 4:             14.9 s
+[17:19:38]   Transition 4 -> 5: 6.5 s
+[17:19:38]   Run 5:             26.1 s
+[17:19:38]   Transition 5 -> 6: 6.2 s
+[17:19:38]   Run 6:             12.1 s
+[17:19:38]   Transition 6 -> 7: 3.0 s
+[17:19:38]   Run 7:             15.0 s
+[17:19:38]   Transition 7 -> 8: 7.5 s
+[17:19:38]   Run 8:             11.3 s
+[17:19:38]   Transition 8 -> 9: 19.2 s
+[17:19:38]   Run 9:             2.1 s
+[17:19:38]   ----------------------------------
+[17:19:38]   Total run time:    106.5 s
+[17:19:38]   Total transition:  66.3 s
+[17:19:38]   Total time:        172.8 s
+[17:19:38]   Battery:           82 % at start, 81 % now
+[17:19:38] ========================================
+[17:19:39] ----------------------------------------
+[17:19:39] Log ended 2026-11-15 17:19:39 after 0:03:12 (exit code 0)
