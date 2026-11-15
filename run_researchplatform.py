@@ -33,8 +33,14 @@ def run(drive_base):
         drive_base.straight(-10)
 
         drive_base.reset()
+
+        attachment_left.run_until_stalled(-120, then=Stop.HOLD, duty_limit=20)#Originally 20
+
+
+        # attachment_left.run_angle(speed=600, rotation_angle=-67.5, wait=False) 
+
         # Start the arm moving, then drive at the same time (wait=False doesn't block).
-        attachment_right.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD, wait=False)
+        attachment_right.run_angle(speed=600, rotation_angle=-85, then=Stop.HOLD, wait=False)
         drive_base.straight(570)
         drive_base.arc(10,90)
         drive_base.straight(190)
@@ -47,9 +53,14 @@ def run(drive_base):
                             turn_rate=200, turn_acceleration=200)
 
         drive_base.straight(70)
-        #attachment_left.run_angle(speed=600, rotation_angle=45, wait=False) 
-        attachment_right.run_angle(speed=600, rotation_angle=90, then=Stop.HOLD)
-        attachment_right.run_angle(speed=600, rotation_angle=-90, then=Stop.HOLD) 
+
+
+        attachment_right.run_angle(speed=600, rotation_angle=80, then=Stop.HOLD)
+        attachment_right.run_angle(speed=600, rotation_angle=-80, then=Stop.HOLD) 
+
+
+
+        attachment_left.run_angle(speed=600, rotation_angle=45, wait=False) 
         drive_base.straight(70, wait=False) 
         timer = StopWatch()
         while not drive_base.done():
@@ -58,6 +69,7 @@ def run(drive_base):
                 print("TIMED OUT")
                 break
             wait(10)
+
         drive_base.straight(-130) #changed after new attachment
 
 
@@ -65,7 +77,7 @@ def run(drive_base):
         drive_base.arc(82, angle=-90)
 
         start = drive_base.distance()
-        drive_base.straight(-220, wait=False) 
+        drive_base.straight(-240, wait=False) 
         timer = StopWatch() 
         while not drive_base.done():
             if timer.time() > 1000:
@@ -80,7 +92,7 @@ def run(drive_base):
         drive_base.settings(**FINISH)
     
         drive_base.straight(150, then=Stop.NONE)
-        drive_base.arc(-450,distance=750)
+        drive_base.arc(-450,distance=780)
         drive_base.stop()
 
         # TIMER STOP. pause() freezes the value so it cannot creep up after this line.
