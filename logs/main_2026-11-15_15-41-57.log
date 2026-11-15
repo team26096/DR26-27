@@ -1,0 +1,93 @@
+[15:41:57] Log started 2026-11-15 15:41:57
+[15:41:57] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[15:41:57] ----------------------------------------
+[15:41:58] Searching for mickeybricks...
+[15:42:11] 100%|██████████| 14.5k/14.5k [00:07<00:00, 1.96kB/s]
+[15:42:11] ========== ROBOT INFO ==========
+[15:42:11]   Hub name:          mickeybricks
+[15:42:11]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[15:42:11]   Battery:           90 % (8215 mV)
+[15:42:11]   Max speed:         544 mm/s
+[15:42:11]   Max turn rate:     413 deg/s
+[15:42:11] ================================
+[15:43:32] Angle before arc: -21.7 deg
+[15:43:35] Angle after turn: 0.8 deg
+[15:43:47] after move -74
+[15:43:50] 830
+[15:43:58] Straight PID: (7558, 0, 1889, 4, 8)
+[15:43:58] Turn PID: (23000, 0, 1889, 3, 6)
+[15:43:58] Straight Kp: 7558
+[15:43:58] Straight Ki: 0
+[15:43:58] Straight Kd: 1889
+[15:43:58] Heading Kp: 23000
+[15:43:58] Heading Ki: 0
+[15:43:58] Heading Kd: 1889
+[15:44:14] TIMED OUT
+[15:44:17] TIMED OUT
+[15:44:20] Total run time: 14.9 seconds
+[15:44:37] Before arc(75, -27):
+[15:44:37]   IMU heading:       89.9 deg
+[15:44:37]   Drive base angle:  89.9 deg
+[15:44:37]   Wheel angle:       141.5 deg
+[15:44:37]   Left wheel:        8064 deg
+[15:44:37]   Right wheel:       7379 deg
+[15:44:37]   Tilt pitch:        -0.6419642 deg
+[15:44:37]   Tilt roll:         2.6949716 deg
+[15:44:38] After arc(75, -27):
+[15:44:38]   IMU heading:       63.3 deg
+[15:44:38]   Drive base angle:  63.3 deg
+[15:44:38]   Wheel angle:       114.9 deg
+[15:44:38]   Left wheel:        7934 deg
+[15:44:38]   Right wheel:       7378 deg
+[15:44:38]   Tilt pitch:        -1.0608544 deg
+[15:44:38]   Tilt roll:         1.0448449 deg
+[15:44:50] Merged Exploding Seeds run complete.
+[15:44:50] Elapsed seconds: 25.116
+[15:44:53] Robot Settings: (350, 600, 250, 600)
+[15:44:53] Heading PID: (23000, 0, 1889, 3, 6)
+[15:44:53] Robot max (544, 600, 199)
+[15:44:53] Turn max (413, 600, 399)
+[15:44:53] Stall tolerances (8, 200)
+[15:45:05] Elapsed time: 12.13 seconds
+[15:45:09] Robot settings: (350, 600, 250, 600)
+[15:45:09] Heading PID: (23000, 0, 1889, 3, 6)
+[15:45:09] Drive limits: (544, 600, 199)
+[15:45:09] Left attachment limits: (600, 1200, 560)
+[15:45:09] Right attachment limits: (75, 150, 560)
+[15:45:13] Distance: 769
+[15:45:13] Heading (deg): 0.055259704
+[15:45:13] Battery (mV): 8206
+[15:45:24] Elapsed time: 14.97 seconds
+[15:45:29] Battery Voltage: 8184 mV
+[15:45:29] Robot Settings: (500, 400, 137, 620)
+[15:45:40] Total run time: 11.4 seconds
+[15:45:46] Battery Voltage: 8184 mV
+[15:45:46] Robot Settings: (500, (800, 400), 250, 600)
+[15:45:48] Total run time: 2.3 seconds
+[15:45:48] 
+[15:45:48] ========== FINAL SUMMARY ==========
+[15:45:48]   Run 1:             8.1 s
+[15:45:48]   Transition 1 -> 2: 2.8 s
+[15:45:48]   Run 2:             4.0 s
+[15:45:48]   Transition 2 -> 3: 4.4 s
+[15:45:48]   Run 3:             12.4 s
+[15:45:48]   Transition 3 -> 4: 6.6 s
+[15:45:48]   Run 4:             14.9 s
+[15:45:48]   Transition 4 -> 5: 5.3 s
+[15:45:48]   Run 5:             25.1 s
+[15:45:48]   Transition 5 -> 6: 2.8 s
+[15:45:48]   Run 6:             12.1 s
+[15:45:48]   Transition 6 -> 7: 3.9 s
+[15:45:48]   Run 7:             15.0 s
+[15:45:48]   Transition 7 -> 8: 5.1 s
+[15:45:48]   Run 8:             11.4 s
+[15:45:48]   Transition 8 -> 9: 5.1 s
+[15:45:48]   Run 9:             2.3 s
+[15:45:48]   ----------------------------------
+[15:45:48]   Total run time:    105.4 s
+[15:45:48]   Total transition:  35.9 s
+[15:45:48]   Total time:        141.3 s
+[15:45:48]   Battery:           90 % at start, 89 % now
+[15:45:48] ========================================
+[15:45:49] ----------------------------------------
+[15:45:49] Log ended 2026-11-15 15:45:49 after 0:03:51 (exit code 0)

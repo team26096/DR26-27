@@ -1,0 +1,44 @@
+[16:57:15] Log started 2026-11-14 16:57:15
+[16:57:15] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[16:57:15] ----------------------------------------
+[16:57:16] Searching for mickeybricks...
+[16:57:27] 100%|██████████| 14.0k/14.0k [00:06<00:00, 2.05kB/s]
+[16:57:28] ========== ROBOT INFO ==========
+[16:57:28]   Hub name:          mickeybricks
+[16:57:28]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[16:57:28]   Battery:           82 % (8058 mV)
+[16:57:28]   Max speed:         544 mm/s
+[16:57:28]   Max turn rate:     413 deg/s
+[16:57:28] ================================
+[17:03:39] Traceback (most recent call last):
+[17:03:39] Traceback (most recent call last):
+[17:03:39]   File "<frozen runpy>", line 198, in _run_module_as_main
+[17:03:39]   File "<frozen runpy>", line 88, in _run_code
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\__main__.py", line 9, in <module>
+[17:03:39]     main()
+[17:03:39]     ~~~~^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\bleak\backends\winrt\client.py", line 1028, in handle_value_changed
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 620, in main
+[17:03:39]     asyncio.run(subparsers.choices[args.tool].tool.run(args))
+[17:03:39]     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+[17:03:39]     return runner.run(main)
+[17:03:39]            ~~~~~~~~~~^^^^^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+[17:03:39]     return self._loop.run_until_complete(task)
+[17:03:39]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+[17:03:39]     return future.result()
+[17:03:39]            ~~~~~~~~~~~~~^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\cli\__init__.py", line 240, in run
+[17:03:39]     await hub.run(script_path, args.wait or args.stay_connected)
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 629, in run
+[17:03:39]     await self._wait_for_user_program_stop()
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 813, in _wait_for_user_program_stop
+[17:03:39]     is_running = await self.race_disconnect(user_program_running.get())
+[17:03:39]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[17:03:39]   File "C:\Users\nsrir\AppData\Local\Programs\Python\Python313\Lib\site-packages\pybricksdev\connections\pybricks.py", line 374, in race_disconnect
+[17:03:39]     raise HubDisconnectError("disconnected during operation")
+[17:03:39] pybricksdev.connections.pybricks.HubDisconnectError: disconnected during operation
+[17:03:39] ----------------------------------------
+[17:03:39] Log ended 2026-11-14 17:03:39 after 0:06:24 (exit code 1)

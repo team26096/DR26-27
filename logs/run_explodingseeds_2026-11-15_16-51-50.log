@@ -1,0 +1,8 @@
+[16:51:50] Log started 2026-11-15 16:51:50
+[16:51:50] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\run_explodingseeds.py
+[16:51:50] ----------------------------------------
+[16:51:51] Searching for mickeybricks...
+[16:52:03] 100%|██████████| 13.2k/13.2k [00:06<00:00, 2.03kB/s]
+[16:52:29] The program was stopped (SystemExit).
+[16:52:30] ----------------------------------------
+[16:52:30] Log ended 2026-11-15 16:52:30 after 0:00:39 (exit code 0)
