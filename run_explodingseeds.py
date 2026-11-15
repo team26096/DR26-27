@@ -74,37 +74,29 @@ def run(drive_base):
         # Tested sequence at the end.
    
         drive_base.straight(70) # was 120
-
-        #wait(5000)
-        attachment_left.run_target(30,10)
-        attachment_left.run_target(45,40)
-        
         drive_base.turn(-10)
         drive_base.straight(50)
         attachment_left.run_target(45,60)
         drive_base.straight(50)
 
-        attachment_right.run_angle(speed=100, rotation_angle=30, wait=True) # speed was 10
-        
+        attachment_left.run_target(20,20)
+    
+    
+        attachment_right.run_angle(speed=100, rotation_angle=30, wait=True) # speed was 10    
         drive_base.arc(-75, -35)
 
-        # attachment_left.run_angle(speed=100, rotation_angle=-150) # speed was 10
+        attachment_left.run_angle(speed=500, rotation_angle=-30)
 
         drive_base.straight(200)
-
         drive_base.arc(-75, 45)
-
         drive_base.straight(25)
-
         attachment_right.run_angle(speed=100, rotation_angle=-30) # speed was 10
+        # attachment_left.run_target(45,40)
 
-
-    
+        #heading to the base
         drive_base.settings(**FINISH)
-        drive_base.straight(-50)
-
+        drive_base.straight(-100)
         drive_base.turn(70)
-
         drive_base.straight(650)
 
 
