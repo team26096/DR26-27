@@ -1,0 +1,64 @@
+[15:34:02] Log started 2026-11-15 15:34:02
+[15:34:02] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[15:34:02] ----------------------------------------
+[15:34:03] Searching for mickeybricks...
+[15:34:17] 100%|██████████| 14.5k/14.5k [00:07<00:00, 1.97kB/s]
+[15:34:17] ========== ROBOT INFO ==========
+[15:34:17]   Hub name:          mickeybricks
+[15:34:17]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[15:34:17]   Battery:           92 % (8239 mV)
+[15:34:17]   Max speed:         544 mm/s
+[15:34:17]   Max turn rate:     413 deg/s
+[15:34:17] ================================
+[15:34:27] Angle before arc: -20.3 deg
+[15:34:32] Angle after turn: 0.9 deg
+[15:34:48] after move -74
+[15:34:51] 830
+[15:34:59] Straight PID: (7558, 0, 1889, 4, 8)
+[15:34:59] Turn PID: (23000, 0, 1889, 3, 6)
+[15:34:59] Straight Kp: 7558
+[15:34:59] Straight Ki: 0
+[15:34:59] Straight Kd: 1889
+[15:34:59] Heading Kp: 23000
+[15:34:59] Heading Ki: 0
+[15:34:59] Heading Kd: 1889
+[15:35:15] TIMED OUT
+[15:35:19] TIMED OUT
+[15:35:21] Total run time: 14.8 seconds
+[15:35:38] Before arc(75, -27):
+[15:35:38]   IMU heading:       90.1 deg
+[15:35:38]   Drive base angle:  90.1 deg
+[15:35:38]   Wheel angle:       362.8 deg
+[15:35:38]   Left wheel:        8962 deg
+[15:35:38]   Right wheel:       7206 deg
+[15:35:38]   Tilt pitch:        -0.6374561 deg
+[15:35:38]   Tilt roll:         2.7264948 deg
+[15:35:39] After arc(75, -27):
+[15:35:39]   IMU heading:       63.0 deg
+[15:35:39]   Drive base angle:  63.0 deg
+[15:35:39]   Wheel angle:       335.1 deg
+[15:35:39]   Left wheel:        8828 deg
+[15:35:39]   Right wheel:       7206 deg
+[15:35:39]   Tilt pitch:        -1.0237874 deg
+[15:35:39]   Tilt roll:         1.0442231 deg
+[15:35:50] 
+[15:35:50] ========== ALL RUNS SO FAR ==========
+[15:35:50]   Run 1:             10.8 s
+[15:35:50]   Transition 1 -> 2: 2.9 s
+[15:35:50]   Run 2:             4.0 s
+[15:35:50]   Transition 2 -> 3: 6.4 s
+[15:35:50]   Run 3:             12.8 s
+[15:35:50]   Transition 3 -> 4: 7.5 s
+[15:35:50]   Run 4:             14.8 s
+[15:35:50]   Transition 4 -> 5: 5.1 s
+[15:35:50]   Run 5 (stopped):   24.2 s
+[15:35:50]   ----------------------------------
+[15:35:50]   Total run time:    66.6 s
+[15:35:50]   Total transition:  22.0 s
+[15:35:50]   Total time:        88.7 s
+[15:35:50]   Not done:          5, 6, 7, 8, 9
+[15:35:51]   Battery:           92 % at start, 91 % now
+[15:35:51] ========================================
+[15:35:51] The program was stopped (SystemExit).
+[15:35:51] ----------------------------------------
+[15:35:51] Log ended 2026-11-15 15:35:51 after 0:01:48 (exit code 0)
