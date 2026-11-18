@@ -1,0 +1,12 @@
+[19:59:52] Log started 2026-11-17 19:59:52
+[19:59:52] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\run_explodingseeds.py
+[19:59:52] ----------------------------------------
+[19:59:53] Searching for mickeybricks...
+[20:00:05] 100%|██████████| 12.7k/12.7k [00:06<00:00, 2.05kB/s]
+[20:00:05] Traceback (most recent call last):
+[20:00:05]   File "run_explodingseeds.py", line 117, in <module>
+[20:00:05]   File "helpers.py", line 11, in <module>
+[20:00:05]   File "config.py", line 13, in <module>
+[20:00:05] ImportError: no module named 'run_dronesurvey'
+[20:00:05] ----------------------------------------
+[20:00:05] Log ended 2026-11-17 20:00:05 after 0:00:12 (exit code 0)
