@@ -1,0 +1,25 @@
+[19:52:13] Log started 2026-11-18 19:52:13
+[19:52:13] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\main.py
+[19:52:13] ----------------------------------------
+[19:52:14] Searching for mickeybricks...
+[19:52:25] 100%|██████████| 14.0k/14.0k [00:07<00:00, 1.97kB/s]
+[19:52:25] ========== ROBOT INFO ==========
+[19:52:25]   Hub name:          mickeybricks
+[19:52:25]   Firmware:          ('primehub', '4.0.1', 'ci-release-101-v4.0.1 on 2026-06-24')
+[19:52:25]   Battery:           91 % (8235 mV)
+[19:52:25]   Max speed:         544 mm/s
+[19:52:25]   Max turn rate:     413 deg/s
+[19:52:25] ================================
+[19:52:28] 
+[19:52:28] ========== ALL RUNS SO FAR ==========
+[19:52:28]   Run 1 (stopped):   1.1 s
+[19:52:28]   ----------------------------------
+[19:52:28]   Total run time:    1.1 s
+[19:52:28]   Total transition:  0.0 s
+[19:52:28]   Total time:        1.1 s
+[19:52:28]   Not done:          1, 2, 3, 4, 5, 6, 7, 8, 9
+[19:52:28]   Battery:           91 % at start, 92 % now
+[19:52:28] ========================================
+[19:52:28] The program was stopped (SystemExit).
+[19:52:29] ----------------------------------------
+[19:52:29] Log ended 2026-11-18 19:52:29 after 0:00:16 (exit code 0)
