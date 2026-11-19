@@ -87,9 +87,13 @@ def run(drive_base):
 
         attachment_left.run_angle(speed=500, rotation_angle=-30)
 
-        drive_base.straight(200)
-        drive_base.arc(-75, 45)
-        drive_base.straight(25)
+        drive_base.straight(170)  # Was 200
+        drive_base.arc(-75, 45)     # Keep unchanged
+        drive_base.straight(45)     # Was 25
+
+        # drive_base.straight(200)
+        # drive_base.arc(-75, 45)
+        # drive_base.straight(25)
         attachment_right.run_angle(speed=100, rotation_angle=-30) # speed was 10
         # attachment_left.run_target(45,40)
 
