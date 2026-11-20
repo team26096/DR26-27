@@ -18,7 +18,7 @@ def run(drivebase):
         motor_left = Motor(
             Port.B,
             gears=[
-                [12, 20],[1, 12]
+                [12, 20],[1, 8]
             ]
         )
 
@@ -39,7 +39,7 @@ def run(drivebase):
         drivebase.straight(240)
         motor_left.run_angle(
             speed=90,
-            rotation_angle=-20,
+            rotation_angle=-40,
             then=Stop.HOLD,
             wait=True
         )
