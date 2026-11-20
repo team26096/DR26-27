@@ -1,0 +1,30 @@
+[19:08:24] Log started 2026-11-19 19:08:24
+[19:08:24] Command: c:\users\jayal\.local\bin\pybricksdev.EXE run ble --name mickeybricks c:\Users\jayal\git\DR26-27\run_seedsofrenewal.py
+[19:08:24] ----------------------------------------
+[19:08:27] Searching for mickeybricks...
+[19:08:37] Traceback (most recent call last):
+[19:08:37]   File "<frozen runpy>", line 198, in _run_module_as_main
+[19:08:37]   File "<frozen runpy>", line 88, in _run_code
+[19:08:37]   File "c:\users\jayal\.local\bin\pybricksdev.EXE\__main__.py", line 5, in <module>
+[19:08:37]     sys.exit(main())
+[19:08:37]              ~~~~^^
+[19:08:37]   File "C:\Users\jayal\AppData\Local\pipx\pipx\venvs\pybricksdev\Lib\site-packages\pybricksdev\cli\__init__.py", line 620, in main
+[19:08:37]     asyncio.run(subparsers.choices[args.tool].tool.run(args))
+[19:08:37]     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[19:08:37]   File "C:\Python314\Lib\asyncio\runners.py", line 204, in run
+[19:08:37]     return runner.run(main)
+[19:08:37]            ~~~~~~~~~~^^^^^^
+[19:08:37]   File "C:\Python314\Lib\asyncio\runners.py", line 127, in run
+[19:08:37]     return self._loop.run_until_complete(task)
+[19:08:37]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+[19:08:37]   File "C:\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+[19:08:37]     return future.result()
+[19:08:37]            ~~~~~~~~~~~~~^^
+[19:08:37]   File "C:\Users\jayal\AppData\Local\pipx\pipx\venvs\pybricksdev\Lib\site-packages\pybricksdev\cli\__init__.py", line 194, in run
+[19:08:37]     device_or_address = await find_ble(args.name)
+[19:08:37]                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+[19:08:37]   File "C:\Users\jayal\AppData\Local\pipx\pipx\venvs\pybricksdev\Lib\site-packages\pybricksdev\ble\__init__.py", line 67, in find_device
+[19:08:37]     raise asyncio.TimeoutError
+[19:08:37] TimeoutError
+[19:08:37] ----------------------------------------
+[19:08:37] Log ended 2026-11-19 19:08:37 after 0:00:12 (exit code 1)
