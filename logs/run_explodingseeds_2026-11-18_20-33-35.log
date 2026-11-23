@@ -1,9 +1,0 @@
-[20:33:35] Log started 2026-11-18 20:33:35
-[20:33:35] Command: c:\users\jayal\.local\bin\pybricksdev.EXE run ble --name mickeybricks c:\Users\jayal\git\DR26-27\run_explodingseeds.py
-[20:33:35] ----------------------------------------
-[20:33:37] Searching for mickeybricks...
-[20:33:53] 100%|██████████| 13.2k/13.2k [00:06<00:00, 2.07kB/s]
-[20:34:20] Merged Exploding Seeds run complete.
-[20:34:20] Elapsed seconds: 26.198
-[20:34:20] ----------------------------------------
-[20:34:20] Log ended 2026-11-18 20:34:20 after 0:00:44 (exit code 0)

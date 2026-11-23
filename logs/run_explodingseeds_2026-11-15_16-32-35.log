@@ -1,9 +1,0 @@
-[16:32:35] Log started 2026-11-15 16:32:35
-[16:32:35] Command: C:\Users\nsrir\AppData\Local\Programs\Python\Python313\python.exe -m pybricksdev run ble --name mickeybricks c:\Work\darth_rappers_2026\run_explodingseeds.py
-[16:32:35] ----------------------------------------
-[16:32:36] Searching for mickeybricks...
-[16:32:48] 100%|██████████| 13.2k/13.2k [00:06<00:00, 2.09kB/s]
-[16:33:16] Merged Exploding Seeds run complete.
-[16:33:16] Elapsed seconds: 27.835
-[16:33:16] ----------------------------------------
-[16:33:16] Log ended 2026-11-15 16:33:16 after 0:00:41 (exit code 0)
